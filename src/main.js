@@ -31,13 +31,13 @@ function renderMove(square, token) {
 }
 
 function progressGame() {
-    if (game.verifyDraw()) {
-        completeGame("draw");
+    if (game.verifyWin()) {
+        completeGame("win");
         return
     }
 
-    if (game.verifyWin()) {
-        completeGame("win");
+    if (game.verifyDraw()) {
+        completeGame("draw");
         return
     }
 
