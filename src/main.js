@@ -3,11 +3,13 @@ var game = new Game();
 
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
+var turnToken = document.getElementById("turnToken");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
     makeMove(event);
-    progressGame(event); });
+    progressGame(event); 
+});
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
@@ -27,18 +29,23 @@ function renderMove(square, token) {
 
 function progressGame() {
     if (game.verifyDraw()) {
-        alert("Draw!");
-        game.reset();
-        initializeBoard();
+        completeGame("draw");
+        return
     }
 
     if (game.verifyWin()) {
-        alert("Win!");
-        game.reset();
-        initializeBoard();
+        completeGame("win");
+        return
     }
 
     game.changeTurn();
+    renderTurn();
+}
+
+function completeGame(condition) {
+    alert(condition);
+    game.reset();
+    initializeBoard();
 }
 
 function initializeBoard() {
@@ -46,6 +53,12 @@ function initializeBoard() {
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         square = document.getElementById(`square${i}`);
-        square.setAttribute("class", "board-square");
+        square.className = "board-square";
     }
+
+    turnToken.src = "assets/raven-token.png";
+}
+
+function renderTurn() {
+    turnToken.src = `/assets/${game.currentTurn.token}-token.png`;
 }
