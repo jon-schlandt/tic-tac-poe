@@ -76,7 +76,7 @@ function initiateWin() {
 }
 
 function renderWinBoard() {
-    var winDisplay = document.getElementById(`player${game.currentPlayer.id}Wins`);
+    var winDisplay = document.getElementById(`winDisplay${game.currentPlayer.id}`);
 
     winDisplay.innerHTML += `
         <section class="mini-game-board" id=${game.gamesPlayed}>
@@ -106,7 +106,7 @@ function renderWinPositions(winBoard) {
 }
 
 function updateWinCount() {
-    var countDisplay = document.getElementById(`player${game.currentPlayer.id}WinCount`);
+    var countDisplay = document.getElementById(`winCount${game.currentPlayer.id}`);
     var winCount = game.currentPlayer.wins.length;
 
     if (winCount === 1) {
@@ -140,5 +140,8 @@ function initializeStatusBox() {
 }
 
 function renderPlayerToken() {
-    currentPlayerToken.src = `/assets/${game.currentPlayer.token}-token.png`;
+    var token = game.currentPlayer.token;
+
+    currentPlayerToken.src = `/assets/${token}-token.png`;
+    currentPlayerToken.alt = `${token} token`;
 }
