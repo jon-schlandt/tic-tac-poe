@@ -5,6 +5,8 @@ var game = new Game();
 var gameBoard = document.getElementById("gameBoard");
 var turnToken = document.getElementById("turnToken");
 var gameMessage = document.getElementById("game-message");
+var playerOneWins = document.getElementById("playerOneWins");
+var playerTwoWins = document.getElementById("playerTwoWins");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
@@ -47,6 +49,7 @@ function progressGame() {
 
 function completeGame(condition) {
     renderEndMessage(condition);
+    renderPlayerWin();
     game.gamesPlayed++;
 
     setTimeout(function() {
@@ -91,6 +94,42 @@ function initializeMessageBox() {
     }
 
     gameMessage.innerText = "'s Turn!"
+}
+
+function setPlayerWin() {
+    var miniBoard = renderMiniBoard();
+
+    renderWinPositions(miniBoard);
+
+}
+
+function renderMiniBoard() {
+    var winDisplay = document.getElementById(`player${game.currentTurn.id}Wins`);
+    winDisplay.innerHTML += `
+        <section class="mini-game-board" id=${game.gamesPlayed}>
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+            <img class="mini-square">
+        </section>
+    `
+
+    return document.getElementById(game.gamesPlayed);
+}
+
+function renderWinPositions(miniBoard) {
+    var miniSquares = miniBoard.querySelectorAll(".mini-square");
+
+    for (var i = 0; i < game.gameBoard.length; i++) {
+        if (game.gameBoard[i]) {
+            miniSquares[i].src = `/assets/${game.gameBoard[i]}-token.png`;
+        }
+    }
 }
 
 function renderTurnToken() {
