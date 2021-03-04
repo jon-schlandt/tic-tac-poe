@@ -48,10 +48,11 @@
           </div>
           <div class="play-area">
             <section class="message-box">
-              <img class="player-token" src="assets/raven-token.png" alt="raven">
-              <p class="game-message">'s Turn!</p>
+              <img class="player-token" id="turnToken" src="assets/raven-token.png" alt="raven">
+              <p class="game-message" id="game-message">'s Turn!</p>
             </section>
-            <section class="game-board">
+            <section class="game-board" id="gameBoard">
+              <button class="board-square" id="square0"></button>
               <button class="board-square" id="square1"></button>
               <button class="board-square" id="square2"></button>
               <button class="board-square" id="square3"></button>
@@ -60,12 +61,11 @@
               <button class="board-square" id="square6"></button>
               <button class="board-square" id="square7"></button>
               <button class="board-square" id="square8"></button>
-              <button class="board-square" id="square9"></button>
             </section>
           </div>
           <div class="player-board">
             <section class="player-display">
-                <img class="player-icon" src="assets/heart-token.jpg">
+                <img class="player-icon" src="assets/heart-token.png">
                 <p class="win-count" id="playerTwoWinCount">0 Wins</p>
             </section>
             <section class="win-display" id="playerTwoWins"></section>

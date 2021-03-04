@@ -8,6 +8,10 @@ main {
     display: flex;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .player-board {
     width: 25%;
     display: flex;
@@ -93,4 +97,15 @@ main {
 .board-square {
     width: 10vw;
     height: 10vw;
+    background-size: cover;
+    outline: none;
+    box-shadow: none;
+}
+
+.raven {
+    background-image: url("assets/raven-token.png");
+}
+
+.heart {
+    background-image: url("assets/heart-token.png");
 }
