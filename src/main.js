@@ -4,11 +4,14 @@ var game = new Game();
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
 var turnToken = document.getElementById("turnToken");
+var gameMessage = document.getElementById("game-message");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    makeMove(event);
-    progressGame(event); 
+    if (event.target !== this) {
+        makeMove(event);
+        progressGame(event);
+    }
 });
 
 // Event Handlers/Helper Functions
@@ -39,26 +42,57 @@ function progressGame() {
     }
 
     game.changeTurn();
-    renderTurn();
+    renderTurnToken();
 }
 
 function completeGame(condition) {
-    alert(condition);
-    game.reset();
-    initializeBoard();
+    renderEndMessage(condition);
+    game.gamesPlayed++;
+
+    setTimeout(function() {
+        game.reset();
+        initializePlayArea();
+    }, 2500);
 }
 
-function initializeBoard() {
+function renderEndMessage(condition) {
+    if (condition === "win") {
+        gameMessage.innerText = "wins!";
+    } else {
+        turnToken.classList.toggle("hidden");
+        gameMessage.innerText = "It's a draw!";
+    }
+    
+}
+
+function initializePlayArea() {
+    initializeGameBoard();
+    initializeMessageBox();
+}
+
+function initializeGameBoard() {
     var square;
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         square = document.getElementById(`square${i}`);
         square.className = "board-square";
     }
-
-    turnToken.src = "assets/raven-token.png";
 }
 
-function renderTurn() {
+function initializeMessageBox() {
+    if (turnToken.classList.contains("hidden")) {
+        turnToken.classList.toggle("hidden");
+    }
+
+    if (!(game.gamesPlayed % 2 === 0) || (game.gamesPlayed === 1)) {
+        turnToken.src = "assets/heart-token.png";
+    } else {
+        turnToken.src = "assets/raven-token.png";
+    }
+
+    gameMessage.innerText = "'s Turn!"
+}
+
+function renderTurnToken() {
     turnToken.src = `/assets/${game.currentTurn.token}-token.png`;
 }

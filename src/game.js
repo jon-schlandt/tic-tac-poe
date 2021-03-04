@@ -8,25 +8,23 @@ class Game {
             null, null, null
         ]
         this.currentTurn = this.playerOne;
+        this.gamesPlayed = 0;
     }
 
     placeToken(squareIndex, token) {
         this.gameBoard.splice(squareIndex, 1, token);
-        console.log(this.gameBoard);
     }
 
     changeTurn() {
         if (this.currentTurn.id === this.playerOne.id) {
             this.currentTurn = this.playerTwo;
         } else {
-            console.log("here");
             this.currentTurn = this.playerOne;
         }
     }
     
     verifyWin() {
         if (this.checkRows() || this.checkColumns() || this.checkDiagonals()) {
-            console.log("verify");
             return true
         }
 
@@ -40,7 +38,6 @@ class Game {
             if (this.gameBoard[i]) {
                 tokensPlaced++
             }
-            console.log(tokensPlaced);
         }
 
         if (tokensPlaced === 9) {
