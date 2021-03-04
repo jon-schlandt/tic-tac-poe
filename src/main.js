@@ -20,7 +20,7 @@ gameBoard.addEventListener("click", function(event) {
 function makeMove(event) {
     var square = event.target;
     var squareIndex = square.id[square.id.length - 1];
-    var token = game.currentTurn.token;
+    var token = game.currentPlayer.token;
     
     if (!game.gameBoard[squareIndex]) {
         game.placeToken(squareIndex, token);
@@ -43,14 +43,15 @@ function progressGame() {
         return
     }
 
-    game.changeTurn();
+    game.changePlayer();
     renderTurnToken();
 }
 
 function completeGame(condition) {
     renderEndMessage(condition);
-    renderPlayerWin();
+    setPlayerWin();
     game.gamesPlayed++;
+    game.changePlayer();
 
     setTimeout(function() {
         game.reset();
@@ -87,12 +88,7 @@ function initializeMessageBox() {
         turnToken.classList.toggle("hidden");
     }
 
-    if (!(game.gamesPlayed % 2 === 0) || (game.gamesPlayed === 1)) {
-        turnToken.src = "assets/heart-token.png";
-    } else {
-        turnToken.src = "assets/raven-token.png";
-    }
-
+    renderTurnToken();
     gameMessage.innerText = "'s Turn!"
 }
 
@@ -100,11 +96,12 @@ function setPlayerWin() {
     var miniBoard = renderMiniBoard();
 
     renderWinPositions(miniBoard);
-
+    game.currentPlayer.wins.push(game.gameBoard);
+    renderWinCount();
 }
 
 function renderMiniBoard() {
-    var winDisplay = document.getElementById(`player${game.currentTurn.id}Wins`);
+    var winDisplay = document.getElementById(`player${game.currentPlayer.id}Wins`);
     winDisplay.innerHTML += `
         <section class="mini-game-board" id=${game.gamesPlayed}>
             <img class="mini-square">
@@ -132,6 +129,17 @@ function renderWinPositions(miniBoard) {
     }
 }
 
+function renderWinCount() {
+    var winCountDisplay = document.getElementById(`player${game.currentPlayer.id}WinCount`);
+    var winCount = game.currentPlayer.wins.length;
+
+    if (winCount === 1) {
+        winCountDisplay.innerText = `${winCount} Win`;
+    } else {
+        winCountDisplay.innerText = `${winCount} Wins`;
+    }
+}
+
 function renderTurnToken() {
-    turnToken.src = `/assets/${game.currentTurn.token}-token.png`;
+    turnToken.src = `/assets/${game.currentPlayer.token}-token.png`;
 }
