@@ -1,5 +1,3 @@
-var Player = require('./player.js');
-
 class Game {
     constructor() {
         this.playerOne = new Player("one", "heart");
