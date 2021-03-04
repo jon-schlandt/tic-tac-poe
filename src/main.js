@@ -72,7 +72,7 @@ function setPlayerWin() {
     var miniBoard = renderMiniBoard();
 
     renderWinPositions(miniBoard);
-    game.currentPlayer.wins.push(game.gameBoard);
+    game.saveWin(game.currentPlayer);
     renderWinCount();
 }
 

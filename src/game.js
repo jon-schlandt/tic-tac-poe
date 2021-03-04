@@ -15,14 +15,6 @@ class Game {
         this.gameBoard.splice(squareIndex, 1, token);
     }
 
-    changePlayer() {
-        if (this.currentPlayer.id === this.playerOne.id) {
-            this.currentPlayer = this.playerTwo;
-        } else {
-            this.currentPlayer = this.playerOne;
-        }
-    }
-    
     verifyWin() {
         if (this.checkRows() || this.checkColumns() || this.checkDiagonals()) {
             return true
@@ -31,32 +23,6 @@ class Game {
         return false;
     }
 
-    verifyDraw() {
-        var tokensPlaced = 0;
-
-        for (var i = 0; i < this.gameBoard.length; i++) {
-            if (this.gameBoard[i]) {
-                tokensPlaced++
-            }
-        }
-
-        if (tokensPlaced === 9) {
-            return true;
-        }
-
-        return false;
-    }
-
-    saveWin(player) {
-        this[player].wins.push(this.gameBoard);
-    }
-
-    reset() {
-        for (var i = 0; i < this.gameBoard.length; i++) {
-            this.gameBoard[i] = null;
-        }
-    }
-    
     checkRows() {
         var row;
 
@@ -102,5 +68,39 @@ class Game {
         }
 
         return false;
+    }
+
+    verifyDraw() {
+        var tokensPlaced = 0;
+
+        for (var i = 0; i < this.gameBoard.length; i++) {
+            if (this.gameBoard[i]) {
+                tokensPlaced++
+            }
+        }
+
+        if (tokensPlaced === 9) {
+            return true;
+        }
+
+        return false;
+    }
+
+    changePlayer() {
+        if (this.currentPlayer.id === this.playerOne.id) {
+            this.currentPlayer = this.playerTwo;
+        } else {
+            this.currentPlayer = this.playerOne;
+        }
+    }
+    
+    saveWin(player) {
+        this[player].wins.push(this.gameBoard);
+    }
+
+    reset() {
+        for (var i = 0; i < this.gameBoard.length; i++) {
+            this.gameBoard[i] = null;
+        }
     }
 }
