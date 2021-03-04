@@ -29,7 +29,9 @@ class Game {
         for (var i = 0; i < 9; i += 3) {
             row = this.gameBoard.slice(i, i + 3);
             
-            if (!row[0]) { continue; }
+            if (!row[0]) { 
+                continue; 
+            }
 
             if ((row[0] === row[1]) && (row[0] === row[2])) {
                 return true;
@@ -45,7 +47,9 @@ class Game {
         for (var i = 0; i < 3; i++) {
             column = [this.gameBoard[i], this.gameBoard[i + 3], this.gameBoard[i + 6]]
             
-            if (!column[0]) { continue; }
+            if (!column[0]) { 
+                continue; 
+            }
 
             if ((column[0] === column[1]) && (column[0] === column[2])) {
                 return true;
@@ -86,7 +90,7 @@ class Game {
         return false;
     }
 
-    changePlayer() {
+    setCurrentPlayer() {
         if (this.currentPlayer.id === this.playerOne.id) {
             this.currentPlayer = this.playerTwo;
         } else {

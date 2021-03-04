@@ -42,7 +42,7 @@ function progressGame() {
         return
     }
 
-    game.changePlayer();
+    game.setCurrentPlayer();
     renderPlayerToken();
 }
 
@@ -50,7 +50,7 @@ function completeGame(condition) {
     initiateWin();
     renderStatusMessage(condition);
     game.gamesPlayed++;
-    game.changePlayer();
+    game.setCurrentPlayer();
 
     setTimeout(function() {
         game.reset();
