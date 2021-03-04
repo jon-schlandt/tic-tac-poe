@@ -1,13 +1,13 @@
 class Game {
     constructor() {
-        this.playerOne = new Player("one", "raven");
-        this.playerTwo = new Player("two", "heart");
+        this.playerOne = new Player("One", "raven");
+        this.playerTwo = new Player("Two", "heart");
         this.gameBoard = [
             null, null, null, 
             null, null, null,
             null, null, null
         ]
-        this.currentTurn = this.playerOne;
+        this.currentPlayer = this.playerOne;
         this.gamesPlayed = 0;
     }
 
@@ -15,11 +15,11 @@ class Game {
         this.gameBoard.splice(squareIndex, 1, token);
     }
 
-    changeTurn() {
-        if (this.currentTurn.id === this.playerOne.id) {
-            this.currentTurn = this.playerTwo;
+    changePlayer() {
+        if (this.currentPlayer.id === this.playerOne.id) {
+            this.currentPlayer = this.playerTwo;
         } else {
-            this.currentTurn = this.playerOne;
+            this.currentPlayer = this.playerOne;
         }
     }
     
