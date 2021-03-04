@@ -3,10 +3,9 @@ var game = new Game();
 
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
+
 var turnToken = document.getElementById("turnToken");
 var gameMessage = document.getElementById("game-message");
-var playerOneWins = document.getElementById("playerOneWins");
-var playerTwoWins = document.getElementById("playerTwoWins");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
@@ -69,29 +68,6 @@ function renderEndMessage(condition) {
     
 }
 
-function initializePlayArea() {
-    initializeGameBoard();
-    initializeMessageBox();
-}
-
-function initializeGameBoard() {
-    var square;
-
-    for (var i = 0; i < game.gameBoard.length; i++) {
-        square = document.getElementById(`square${i}`);
-        square.className = "board-square";
-    }
-}
-
-function initializeMessageBox() {
-    if (turnToken.classList.contains("hidden")) {
-        turnToken.classList.toggle("hidden");
-    }
-
-    renderTurnToken();
-    gameMessage.innerText = "'s Turn!"
-}
-
 function setPlayerWin() {
     var miniBoard = renderMiniBoard();
 
@@ -138,6 +114,29 @@ function renderWinCount() {
     } else {
         winCountDisplay.innerText = `${winCount} Wins`;
     }
+}
+
+function initializePlayArea() {
+    initializeGameBoard();
+    initializeMessageBox();
+}
+
+function initializeGameBoard() {
+    var square;
+
+    for (var i = 0; i < game.gameBoard.length; i++) {
+        square = document.getElementById(`square${i}`);
+        square.className = "board-square";
+    }
+}
+
+function initializeMessageBox() {
+    if (turnToken.classList.contains("hidden")) {
+        turnToken.classList.toggle("hidden");
+    }
+
+    renderTurnToken();
+    gameMessage.innerText = "'s Turn!"
 }
 
 function renderTurnToken() {
