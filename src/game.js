@@ -1,29 +1,32 @@
 class Game {
     constructor() {
-        this.playerOne = new Player("one", "heart");
-        this.playerTwo = new Player("two", "raven");
-        this.boardGrid = [
+        this.playerOne = new Player("one", "raven");
+        this.playerTwo = new Player("two", "heart");
+        this.gameBoard = [
             null, null, null, 
             null, null, null,
             null, null, null
         ]
-        this.currentTurn = this.playerOne.id;
+        this.currentTurn = this.playerOne;
     }
 
-    placeToken(cell, token) {
-        this.boardGrid.splice(cell, 1, token);
+    placeToken(squareIndex, token) {
+        this.gameBoard.splice(squareIndex, 1, token);
+        console.log(this.gameBoard);
     }
 
     changeTurn() {
-        if (this.currentTurn === "one") {
-            this.currentTurn === this.playerTwo;
+        if (this.currentTurn.id === this.playerOne.id) {
+            this.currentTurn = this.playerTwo;
         } else {
-            this.currentTurn === this.playerOne;
+            console.log("here");
+            this.currentTurn = this.playerOne;
         }
     }
     
     verifyWin() {
         if (this.checkRows() || this.checkColumns() || this.checkDiagonals()) {
+            console.log("verify");
             return true
         }
 
@@ -33,10 +36,11 @@ class Game {
     verifyDraw() {
         var tokensPlaced = 0;
 
-        for (var i = 0; i < this.boardGrid.length; i++) {
-            if (this.boardGrid[i]) {
+        for (var i = 0; i < this.gameBoard.length; i++) {
+            if (this.gameBoard[i]) {
                 tokensPlaced++
             }
+            console.log(tokensPlaced);
         }
 
         if (tokensPlaced === 9) {
@@ -47,12 +51,12 @@ class Game {
     }
 
     saveWin(player) {
-        this[player].wins.push(this.boardGrid);
+        this[player].wins.push(this.gameBoard);
     }
 
     reset() {
-        for (var i = 0; i < this.boardGrid.length; i++) {
-            this.boardGrid[i] = null;
+        for (var i = 0; i < this.gameBoard.length; i++) {
+            this.gameBoard[i] = null;
         }
     }
     
@@ -60,7 +64,7 @@ class Game {
         var row;
 
         for (var i = 0; i < 9; i += 3) {
-            row = this.boardGrid.slice(i, i + 3);
+            row = this.gameBoard.slice(i, i + 3);
             
             if (!row[0]) { continue; }
 
@@ -76,7 +80,7 @@ class Game {
         var column;
 
         for (var i = 0; i < 3; i++) {
-            column = [this.boardGrid[i], this.boardGrid[i + 3], this.boardGrid[i + 6]]
+            column = [this.gameBoard[i], this.gameBoard[i + 3], this.gameBoard[i + 6]]
             
             if (!column[0]) { continue; }
 
@@ -89,18 +93,14 @@ class Game {
     }
 
     checkDiagonals() {
-        var first = [this.boardGrid[0], this.boardGrid[4], this.boardGrid[8]];
-        var second = [this.boardGrid[2], this.boardGrid[4], this.boardGrid[6]];
-        
-        if ((!first[0]) && (!second[0])) {
-            return false 
-        };
+        var first = [this.gameBoard[0], this.gameBoard[4], this.gameBoard[8]];
+        var second = [this.gameBoard[2], this.gameBoard[4], this.gameBoard[6]];
 
-        if ((first[0] === first[1]) && (first[0] === first[2])) {
+        if ((first[0]) && (first[0] === first[1]) && (first[0] === first[2])) {
             return true; 
         }
 
-        if ((second[0] === second[1]) && (second[0] === second[2])) {
+        if ((second[0]) && (second[0] === second[1]) && (second[0] === second[2])) {
             return true; 
         }
 

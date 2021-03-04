@@ -93,4 +93,13 @@ main {
 .board-square {
     width: 10vw;
     height: 10vw;
+    background-size: cover;
+}
+
+.raven {
+    background-image: url("assets/raven-token.png");
+}
+
+.heart {
+    background-image: url("assets/heart-token.jpg");
 }
