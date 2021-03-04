@@ -4,22 +4,24 @@ class Game {
     constructor() {
         this.playerOne = new Player("one", "heart");
         this.playerTwo = new Player("two", "raven");
-        // this.boardGrid = [
-        //     { cell1: "" }, { cell2: "" }, { cell3: "" },
-        //     { cell4: "" }, { cell5: "" }, { cell6: "" },
-        //     { cell7: "" }, { cell8: "" }, { cell9: "" } 
-        // ]
         this.boardGrid = [
             null, null, null, 
             null, null, null,
             null, null, null
         ]
-        
         this.currentTurn = this.playerOne.id;
     }
 
     placeToken(cell, token) {
         this.boardGrid.splice(cell, 1, token);
+    }
+
+    changeTurn() {
+        if (this.currentTurn === "one") {
+            this.currentTurn === this.playerTwo;
+        } else {
+            this.currentTurn === this.playerOne;
+        }
     }
     
     verifyWin() {
@@ -46,6 +48,16 @@ class Game {
         return false;
     }
 
+    saveWin(player) {
+        this[player].wins.push(this.boardGrid);
+    }
+
+    reset() {
+        for (var i = 0; i < this.boardGrid.length; i++) {
+            this.boardGrid[i] = null;
+        }
+    }
+    
     checkRows() {
         var row;
 
@@ -96,22 +108,4 @@ class Game {
 
         return false;
     }
-
-    saveWin(player) {
-        this[player].wins.push(this.boardGrid);
-    }
-
-    reset() {
-
-    }
 }
-
-var game = new Game();
-// game.placeToken(3, game.playerOne.token);
-// game.placeToken(4, game.playerOne.token);
-// game.placeToken(7, game.playerOne.token);
-for (var i = 0; i < 1; i++) {
-    game.placeToken(i, game.playerOne.token);
-}
-
-console.log(game.verifyDraw());
