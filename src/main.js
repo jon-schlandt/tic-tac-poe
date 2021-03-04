@@ -42,5 +42,10 @@ function progressGame() {
 }
 
 function initializeBoard() {
+    var square;
 
+    for (var i = 0; i < game.gameBoard.length; i++) {
+        square = document.getElementById(`square${i}`);
+        square.setAttribute("class", "board-square");
+    }
 }
