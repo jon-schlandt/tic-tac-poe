@@ -94,8 +94,8 @@ class Game {
         }
     }
     
-    saveWin(player) {
-        this[player].wins.push(this.gameBoard);
+    saveWin() {
+        this.currentPlayer.wins.push(this.gameBoard);
     }
 
     reset() {
