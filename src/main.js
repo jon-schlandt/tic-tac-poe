@@ -8,6 +8,7 @@ var currentPlayerToken = document.getElementById("currentPlayerToken");
 var statusMessage = document.getElementById("statusMessage");
 
 // Event Listeners
+window.addEventListener("load", renderWinBoards);
 gameBoard.addEventListener("click", function(event) {
     if (event.target !== this) {
         makeMove(event);
@@ -43,7 +44,7 @@ function progressGame() {
     }
 
     game.setCurrentPlayer();
-    renderPlayerToken();
+    updatePlayerToken();
 }
 
 function completeGame(condition) {
@@ -135,11 +136,11 @@ function initializeStatusBox() {
         currentPlayerToken.classList.toggle("hidden");
     }
 
-    renderPlayerToken();
+    updatePlayerToken();
     statusMessage.innerText = "'s Turn!"
 }
 
-function renderPlayerToken() {
+function updatePlayerToken() {
     var token = game.currentPlayer.token;
 
     currentPlayerToken.src = `/assets/${token}-token.png`;
