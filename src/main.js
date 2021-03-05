@@ -7,13 +7,18 @@ var gameBoard = document.getElementById("gameBoard");
 var currentPlayerToken = document.getElementById("currentPlayerToken");
 var statusMessage = document.getElementById("statusMessage");
 
+var clearStorageButton = document.querySelector(".clear");
+
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.className === "board-square")) {
+    if ((event.target !== this) && (event.target.classList.contains("board-square"))) {
         makeMove(event);
         progressGame(event);
+        
 } });
 window.addEventListener("load", renderWinDisplays);
+
+clearStorageButton.addEventListener("click", clearStorage);
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
@@ -32,23 +37,19 @@ function renderMove(boardSquare, token) {
 function progressGame() {
     if (game.verifyWin()) {
         completeGame("win");
-        return
-    }
-
-    if (game.verifyDraw()) {
+    } else if (game.verifyDraw()) {
         completeGame("draw");
-        return
+    } else {
+        game.setCurrentPlayer();
+        updatePlayerToken();
     }
-
-    game.setCurrentPlayer();
-    updatePlayerToken();
 }
 
 function completeGame(condition) {
     initiateWin();
     renderStatusMessage(condition);
     game.setCurrentPlayer();
-
+    
     setTimeout(function() {
         game.reset();
         initializePlayArea();
@@ -98,15 +99,15 @@ function renderWinBoards(player) {
     for (var i = 0; i < player.wins.length; i++) {
         boards += `
         <section class="mini-game-board">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
+            <div class="mini-square"></div>
         </section>
     `
     }
@@ -120,7 +121,8 @@ function renderWinPositions(winBoard, savedWin) {
 
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
-            boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
+            // boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
+            boardSquares[i].classList.toggle(`${savedWin[i]}`)
         }
     }
 }
@@ -146,7 +148,12 @@ function initializeGameBoard() {
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
-        boardSquare.className = "board-square";
+        
+        if (boardSquare.classList.contains("raven")) {
+            boardSquare.classList.toggle("raven");
+        } else if (boardSquare.classList.contains("heart")) {
+            boardSquare.classList.toggle("heart");
+        }
     }
 }
 
@@ -164,4 +171,8 @@ function updatePlayerToken() {
 
     currentPlayerToken.src = `/assets/${token}-token.png`;
     currentPlayerToken.alt = `${token} token`;
+}
+
+function clearStorage() {
+    window.localStorage.clear();
 }
