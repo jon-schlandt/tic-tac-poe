@@ -98,7 +98,8 @@ class Game {
     }
     
     saveWin() {
-        this.currentPlayer.wins.push(this.gameBoard);
+        var savedBoard = this.gameBoard.slice(0, 8);
+        this.currentPlayer.wins.push(savedBoard);
     }
 
     reset() {

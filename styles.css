@@ -58,7 +58,6 @@ main {
 /* ------ Win Displays ------ */
 
 .win-display {
-    width: 80%;
     max-width: 340px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -68,15 +67,36 @@ main {
 }
 
 .mini-game-board {
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
+    justify-content: center;
     justify-self: center;
+    padding: 5px;
+    border: solid black thin;
 }
 
 .mini-square {
-    width: 30px;
-    height: 30px;
+    border: none;
+    background-color: white;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    width: 2vw;
+    height: 2vw;
 }
+
+/* .mini-square.right-bottom-border {
+    border-right: solid black thin;
+    border-bottom: solid black thin;
+}
+
+.mini-square.right-border {
+    border-right: solid black thin;
+}
+
+.mini-square.bottom-border {
+    border-bottom: solid black thin;
+} */
 
 /********** ------ Play Area Styles ------ **********/
 
@@ -128,7 +148,8 @@ main {
     width: 10vw;
     height: 10vw;
     padding: 0px 0px;
-    background-size: cover;
+    background-size: 90%;
+    background-repeat: no-repeat;
     outline: none;
     box-shadow: none;
     border: none;

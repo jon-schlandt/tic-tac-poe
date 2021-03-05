@@ -14,8 +14,9 @@ gameBoard.addEventListener("click", function(event) {
     if ((event.target !== this) && (event.target.classList.contains("board-square"))) {
         makeMove(event);
         progressGame(event);
+        
 } });
-window.addEventListener("load", renderWinDisplays);
+// window.addEventListener("load", renderWinDisplays);
 
 clearStorageButton.addEventListener("click", clearStorage);
 
@@ -36,23 +37,19 @@ function renderMove(boardSquare, token) {
 function progressGame() {
     if (game.verifyWin()) {
         completeGame("win");
-        return
-    }
-
-    if (game.verifyDraw()) {
+    } else if (game.verifyDraw()) {
         completeGame("draw");
-        return
+    } else {
+        game.setCurrentPlayer();
+        updatePlayerToken();
     }
-
-    game.setCurrentPlayer();
-    updatePlayerToken();
 }
 
 function completeGame(condition) {
     initiateWin();
     renderStatusMessage(condition);
     game.setCurrentPlayer();
-
+    
     setTimeout(function() {
         game.reset();
         initializePlayArea();
@@ -102,15 +99,15 @@ function renderWinBoards(player) {
     for (var i = 0; i < player.wins.length; i++) {
         boards += `
         <section class="mini-game-board">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
-            <img class="mini-square">
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square"></div>
         </section>
     `
     }
@@ -124,7 +121,8 @@ function renderWinPositions(winBoard, savedWin) {
 
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
-            boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
+            // boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
+            boardSquares[i].classList.toggle(`${savedWin[i]}`)
         }
     }
 }
