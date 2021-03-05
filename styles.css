@@ -17,13 +17,15 @@ main {
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
-    width: 25%;
+    width: 27.5%;
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
     align-items: center;
     padding-top: 100px;
 }
+
+/* ------ Player Displays ------ */
 
 .player-board > section {
     width: 80%;
@@ -46,9 +48,13 @@ main {
     margin-top: 10px;
 }
 
+/* ------ Win Displays ------ */
+
 .win-display {
     display: grid;
-    grid-template-columns: repeat(3, 0fr);
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
     justify-content: center;
     padding: 10px;
 }
@@ -56,7 +62,7 @@ main {
 .mini-game-board {
     display: grid;
     grid-template-columns: repeat(3, 0fr);
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .mini-square {
@@ -70,13 +76,15 @@ main {
     border-left: solid black;
     border-right: solid black;
     font-size: x-large;
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding-top: 110px;
 }
+
+/* ------ Status Box ------ */
 
 .status-box {
     display: flex;
@@ -91,6 +99,8 @@ main {
 .status-message {
     margin-left: 5px;
 }
+
+/* ------ Game Board ------ */
 
 .game-board {
     width: 80%;
