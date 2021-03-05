@@ -8,23 +8,14 @@ var currentPlayerToken = document.getElementById("currentPlayerToken");
 var statusMessage = document.getElementById("statusMessage");
 
 // Event Listeners
-window.addEventListener("load", renderWinDisplays);
 gameBoard.addEventListener("click", function(event) {
     if ((event.target !== this) && (event.target.className === "board-square")) {
         makeMove(event);
         progressGame(event);
-    }
-});
+    } });
+window.addEventListener("load", renderWinDisplays);
 
 // Event Handlers/Helper Functions
-function renderWinDisplays() {
-    game.playerOne.retrieveWinsFromStorage();
-    game.playerTwo.retrieveWinsFromStorage();
-
-    renderWinDisplay(game.playerOne);
-    renderWinDisplay(game.playerTwo);
-}
-
 function makeMove(event) {
     var boardSquare = event.target;
     var squareIndex = boardSquare.id[boardSquare.id.length - 1];
@@ -78,8 +69,19 @@ function renderStatusMessage(condition) {
 function initiateWin() {
     game.saveWin();
     game.currentPlayer.saveWinsToStorage();
-    updateWinCount();
+    updateWinCount(game.currentPlayer);
     renderWinDisplay(game.currentPlayer);
+}
+
+function renderWinDisplays() {
+    game.playerOne.retrieveWinsFromStorage();
+    game.playerTwo.retrieveWinsFromStorage();
+
+    updateWinCount(game.playerOne);
+    updateWinCount(game.playerTwo);
+    
+    renderWinDisplay(game.playerOne);
+    renderWinDisplay(game.playerTwo);
 }
 
 function renderWinDisplay(player) {
@@ -110,7 +112,7 @@ function renderWinBoards(player) {
     `
     }
     
-    winDisplay.innerHTML = boards;
+    winDisplay.innerHTML = emptyBoards;
     return winDisplay.querySelectorAll(".mini-game-board");
 }
 
@@ -124,8 +126,8 @@ function renderWinPositions(winBoard, savedBoard) {
     }
 }
 
-function updateWinCount() {
-    var countDisplay = document.getElementById(`winCount${game.currentPlayer.id}`);
+function updateWinCount(player) {
+    var countDisplay = document.getElementById(`winCount${player.id}`);
     var winCount = game.currentPlayer.wins.length;
 
     if (winCount === 1) {
