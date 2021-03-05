@@ -1,3 +1,5 @@
+/********** ------ Global Styles ------ **********/
+
 * {
     margin: 0px 0px;
 }
@@ -11,6 +13,8 @@ main {
 .hidden {
     display: none !important;
 }
+
+/********** ------ Player Board Styles ------ **********/
 
 .player-board {
     width: 25%;
@@ -60,6 +64,8 @@ main {
     height: 30px;
 }
 
+/********** ------ Play Area Styles ------ **********/
+
 .play-area {
     border-left: solid black;
     border-right: solid black;
@@ -72,7 +78,7 @@ main {
     padding-top: 110px;
 }
 
-.message-box {
+.status-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +88,7 @@ main {
     width: 10%;
 }
 
-.game-message {
+.status-message {
     margin-left: 5px;
 }
 

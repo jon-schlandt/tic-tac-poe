@@ -3,10 +3,9 @@ var game = new Game();
 
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
-var turnToken = document.getElementById("turnToken");
-var gameMessage = document.getElementById("game-message");
-var playerOneWins = document.getElementById("playerOneWins");
-var playerTwoWins = document.getElementById("playerTwoWins");
+
+var currentPlayerToken = document.getElementById("currentPlayerToken");
+var statusMessage = document.getElementById("statusMessage");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
@@ -18,18 +17,18 @@ gameBoard.addEventListener("click", function(event) {
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
-    var square = event.target;
-    var squareIndex = square.id[square.id.length - 1];
+    var boardSquare = event.target;
+    var squareIndex = boardSquare.id[boardSquare.id.length - 1];
     var token = game.currentPlayer.token;
     
-    if (!game.gameBoard[squareIndex]) {
+    if (!(game.gameBoard[squareIndex])) {
         game.placeToken(squareIndex, token);
-        renderMove(square, token);
+        renderMove(boardSquare, token);
     }
 }
 
-function renderMove(square, token) {
-    square.classList.toggle(token);
+function renderMove(boardSquare, token) {
+    boardSquare.classList.toggle(token);
 }
 
 function progressGame() {
@@ -43,15 +42,15 @@ function progressGame() {
         return
     }
 
-    game.changePlayer();
-    renderTurnToken();
+    game.setCurrentPlayer();
+    renderPlayerToken();
 }
 
 function completeGame(condition) {
-    renderEndMessage(condition);
-    setPlayerWin();
+    initiateWin();
+    renderStatusMessage(condition);
     game.gamesPlayed++;
-    game.changePlayer();
+    game.setCurrentPlayer();
 
     setTimeout(function() {
         game.reset();
@@ -59,49 +58,26 @@ function completeGame(condition) {
     }, 2500);
 }
 
-function renderEndMessage(condition) {
+function renderStatusMessage(condition) {
     if (condition === "win") {
-        gameMessage.innerText = "wins!";
+        statusMessage.innerText = "wins!";
     } else {
-        turnToken.classList.toggle("hidden");
-        gameMessage.innerText = "It's a draw!";
+        currentPlayerToken.classList.toggle("hidden");
+        statusMessage.innerText = "It's a draw!";
     }
     
 }
 
-function initializePlayArea() {
-    initializeGameBoard();
-    initializeMessageBox();
+function initiateWin() {
+    game.saveWin(game.currentPlayer);
+
+    renderWinPositions(renderWinBoard());
+    updateWinCount();
 }
 
-function initializeGameBoard() {
-    var square;
+function renderWinBoard() {
+    var winDisplay = document.getElementById(`winDisplay${game.currentPlayer.id}`);
 
-    for (var i = 0; i < game.gameBoard.length; i++) {
-        square = document.getElementById(`square${i}`);
-        square.className = "board-square";
-    }
-}
-
-function initializeMessageBox() {
-    if (turnToken.classList.contains("hidden")) {
-        turnToken.classList.toggle("hidden");
-    }
-
-    renderTurnToken();
-    gameMessage.innerText = "'s Turn!"
-}
-
-function setPlayerWin() {
-    var miniBoard = renderMiniBoard();
-
-    renderWinPositions(miniBoard);
-    game.currentPlayer.wins.push(game.gameBoard);
-    renderWinCount();
-}
-
-function renderMiniBoard() {
-    var winDisplay = document.getElementById(`player${game.currentPlayer.id}Wins`);
     winDisplay.innerHTML += `
         <section class="mini-game-board" id=${game.gamesPlayed}>
             <img class="mini-square">
@@ -119,27 +95,53 @@ function renderMiniBoard() {
     return document.getElementById(game.gamesPlayed);
 }
 
-function renderWinPositions(miniBoard) {
-    var miniSquares = miniBoard.querySelectorAll(".mini-square");
+function renderWinPositions(winBoard) {
+    var boardSquares = winBoard.querySelectorAll(".mini-square");
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         if (game.gameBoard[i]) {
-            miniSquares[i].src = `/assets/${game.gameBoard[i]}-token.png`;
+            boardSquares[i].src = `/assets/${game.gameBoard[i]}-token.png`;
         }
     }
 }
 
-function renderWinCount() {
-    var winCountDisplay = document.getElementById(`player${game.currentPlayer.id}WinCount`);
+function updateWinCount() {
+    var countDisplay = document.getElementById(`winCount${game.currentPlayer.id}`);
     var winCount = game.currentPlayer.wins.length;
 
     if (winCount === 1) {
-        winCountDisplay.innerText = `${winCount} Win`;
+        countDisplay.innerText = `${winCount} Win`;
     } else {
-        winCountDisplay.innerText = `${winCount} Wins`;
+        countDisplay.innerText = `${winCount} Wins`;
     }
 }
 
-function renderTurnToken() {
-    turnToken.src = `/assets/${game.currentPlayer.token}-token.png`;
+function initializePlayArea() {
+    initializeGameBoard();
+    initializeStatusBox();
+}
+
+function initializeGameBoard() {
+    var boardSquare;
+
+    for (var i = 0; i < game.gameBoard.length; i++) {
+        boardSquare = document.getElementById(`square${i}`);
+        boardSquare.className = "board-square";
+    }
+}
+
+function initializeStatusBox() {
+    if (currentPlayerToken.classList.contains("hidden")) {
+        currentPlayerToken.classList.toggle("hidden");
+    }
+
+    renderPlayerToken();
+    statusMessage.innerText = "'s Turn!"
+}
+
+function renderPlayerToken() {
+    var token = game.currentPlayer.token;
+
+    currentPlayerToken.src = `/assets/${token}-token.png`;
+    currentPlayerToken.alt = `${token} token`;
 }

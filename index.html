@@ -7,15 +7,15 @@
       <main>
           <div class="player-board">
             <section class="player-display">
-                <img class="player-token" src="assets/raven-token.png" alt="raven">
-                <p class="win-count" id="playerOneWinCount">0 Wins</p>
+                <img class="player-token" src="assets/raven-token.png" alt="raven token">
+                <p class="win-count" id="winCountOne">0 Wins</p>
             </section>
-            <section class="win-display" id="playerOneWins"></section>
+            <section class="win-display" id="winDisplayOne"></section>
           </div>
           <div class="play-area">
-            <section class="message-box">
-              <img class="player-token" id="turnToken" src="assets/raven-token.png" alt="raven">
-              <p class="game-message" id="game-message">'s Turn!</p>
+            <section class="status-box">
+              <img class="player-token" id="currentPlayerToken" src="assets/raven-token.png" alt="raven token">
+              <p class="status-message" id="statusMessage">'s Turn!</p>
             </section>
             <section class="game-board" id="gameBoard">
               <button class="board-square" id="square0"></button>
@@ -31,10 +31,10 @@
           </div>
           <div class="player-board">
             <section class="player-display">
-                <img class="player-icon" src="assets/heart-token.png">
-                <p class="win-count" id="playerTwoWinCount">0 Wins</p>
+                <img class="player-icon" src="assets/heart-token.png" alt="heart token">
+                <p class="win-count" id="winCountTwo">0 Wins</p>
             </section>
-            <section class="win-display" id="playerTwoWins"></section>
+            <section class="win-display" id="winDisplayTwo"></section>
           </div>
       </main>
       <script type="text/javascript" src="./src/player.js"></script>
