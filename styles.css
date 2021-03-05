@@ -23,6 +23,7 @@ main {
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
+    background-color: #cbc8c8;
     width: 27.5%;
     display: flex;
     flex-direction: column;
@@ -80,8 +81,9 @@ main {
 /********** ------ Play Area Styles ------ **********/
 
 .play-area {
-    border-left: solid black;
-    border-right: solid black;
+    background-color: #EFEFEF;
+    border-left: solid black thin;
+    border-right: solid black thin;
     font-size: x-large;
     width: 45%;
     display: flex;
@@ -112,19 +114,37 @@ main {
 /* ------ Game Board ------ */
 
 .game-board {
-    width: 80%;
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     justify-content: center;
+    margin-top: 20px;
     padding: 20px;
+    border: solid black thin;
 }
 
 .board-square {
+    background-color: white;
     width: 10vw;
     height: 10vw;
+    padding: 0px 0px;
     background-size: cover;
     outline: none;
     box-shadow: none;
+    border: none;
+}
+
+.board-square.right-bottom-border {
+    border-right: solid black thin;
+    border-bottom: solid black thin;
+}
+
+.board-square.right-border {
+    border-right: solid black thin;
+}
+
+.board-square.bottom-border {
+    border-bottom: solid black thin;
 }
 
 .raven {

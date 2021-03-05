@@ -11,7 +11,7 @@ var clearStorageButton = document.querySelector(".clear");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.className === "board-square")) {
+    if ((event.target !== this) && (event.target.classList.contains("board-square"))) {
         makeMove(event);
         progressGame(event);
 } });
@@ -150,7 +150,12 @@ function initializeGameBoard() {
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
-        boardSquare.className = "board-square";
+        
+        if (boardSquare.classList.contains("raven")) {
+            boardSquare.classList.toggle("raven");
+        } else if (boardSquare.classList.contains("heart")) {
+            boardSquare.classList.toggle("heart");
+        }
     }
 }
 
