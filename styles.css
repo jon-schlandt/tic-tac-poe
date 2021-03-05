@@ -64,7 +64,12 @@ main {
     column-gap: 20px;
     row-gap: 20px;
     padding: 10px;
+    overflow: scroll;
 }
+
+.win-display::-webkit-scrollbar {
+    display: none;
+  }
 
 .mini-game-board {
     background-color: white;
@@ -84,19 +89,6 @@ main {
     width: 2vw;
     height: 2vw;
 }
-
-/* .mini-square.right-bottom-border {
-    border-right: solid black thin;
-    border-bottom: solid black thin;
-}
-
-.mini-square.right-border {
-    border-right: solid black thin;
-}
-
-.mini-square.bottom-border {
-    border-bottom: solid black thin;
-} */
 
 /********** ------ Play Area Styles ------ **********/
 

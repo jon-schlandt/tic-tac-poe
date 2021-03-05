@@ -16,7 +16,7 @@ gameBoard.addEventListener("click", function(event) {
         progressGame(event);
         
 } });
-// window.addEventListener("load", renderWinDisplays);
+window.addEventListener("load", renderWinDisplays);
 
 clearStorageButton.addEventListener("click", clearStorage);
 
