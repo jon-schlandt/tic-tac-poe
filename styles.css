@@ -14,6 +14,12 @@ main {
     display: none !important;
 }
 
+.clear {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}   
+
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
@@ -28,10 +34,14 @@ main {
 /* ------ Player Displays ------ */
 
 .player-display {
+    margin: 0px 0px;
+    height: 15%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding-top: 10px;
+    padding-bottom: 0px;
 }
 
 .player-display > img {
@@ -48,17 +58,18 @@ main {
 
 .win-display {
     width: 80%;
+    max-width: 340px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
     row-gap: 20px;
-    justify-content: center;
     padding: 10px;
 }
 
 .mini-game-board {
     display: grid;
     grid-template-columns: repeat(3, 0fr);
+    justify-self: center;
 }
 
 .mini-square {
@@ -77,12 +88,13 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 110px;
+    padding-top: 100px;
 }
 
 /* ------ Status Box ------ */
 
 .status-box {
+    height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;

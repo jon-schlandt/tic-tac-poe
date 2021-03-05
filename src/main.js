@@ -7,6 +7,8 @@ var gameBoard = document.getElementById("gameBoard");
 var currentPlayerToken = document.getElementById("currentPlayerToken");
 var statusMessage = document.getElementById("statusMessage");
 
+var clearStorageButton = document.querySelector(".clear");
+
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
     if ((event.target !== this) && (event.target.className === "board-square")) {
@@ -14,6 +16,8 @@ gameBoard.addEventListener("click", function(event) {
         progressGame(event);
 } });
 window.addEventListener("load", renderWinDisplays);
+
+clearStorageButton.addEventListener("click", clearStorage);
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
@@ -164,4 +168,8 @@ function updatePlayerToken() {
 
     currentPlayerToken.src = `/assets/${token}-token.png`;
     currentPlayerToken.alt = `${token} token`;
+}
+
+function clearStorage() {
+    window.localStorage.clear();
 }
