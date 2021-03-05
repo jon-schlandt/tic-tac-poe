@@ -1,3 +1,5 @@
+/********** ------ Global Styles ------ **********/
+
 * {
     margin: 0px 0px;
 }
@@ -11,6 +13,8 @@ main {
 .hidden {
     display: none !important;
 }
+
+/********** ------ Player Board Styles ------ **********/
 
 .player-board {
     width: 25%;
@@ -59,6 +63,8 @@ main {
     width: 30px;
     height: 30px;
 }
+
+/********** ------ Play Area Styles ------ **********/
 
 .play-area {
     border-left: solid black;
