@@ -9,22 +9,20 @@ var statusMessage = document.getElementById("statusMessage");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    if (event.target !== this) {
+    if ((event.target !== this) && (event.target.className === "board-square")) {
         makeMove(event);
         progressGame(event);
-    }
-});
+    } });
+window.addEventListener("load", renderWinDisplays);
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
     var boardSquare = event.target;
     var squareIndex = boardSquare.id[boardSquare.id.length - 1];
     var token = game.currentPlayer.token;
-    
-    if (!(game.gameBoard[squareIndex])) {
-        game.placeToken(squareIndex, token);
-        renderMove(boardSquare, token);
-    }
+
+    game.placeToken(squareIndex, token);
+    renderMove(boardSquare, token);
 }
 
 function renderMove(boardSquare, token) {
@@ -43,7 +41,7 @@ function progressGame() {
     }
 
     game.setCurrentPlayer();
-    renderPlayerToken();
+    updatePlayerToken();
 }
 
 function completeGame(condition) {
@@ -69,17 +67,38 @@ function renderStatusMessage(condition) {
 }
 
 function initiateWin() {
-    game.saveWin(game.currentPlayer);
-
-    renderWinPositions(renderWinBoard());
-    updateWinCount();
+    game.saveWin();
+    game.currentPlayer.saveWinsToStorage();
+    updateWinCount(game.currentPlayer);
+    renderWinDisplay(game.currentPlayer);
 }
 
-function renderWinBoard() {
-    var winDisplay = document.getElementById(`winDisplay${game.currentPlayer.id}`);
+function renderWinDisplays() {
+    game.playerOne.retrieveWinsFromStorage();
+    game.playerTwo.retrieveWinsFromStorage();
 
-    winDisplay.innerHTML += `
-        <section class="mini-game-board" id=${game.gamesPlayed}>
+    updateWinCount(game.playerOne);
+    updateWinCount(game.playerTwo);
+    
+    renderWinDisplay(game.playerOne);
+    renderWinDisplay(game.playerTwo);
+}
+
+function renderWinDisplay(player) {
+    var winBoards = renderWinBoards(player);
+
+    for (var i = 0; i < winBoards.length; i++) {
+        renderWinPositions(winBoards[i], player.wins[i]);
+    }
+}
+
+function renderWinBoards(player) {
+    var winDisplay = document.getElementById(`winDisplay${player.id}`);
+    var emptyBoards = "";
+
+    for (var i = 0; i < player.wins.length; i++) {
+        emptyBoards += `
+        <section class="mini-game-board">
             <img class="mini-square">
             <img class="mini-square">
             <img class="mini-square">
@@ -91,22 +110,24 @@ function renderWinBoard() {
             <img class="mini-square">
         </section>
     `
-
-    return document.getElementById(game.gamesPlayed);
+    }
+    
+    winDisplay.innerHTML = emptyBoards;
+    return winDisplay.querySelectorAll(".mini-game-board");
 }
 
-function renderWinPositions(winBoard) {
+function renderWinPositions(winBoard, savedBoard) {
     var boardSquares = winBoard.querySelectorAll(".mini-square");
 
-    for (var i = 0; i < game.gameBoard.length; i++) {
-        if (game.gameBoard[i]) {
-            boardSquares[i].src = `/assets/${game.gameBoard[i]}-token.png`;
+    for (var i = 0; i < 9; i++) {
+        if (savedBoard[i]) {
+            boardSquares[i].src = `/assets/${savedBoard[i]}-token.png`;
         }
     }
 }
 
-function updateWinCount() {
-    var countDisplay = document.getElementById(`winCount${game.currentPlayer.id}`);
+function updateWinCount(player) {
+    var countDisplay = document.getElementById(`winCount${player.id}`);
     var winCount = game.currentPlayer.wins.length;
 
     if (winCount === 1) {
@@ -135,11 +156,11 @@ function initializeStatusBox() {
         currentPlayerToken.classList.toggle("hidden");
     }
 
-    renderPlayerToken();
+    updatePlayerToken();
     statusMessage.innerText = "'s Turn!"
 }
 
-function renderPlayerToken() {
+function updatePlayerToken() {
     var token = game.currentPlayer.token;
 
     currentPlayerToken.src = `/assets/${token}-token.png`;

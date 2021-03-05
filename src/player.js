@@ -6,10 +6,14 @@ class Player {
     }
 
     saveWinsToStorage() {
-
+        window.localStorage.setItem(this.id, window.JSON.stringify(this.wins));
     }
 
     retrieveWinsFromStorage() {
-
+        var savedWins = window.JSON.parse(window.localStorage.getItem(this.id));
+        
+        if (savedWins) {
+            this.wins = savedWins;
+        }
     }
 }
