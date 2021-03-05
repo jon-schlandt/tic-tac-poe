@@ -12,7 +12,7 @@ gameBoard.addEventListener("click", function(event) {
     if ((event.target !== this) && (event.target.className === "board-square")) {
         makeMove(event);
         progressGame(event);
-    } });
+} });
 window.addEventListener("load", renderWinDisplays);
 
 // Event Handlers/Helper Functions
@@ -47,7 +47,6 @@ function progressGame() {
 function completeGame(condition) {
     initiateWin();
     renderStatusMessage(condition);
-    game.gamesPlayed++;
     game.setCurrentPlayer();
 
     setTimeout(function() {
@@ -94,10 +93,10 @@ function renderWinDisplay(player) {
 
 function renderWinBoards(player) {
     var winDisplay = document.getElementById(`winDisplay${player.id}`);
-    var emptyBoards = "";
+    var boards = "";
 
     for (var i = 0; i < player.wins.length; i++) {
-        emptyBoards += `
+        boards += `
         <section class="mini-game-board">
             <img class="mini-square">
             <img class="mini-square">
@@ -112,23 +111,23 @@ function renderWinBoards(player) {
     `
     }
     
-    winDisplay.innerHTML = emptyBoards;
+    winDisplay.innerHTML = boards;
     return winDisplay.querySelectorAll(".mini-game-board");
 }
 
-function renderWinPositions(winBoard, savedBoard) {
+function renderWinPositions(winBoard, savedWin) {
     var boardSquares = winBoard.querySelectorAll(".mini-square");
 
     for (var i = 0; i < 9; i++) {
-        if (savedBoard[i]) {
-            boardSquares[i].src = `/assets/${savedBoard[i]}-token.png`;
+        if (savedWin[i]) {
+            boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
         }
     }
 }
 
 function updateWinCount(player) {
     var countDisplay = document.getElementById(`winCount${player.id}`);
-    var winCount = game.currentPlayer.wins.length;
+    var winCount = player.wins.length;
 
     if (winCount === 1) {
         countDisplay.innerText = `${winCount} Win`;
