@@ -8,7 +8,6 @@ class Game {
             null, null, null
         ]
         this.currentPlayer = this.playerOne;
-        this.gamesPlayed = 0;
     }
 
     placeToken(squareIndex, token) {
