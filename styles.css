@@ -29,20 +29,22 @@ main {
     flex-direction: column;
     justify-content:flex-start;
     align-items: center;
-    padding-top: 100px;
+    padding-top: 150px;
 }
 
 /* ------ Player Displays ------ */
 
 .player-display {
-    margin: 0px 0px;
-    /* height: 15%; */
+    background-color: white;
+    width: 85%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 0px;
+    margin-bottom: 30px;
+    padding: 20px 0px;
+    border: solid black;
+    border-radius: 10px;
 }
 
 .player-display > img {
@@ -62,7 +64,6 @@ main {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
     row-gap: 20px;
-    padding: 10px;
     overflow: scroll;
 }
 
@@ -78,13 +79,15 @@ main {
     justify-self: center;
     padding: 5px;
     border: solid black thin;
+    border-radius: 5px;
 }
 
 .mini-square {
     border: none;
     background-color: white;
-    background-size: 90%;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     width: 2vw;
     height: 2vw;
 }
@@ -93,23 +96,25 @@ main {
 
 .play-area {
     background-color: #EFEFEF;
-    border-left: solid black thin;
-    border-right: solid black thin;
-    font-size: x-large;
     width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 95px;
+    padding-top: 200px;
+    border-left: solid black thin;
+    border-right: solid black thin;
+    font-size: x-large;
 }
 
 /* ------ Status Box ------ */
 
 .status-box {
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 0px;
 }
 
 .player-token {
@@ -128,9 +133,9 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     justify-content: center;
-    margin-top: 40px;
     padding: 20px;
-    border: solid black thin;
+    border: solid black;
+    border-radius: 10px;
 }
 
 .board-square {

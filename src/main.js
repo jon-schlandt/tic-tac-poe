@@ -11,7 +11,7 @@ var clearStorageButton = document.querySelector(".clear");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.classList.contains("token-container"))) {
+    if ((event.target !== this) && (event.target.className === ("token-container"))) {
         makeMove(event);
         progressGame(event);
         
