@@ -11,7 +11,7 @@ var clearStorageButton = document.querySelector(".clear");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.classList.contains("board-square"))) {
+    if ((event.target !== this) && (event.target.className === ("token-container"))) {
         makeMove(event);
         progressGame(event);
         
@@ -22,7 +22,7 @@ clearStorageButton.addEventListener("click", clearStorage);
 
 // Event Handlers/Helper Functions
 function makeMove(event) {
-    var boardSquare = event.target;
+    var boardSquare = event.target.closest("button");
     var squareIndex = boardSquare.id[boardSquare.id.length - 1];
     var token = game.currentPlayer.token;
 
@@ -31,7 +31,8 @@ function makeMove(event) {
 }
 
 function renderMove(boardSquare, token) {
-    boardSquare.classList.toggle(token);
+    var tokenContainer = boardSquare.querySelector("span");
+    tokenContainer.classList.toggle(`${token}-shadow`);
 }
 
 function progressGame() {
@@ -145,14 +146,16 @@ function initializePlayArea() {
 
 function initializeGameBoard() {
     var boardSquare;
+    var tokenContainer;
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
+        tokenContainer = boardSquare.querySelector("span");
         
-        if (boardSquare.classList.contains("raven")) {
-            boardSquare.classList.toggle("raven");
-        } else if (boardSquare.classList.contains("heart")) {
-            boardSquare.classList.toggle("heart");
+        if (tokenContainer.classList.contains("raven-shadow")) {
+            tokenContainer.classList.toggle("raven-shadow");
+        } else if (tokenContainer.classList.contains("heart-shadow")) {
+            tokenContainer.classList.toggle("heart-shadow");
         }
     }
 }
@@ -169,7 +172,7 @@ function initializeStatusBox() {
 function updatePlayerToken() {
     var token = game.currentPlayer.token;
 
-    currentPlayerToken.src = `/assets/${token}-token.png`;
+    currentPlayerToken.src = `/assets/${token}-token.svg`;
     currentPlayerToken.alt = `${token} token`;
 }
 
