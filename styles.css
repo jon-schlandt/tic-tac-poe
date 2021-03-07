@@ -71,15 +71,11 @@ main {
     border-radius: 15px;
 }
 
-.display-border {
-
-}
-
 .win-display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
+    row-gap: 1.30vw;
+    padding: 1.30vw 0px;
     overflow: scroll;
 }
 
@@ -94,18 +90,20 @@ main {
     justify-content: center;
     justify-self: center;
     padding: 5px;
-    border: solid black thin;
-    border-radius: 5px;
+    border: solid black 2px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(128, 128, 128);
 }
 
 .mini-square {
-    border: none;
     background-color: white;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 2vw;
-    height: 2vw;
+    width: 1.5vw;
+    height: 1.5vw;
+    border: none;
+    
 }
 
 /********** ------ Play Area Styles ------ **********/
