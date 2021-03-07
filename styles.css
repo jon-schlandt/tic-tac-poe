@@ -133,11 +133,15 @@ main {
 /* ------ Status Box ------ */
 
 .status-box {
+    background-color: #ffffff;
     width: 40%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 20px 0px;
+    border: solid black 2px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 25px 3px #e4e4e4, 5px 5px 10px 1px rgb(107, 107, 107);
 }
 
 .player-token {
@@ -161,10 +165,12 @@ main {
     padding: 20px;
     border: solid 2px black;
     border-radius: 10px;
+    box-shadow: inset 0 0 25px 3px #e4e4e4, 5px 5px 10px 1px rgb(107, 107, 107);
+    
 }
 
 .board-square {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -208,10 +214,10 @@ main {
     background-image: url("assets/heart-token.svg");
 }
 
-.raven-shadow {
-    background-image: url("assets/raven-token-shadow.svg");
+.raven-mini {
+    background-image: url("assets/raven-token-mini.svg");
 }
 
-.heart-shadow {
-    background-image: url("assets/heart-token-shadow.svg");
+.heart-mini {
+    background-image: url("assets/heart-token-mini.svg");
 }

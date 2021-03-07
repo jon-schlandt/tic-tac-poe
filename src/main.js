@@ -32,7 +32,7 @@ function makeMove(event) {
 
 function renderMove(boardSquare, token) {
     var tokenContainer = boardSquare.querySelector("span");
-    tokenContainer.classList.toggle(`${token}-shadow`);
+    tokenContainer.classList.toggle(`${token}`);
 }
 
 function progressGame() {
@@ -123,7 +123,7 @@ function renderWinPositions(winBoard, savedWin) {
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
             // boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
-            boardSquares[i].classList.toggle(`${savedWin[i]}`)
+            boardSquares[i].classList.toggle(`${savedWin[i]}-mini`)
         }
     }
 }
@@ -172,7 +172,7 @@ function initializeStatusBox() {
 function updatePlayerToken() {
     var token = game.currentPlayer.token;
 
-    currentPlayerToken.src = `/assets/${token}-token.svg`;
+    currentPlayerToken.src = `/assets/${token}-token-flat.svg`;
     currentPlayerToken.alt = `${token} token`;
 }
 
