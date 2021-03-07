@@ -100,14 +100,14 @@ function renderWinBoards(player) {
     for (var i = 0; i < player.wins.length; i++) {
         boards += `
         <section class="mini-game-board">
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square right-border"></div>
             <div class="mini-square"></div>
         </section>
     `
@@ -123,7 +123,7 @@ function renderWinPositions(winBoard, savedWin) {
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
             // boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
-            boardSquares[i].classList.toggle(`${savedWin[i]}-mini`)
+            boardSquares[i].classList.toggle(`${savedWin[i]}`)
         }
     }
 }
