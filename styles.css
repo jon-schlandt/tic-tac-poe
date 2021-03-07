@@ -92,19 +92,21 @@ main {
   }
 
 .mini-game-board {
-    background-color: white;
+    background-image: url("assets/background-wallpaper.jpg");
+    background-size: auto;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     justify-content: center;
     justify-self: center;
     padding: 5px;
-    border: solid black 2px;
+    border: solid white 2px;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px 1px rgb(107, 107, 107);
 }
 
 .mini-square {
-    background-color: white;
-    background-size: contain;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
     width: 1.5vw;
@@ -179,9 +181,9 @@ main {
     height: 10vw;
     max-height: 200px;
     padding: 0px 0px;
-    outline: none;
-    box-shadow: none;
     border: none;
+    box-shadow: none;
+    outline: none;
 }
 
 .board-square.right-bottom-border {
@@ -198,11 +200,12 @@ main {
 }
 
 .board-square > span {
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
+    
 
 }
 
