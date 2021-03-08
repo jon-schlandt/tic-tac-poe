@@ -35,25 +35,81 @@ main {
     width: 27.5%;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
+    justify-content:center;
     align-items: center;
-    padding: 18vh 35px;
+    padding: 0 35px;
 }
 
 /* ------ Player Displays ------ */
 
-.player-display {
-    background-color: #EEEEEE;
-    width: 100%;
-    max-width: 540px;
+
+
+.indicator-box {
+    /* border: solid white; */
+    width: 60%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    padding: 20px 0px;
+    padding: 10px;
+}
+
+.turn-message {
+    font-size: 24pt;
+    color: white;
+    margin-right: 10px;
+}
+
+.turn-message :nth-child(2) {
+    margin-top: 10px;
+}
+
+.indicator-box > img {
+    position: relative;
+    bottom: 15px;
+    width: 45px;
+    animation: point 1.5s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes point {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, 20px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.player-display-background {
+    background-color: #EEEEEE;
+    max-width: 315px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 15px 0px 30px 0px;
+    padding: 10px 10px;
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
+}
+
+.player-display {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 15px;
+    box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
+    border: solid 2px black;
+    border-radius: 10px;
 }
 
 .player-display > img {
@@ -73,7 +129,7 @@ main {
     background-color: #EEEEEE;
     width: 100%;
     max-width: 540px;
-    height: 100%;
+    height: 45%;
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
@@ -100,11 +156,12 @@ main {
     padding: 5px;
     border: solid black 2px;
     border-radius: 10px;
+    box-shadow: 3px 3px 5px rgb(107, 107, 107);
 }
 
 .mini-square {
-    background-color: white;
-    background-size: contain;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
     width: 1.5vw;
@@ -113,31 +170,43 @@ main {
     
 }
 
+.mini-square.right-bottom-border {
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
+}
+
+.mini-square.right-border {
+    border-right: solid black 1px;
+}
+
+.mini-square.bottom-border {
+    border-bottom: solid black 1px;
+}
+
 /********** ------ Play Area Styles ------ **********/
 
 .play-area {
-    background-color: #EEEEEE;
     width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10vh 0px;
-    border: solid 2px white;
-    border-radius: 12px;
-    box-shadow: inset 0 0 20px 2px black;
-    font-size: x-large;
+    padding: 18vh 0px;
 
 }
 
 /* ------ Status Box ------ */
 
 .status-box {
-    width: 40%;
+    background-color: #EEEEEE;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding: 20px 0px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px 80px;
+    border: solid 2px white;
+    border-radius: 12px;
+    box-shadow: inset 0 0 20px 2px black;
 }
 
 .player-token {
@@ -152,19 +221,33 @@ main {
 
 /* ------ Game Board ------ */
 
+.board-background {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEEEEE;
+    border: solid 2px white;
+    border-radius: 12px;
+    box-shadow: inset 0 0 20px 2px black;
+}
+
 .game-board {
+    width: fit-content;
     background-color: white;
     display: grid;
     grid-template-columns: repeat(3, 0fr);
     justify-content: center;
-    margin: 40px;
+    margin: 60px;
     padding: 20px;
     border: solid 2px black;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgb(107, 107, 107);
+    
 }
 
 .board-square {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,30 +256,31 @@ main {
     height: 10vw;
     max-height: 200px;
     padding: 0px 0px;
-    outline: none;
-    box-shadow: none;
     border: none;
+    box-shadow: none;
+    outline: none;
 }
 
 .board-square.right-bottom-border {
-    border-right: solid black;
-    border-bottom: solid black;
+    border-right: solid 2px black;
+    border-bottom: solid 2px black;
 }
 
 .board-square.right-border {
-    border-right: solid black;
+    border-right: solid 2px black;
 }
 
 .board-square.bottom-border {
-    border-bottom: solid black;
+    border-bottom: solid 2px black;
 }
 
 .board-square > span {
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
+    
 
 }
 
@@ -208,10 +292,10 @@ main {
     background-image: url("assets/heart-token.svg");
 }
 
-.raven-shadow {
-    background-image: url("assets/raven-token-shadow.svg");
+.raven-mini {
+    background-image: url("assets/raven-token-mini.svg");
 }
 
-.heart-shadow {
-    background-image: url("assets/heart-token-shadow.svg");
+.heart-mini {
+    background-image: url("assets/heart-token-mini.svg");
 }

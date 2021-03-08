@@ -32,7 +32,7 @@ function makeMove(event) {
 
 function renderMove(boardSquare, token) {
     var tokenContainer = boardSquare.querySelector("span");
-    tokenContainer.classList.toggle(`${token}-shadow`);
+    tokenContainer.classList.toggle(`${token}`);
 }
 
 function progressGame() {
@@ -100,14 +100,14 @@ function renderWinBoards(player) {
     for (var i = 0; i < player.wins.length; i++) {
         boards += `
         <section class="mini-game-board">
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
-            <div class="mini-square"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square right-border"></div>
             <div class="mini-square"></div>
         </section>
     `
@@ -152,10 +152,10 @@ function initializeGameBoard() {
         boardSquare = document.getElementById(`square${i}`);
         tokenContainer = boardSquare.querySelector("span");
         
-        if (tokenContainer.classList.contains("raven-shadow")) {
-            tokenContainer.classList.toggle("raven-shadow");
-        } else if (tokenContainer.classList.contains("heart-shadow")) {
-            tokenContainer.classList.toggle("heart-shadow");
+        if (tokenContainer.classList.contains("raven")) {
+            tokenContainer.classList.toggle("raven");
+        } else if (tokenContainer.classList.contains("heart")) {
+            tokenContainer.classList.toggle("heart");
         }
     }
 }
@@ -172,7 +172,7 @@ function initializeStatusBox() {
 function updatePlayerToken() {
     var token = game.currentPlayer.token;
 
-    currentPlayerToken.src = `/assets/${token}-token.svg`;
+    currentPlayerToken.src = `/assets/${token}-token-flat.svg`;
     currentPlayerToken.alt = `${token} token`;
 }
 
