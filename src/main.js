@@ -4,7 +4,7 @@ var game = new Game();
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
 
-var currentPlayerToken = document.getElementById("currentPlayerToken");
+var indicatorBoxes = document.querySelectorAll(".indicator-box");
 var statusMessage = document.getElementById("statusMessage");
 
 var clearStorageButton = document.querySelector(".clear");
@@ -141,7 +141,7 @@ function updateWinCount(player) {
 
 function initializePlayArea() {
     initializeGameBoard();
-    initializeStatusBox();
+    updateTurnIndicator();
 }
 
 function initializeGameBoard() {
@@ -160,20 +160,10 @@ function initializeGameBoard() {
     }
 }
 
-function initializeStatusBox() {
-    if (currentPlayerToken.classList.contains("hidden")) {
-        currentPlayerToken.classList.toggle("hidden");
+function updateTurnIndicator() {
+    for (var i = 0; i < indicatorBoxes.length; i++) {
+        indicatorBoxes[i].classList.toggle("turn-indicated");
     }
-
-    updatePlayerToken();
-    statusMessage.innerText = "'s Turn!"
-}
-
-function updatePlayerToken() {
-    var token = game.currentPlayer.token;
-
-    currentPlayerToken.src = `/assets/${token}-token-flat.svg`;
-    currentPlayerToken.alt = `${token} token`;
 }
 
 function clearStorage() {
