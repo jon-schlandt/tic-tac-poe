@@ -2,12 +2,13 @@ class Game {
     constructor() {
         this.playerOne = new Player("One", "raven");
         this.playerTwo = new Player("Two", "heart");
+        this.startingPlayer = this.playerOne;
+        this.currentPlayer = this.startingPlayer;
         this.gameBoard = [
             null, null, null, 
             null, null, null,
             null, null, null
         ]
-        this.currentPlayer = this.playerOne;
     }
 
     placeToken(squareIndex, token) {
@@ -88,9 +89,19 @@ class Game {
 
         return false;
     }
+    
+    setStartingPlayer() {
+        if (this.startingPlayer === this.playerOne) {
+            this.startingPlayer = this.playerTwo;
+        } else {
+            this.startingPlayer = this.playerOne;
+        }
 
+        this.currentPlayer = this.startingPlayer;
+    }
+    
     setCurrentPlayer() {
-        if (this.currentPlayer.id === this.playerOne.id) {
+        if (this.currentPlayer === this.playerOne) {
             this.currentPlayer = this.playerTwo;
         } else {
             this.currentPlayer = this.playerOne;
@@ -103,6 +114,8 @@ class Game {
     }
 
     reset() {
+        this.setStartingPlayer();
+
         for (var i = 0; i < this.gameBoard.length; i++) {
             this.gameBoard[i] = null;
         }

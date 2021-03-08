@@ -7,12 +7,12 @@
       <main>
           <div class="player-board">
             <button class="clear">Clear Storage</button>
-            <section class="indicator-box turn-indicated">
-              <div class="turn-message">
-                <p class="turn-message">YOUR</p>
-                <p class="turn-message">TURN</p>
+            <section class="indicator-box should-display" id="indicatorBoxOne">
+              <div class="status-message" id="statusMessageOne">
+                <p>YOUR</p>
+                <p>TURN</p>
               </div>
-              <img src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
+              <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
             </section>
             <div class="player-display-background">
               <section class="player-display">
@@ -27,7 +27,6 @@
           <div class="play-area">
             <section class="status-box">
               <img class="player-token" id="currentPlayerToken" src="assets/raven-token-flat.svg" alt="raven token">
-              <p class="status-message" id="statusMessage">'s Turn!</p>
             </section>
             <div class="board-background">
               <section class="game-board" id="gameBoard">
@@ -62,12 +61,12 @@
             </div>
           </div>
           <div class="player-board">
-            <section class="indicator-box">
-              <div class="turn-message">
-                <p class="turn-message">YOUR</p>
-                <p class="turn-message">TURN</p>
+            <section class="indicator-box" id="indicatorBoxTwo">
+              <div class="status-message" id="statusMessageTwo">
+                <p>YOUR</p>
+                <p>TURN</p>
               </div>
-              <img src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
+              <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
             </section>
             <div class="player-display-background">
               <section class="player-display">

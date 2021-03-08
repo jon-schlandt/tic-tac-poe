@@ -40,30 +40,33 @@ main {
     padding: 0 35px;
 }
 
-/* ------ Player Displays ------ */
-
-
+/* ------ Indicator Boxes ------ */
 
 .indicator-box {
     opacity: 0;
     width: 60%;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
 }
 
-.turn-indicated {
+.should-display {
     opacity: 1;
 }
 
-.turn-message {
-    font-size: 24pt;
-    color: white;
-    margin-right: 10px;
+.condition-met {
+    align-items: flex-end;
 }
 
-.turn-message :nth-child(2) {
+.status-message > p {
+    color: white;
+    margin-right: 15px;
+    font-size: 24pt;
+}
+
+.status-message :nth-child(2) {
     margin-top: 10px;
 }
 
@@ -88,6 +91,8 @@ main {
         transform: translate(0, 0);
     }
 }
+
+/* ------ Player Displays ------ */
 
 .player-display-background {
     background-color: #EEEEEE;
