@@ -42,17 +42,32 @@ main {
 
 /* ------ Player Displays ------ */
 
-.player-display {
+.player-display-background {
+    width: 75%;
     background-color: #EEEEEE;
-    max-width: 540px;
+    max-width: 315px;
     display: flex;
-    justify-content:center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 30px;
-    padding: 20px 60px;
+    padding: 10px 10px;
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
+}
+
+.player-display {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
+    border: solid black;
+    border-style: double;
+    border-radius: 5px;
 }
 
 .player-display > img {
@@ -183,9 +198,11 @@ main {
     justify-content: center;
     margin: 40px;
     padding: 20px;
-    border: solid 2px black;
+    border: solid black;
+    border-width: thick;
+    border-style: double;
     border-radius: 10px;
-    box-shadow: inset 0 0 25px 3px #e4e4e4, 5px 5px 10px 1px rgb(107, 107, 107);
+    box-shadow: 5px 5px 10px 1px rgb(107, 107, 107);
     
 }
 

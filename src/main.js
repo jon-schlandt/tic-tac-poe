@@ -152,10 +152,10 @@ function initializeGameBoard() {
         boardSquare = document.getElementById(`square${i}`);
         tokenContainer = boardSquare.querySelector("span");
         
-        if (tokenContainer.classList.contains("raven-shadow")) {
-            tokenContainer.classList.toggle("raven-shadow");
-        } else if (tokenContainer.classList.contains("heart-shadow")) {
-            tokenContainer.classList.toggle("heart-shadow");
+        if (tokenContainer.classList.contains("raven")) {
+            tokenContainer.classList.toggle("raven");
+        } else if (tokenContainer.classList.contains("heart")) {
+            tokenContainer.classList.toggle("heart");
         }
     }
 }
