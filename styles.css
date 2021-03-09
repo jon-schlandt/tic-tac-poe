@@ -40,30 +40,37 @@ main {
     padding: 0 35px;
 }
 
-/* ------ Player Displays ------ */
-
-
+/* ------ Indicator Boxes ------ */
 
 .indicator-box {
-    /* border: solid white; */
+    opacity: 0;
     width: 60%;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
 }
 
-.turn-message {
-    font-size: 24pt;
-    color: white;
-    margin-right: 10px;
+.should-display {
+    opacity: 1;
 }
 
-.turn-message :nth-child(2) {
+.condition-met {
+    align-items: flex-end;
+}
+
+.status-message > p {
+    color: white;
+    margin-right: 15px;
+    font-size: 24pt;
+}
+
+.status-message :nth-child(2) {
     margin-top: 10px;
 }
 
-.indicator-box > img {
+.indicator-arrow {
     position: relative;
     bottom: 15px;
     width: 45px;
@@ -85,16 +92,18 @@ main {
     }
 }
 
+/* ------ Player Displays ------ */
+
 .player-display-background {
     background-color: #EEEEEE;
     max-width: 315px;
-    width: 75%;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    margin: 15px 0px 30px 0px;
-    padding: 10px 10px;
+    margin: 5px 0 20px 0;
+    padding: 20px;
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
@@ -102,14 +111,15 @@ main {
 
 .player-display {
     background-color: white;
+    width: 90%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 10px 15px;
+    padding: 15px 0;
     box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
     border: solid 2px black;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .player-display > img {
@@ -133,19 +143,19 @@ main {
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
+    overflow: scroll;
 }
+
+.display-background::-webkit-scrollbar {
+    display: none;
+  }
 
 .win-display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 1.30vw;
     padding: 1.30vw 0px;
-    overflow: scroll;
 }
-
-.win-display::-webkit-scrollbar {
-    display: none;
-  }
 
 .mini-game-board {
     background-color: white;
@@ -183,6 +193,14 @@ main {
     border-bottom: solid black 1px;
 }
 
+.raven-flat {
+    background-image: url("assets/raven-flat.svg");
+}
+
+.heart-flat {
+    background-image: url("assets/heart-shadow.svg");
+}
+
 /********** ------ Play Area Styles ------ **********/
 
 .play-area {
@@ -195,28 +213,46 @@ main {
 
 }
 
-/* ------ Status Box ------ */
+/* ------ Game Title ------ */
 
-.status-box {
+.title-background {
     background-color: #EEEEEE;
+    width: 70%;
+    max-width: 750px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    padding: 20px 80px;
+    margin-bottom: 20px;
+    padding: 20px;
     border: solid 2px white;
     border-radius: 12px;
     box-shadow: inset 0 0 20px 2px black;
 }
 
-.player-token {
-    width: 80px;
-    height: 80px;
-    margin-right: 5px;
+.title-box {
+    background-color: white;
+    width: 85%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px 0 25px;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
 
-.status-message {
-    font-size: 30pt;
+.title-box > h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 4vw;
+}
+
+.title-box > img {
+    width: 1vw;
+    height: 1vw;
+    margin: .50vw;
 }
 
 /* ------ Game Board ------ */
@@ -284,18 +320,18 @@ main {
 
 }
 
+.raven-preview {
+    background-image: url("assets/raven-preview.svg");
+}
+
+.heart-preview {
+    background-image: url("assets/heart-preview.svg");
+}
+
 .raven {
     background-image: url("assets/raven-token.svg");
 }
 
 .heart {
     background-image: url("assets/heart-token.svg");
-}
-
-.raven-mini {
-    background-image: url("assets/raven-token-mini.svg");
-}
-
-.heart-mini {
-    background-image: url("assets/heart-token-mini.svg");
 }

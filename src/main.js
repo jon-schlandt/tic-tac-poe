@@ -4,23 +4,36 @@ var game = new Game();
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
 
-var currentPlayerToken = document.getElementById("currentPlayerToken");
-var statusMessage = document.getElementById("statusMessage");
+var indicatorBoxes = document.querySelectorAll(".indicator-box");
+var statusMessages = document.querySelectorAll(".status-message");
 
 var clearStorageButton = document.querySelector(".clear");
 
 // Event Listeners
-gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.className === ("token-container"))) {
-        makeMove(event);
-        progressGame(event);
-        
-} });
 window.addEventListener("load", renderWinDisplays);
+
+gameBoard.addEventListener("click", function(event) { manipulateSquare(event, "click"); });
+gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event, "mouseover"); });
+gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event, "mouseout"); });
 
 clearStorageButton.addEventListener("click", clearStorage);
 
 // Event Handlers/Helper Functions
+function manipulateSquare(event, type) {
+    var classList = event.target.classList;
+
+    if (!(classList.contains("token-container")) || classList.contains("raven") || classList.contains("heart")) {
+        return;
+    }
+
+    if (type === "click") { 
+        makeMove(event);
+        progressGame(event);
+    } else {
+        toggleTokenPreview(event);
+    }
+}
+
 function makeMove(event) {
     var boardSquare = event.target.closest("button");
     var squareIndex = boardSquare.id[boardSquare.id.length - 1];
@@ -31,8 +44,8 @@ function makeMove(event) {
 }
 
 function renderMove(boardSquare, token) {
-    var tokenContainer = boardSquare.querySelector("span");
-    tokenContainer.classList.toggle(`${token}`);
+    var tokenBox = boardSquare.querySelector("span");
+    tokenBox.className = `token-container ${token}`
 }
 
 function progressGame() {
@@ -42,36 +55,55 @@ function progressGame() {
         completeGame("draw");
     } else {
         game.setCurrentPlayer();
-        updatePlayerToken();
+        setTurn();
     }
 }
 
 function completeGame(condition) {
-    initiateWin();
-    renderStatusMessage(condition);
-    game.setCurrentPlayer();
+    if (condition === "win") {
+        initiateWin();
+        renderWinMessage();
+    } else if (condition === "draw") {
+        renderDrawMessage();
+    }
     
     setTimeout(function() {
         game.reset();
-        initializePlayArea();
+        initializeGame();
     }, 2500);
-}
-
-function renderStatusMessage(condition) {
-    if (condition === "win") {
-        statusMessage.innerText = "wins!";
-    } else {
-        currentPlayerToken.classList.toggle("hidden");
-        statusMessage.innerText = "It's a draw!";
-    }
-    
 }
 
 function initiateWin() {
     game.saveWin();
     game.currentPlayer.saveWinsToStorage();
+
     updateWinCount(game.currentPlayer);
     renderWinDisplay(game.currentPlayer);
+}
+
+function renderWinMessage() {
+    var indicatorBox = document.getElementById(`indicatorBox${game.currentPlayer.id}`);
+    var statusMessage = document.getElementById(`statusMessage${game.currentPlayer.id}`);
+
+    indicatorBox.lastElementChild.classList.toggle("hidden");
+    statusMessage.lastElementChild.classList.toggle("hidden");
+    
+    indicatorBox.classList.toggle("condition-met");
+    statusMessage.firstElementChild.innerText = "WINNER!";    
+}
+
+function renderDrawMessage() {
+    for (var i = 0; i < indicatorBoxes.length; i++) {
+        if (!(indicatorBoxes[i].classList.contains("should-display"))) {
+            indicatorBoxes[i].classList.toggle("should-display");
+        }
+
+        indicatorBoxes[i].lastElementChild.classList.toggle("hidden");
+        statusMessages[i].lastElementChild.classList.toggle("hidden");
+
+        indicatorBoxes[i].classList.toggle("condition-met");
+        statusMessages[i].firstElementChild.innerText = "DRAW!";
+        }
 }
 
 function renderWinDisplays() {
@@ -120,10 +152,10 @@ function renderWinBoards(player) {
 function renderWinPositions(winBoard, savedWin) {
     var boardSquares = winBoard.querySelectorAll(".mini-square");
 
+
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
-            // boardSquares[i].src = `/assets/${savedWin[i]}-token.png`;
-            boardSquares[i].classList.toggle(`${savedWin[i]}`)
+            boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
         }
     }
 }
@@ -139,41 +171,69 @@ function updateWinCount(player) {
     }
 }
 
-function initializePlayArea() {
-    initializeGameBoard();
-    initializeStatusBox();
+function initializeGame() {
+    clearGameBoard();
+    initializeIndicatorBoxes();
+    setTurn();
 }
 
-function initializeGameBoard() {
+function clearGameBoard() {
     var boardSquare;
-    var tokenContainer;
+    var token;
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
-        tokenContainer = boardSquare.querySelector("span");
-        
-        if (tokenContainer.classList.contains("raven")) {
-            tokenContainer.classList.toggle("raven");
-        } else if (tokenContainer.classList.contains("heart")) {
-            tokenContainer.classList.toggle("heart");
+        token = boardSquare.querySelector("span");
+
+        if (token.classList.contains("raven-preview")) {
+            token.className = "token-container raven-preview";
+        } else if (token.classList.contains("heart-preview")) {
+            token.className = "token-container heart-preview";
+        } else {
+            token.className = "token-container";
         }
     }
 }
 
-function initializeStatusBox() {
-    if (currentPlayerToken.classList.contains("hidden")) {
-        currentPlayerToken.classList.toggle("hidden");
-    }
+function initializeIndicatorBoxes() {
+    var indicatorArrow;
+    var firstStatusLine;
+    var secondStatusLine;
 
-    updatePlayerToken();
-    statusMessage.innerText = "'s Turn!"
+    for (var i = 0; i < indicatorBoxes.length; i++) {
+        indicatorArrow = indicatorBoxes[i].querySelector(".indicator-arrow");
+        firstStatusLine = statusMessages[i].firstElementChild;
+        secondStatusLine = statusMessages[i].lastElementChild;
+
+        indicatorArrow.className = "indicator-arrow";
+        secondStatusLine.removeAttribute("class");
+
+        firstStatusLine.innerText = "YOUR";
+    }
 }
 
-function updatePlayerToken() {
-    var token = game.currentPlayer.token;
+function setTurn() {
+    var indicatorBoxId;
+    var playerKey;
+    
+    for (var i = 0; i < indicatorBoxes.length; i++) {
+        indicatorBoxId = indicatorBoxes[i].id;
+        playerKey = indicatorBoxId.slice(indicatorBoxId.length - 3, indicatorBoxId.length);
 
-    currentPlayerToken.src = `/assets/${token}-token-flat.svg`;
-    currentPlayerToken.alt = `${token} token`;
+        if (playerKey === game.currentPlayer.id) {
+            indicatorBoxes[i].className = "indicator-box should-display";
+        } else {
+            indicatorBoxes[i].className = "indicator-box";
+        }
+    }
+}
+
+function toggleTokenPreview(event) {
+    if ((event.type === "mouseout") && (event.target.className === "token-container")) {
+        return;
+    } else {
+        event.target.classList.toggle(`${game.currentPlayer.token}-preview`);
+    }
 }
 
 function clearStorage() {
