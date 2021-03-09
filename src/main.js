@@ -155,7 +155,7 @@ function renderWinPositions(winBoard, savedWin) {
 
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
-            boardSquares[i].classList.toggle(`${savedWin[i]}`)
+            boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
         }
     }
 }
