@@ -7,28 +7,24 @@ var gameBoard = document.getElementById("gameBoard");
 var indicatorBoxes = document.querySelectorAll(".indicator-box");
 var statusMessages = document.querySelectorAll(".status-message");
 
-var clearStorageButton = document.querySelector(".clear");
-
 // Event Listeners
-window.addEventListener("load", renderWinDisplays);
+gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
+gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event); });
+gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event) });
 
-gameBoard.addEventListener("click", function(event) { manipulateSquare(event, "click"); });
-gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event, "mouseover"); });
-gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event, "mouseout"); });
-
-clearStorageButton.addEventListener("click", clearStorage);
+window.addEventListener("load", renderWinGrids);
 
 // Event Handlers/Helper Functions
-function manipulateSquare(event, type) {
-    var classList = event.target.classList;
+function manipulateSquare(event) {
+    var targetClass = event.target.classList;
 
-    if (game.inEndState || !(classList.contains("token-container")) || classList.contains("raven") || classList.contains("heart")) {
+    if (game.inEndState || !(targetClass.contains("token-box")) || targetClass.contains("raven") || targetClass.contains("heart")) {
         return;
     }
 
-    if (type === "click") { 
+    if (event.type === "click") { 
         makeMove(event);
-        progressGame(event);
+        progressGame();
     } else {
         toggleTokenPreview(event);
     }
@@ -43,11 +39,6 @@ function makeMove(event) {
     renderMove(boardSquare, token);
 }
 
-function renderMove(boardSquare, token) {
-    var tokenBox = boardSquare.querySelector("span");
-    tokenBox.className = `token-container ${token}`
-}
-
 function progressGame() {
     if (game.verifyWin()) {
         completeGame("win");
@@ -57,6 +48,30 @@ function progressGame() {
         game.setCurrentPlayer();
         setTurn();
     }
+}
+
+function toggleTokenPreview(event) {
+    if (event.type === "mouseout" && event.target.className === "token-box") {
+        return;
+    } else {
+        event.target.classList.toggle(`${game.currentPlayer.token}-preview`);
+    }
+}
+
+function renderWinGrids() {
+    game.playerOne.retrieveWinsFromStorage();
+    game.playerTwo.retrieveWinsFromStorage();
+
+    updateWinCount(game.playerOne);
+    updateWinCount(game.playerTwo);
+    
+    renderWinGrid(game.playerOne);
+    renderWinGrid(game.playerTwo);
+}
+
+function renderMove(boardSquare, token) {
+    var tokenBox = boardSquare.querySelector(".token-box");
+    tokenBox.className = `token-box ${token}`
 }
 
 function completeGame(condition) {
@@ -81,7 +96,60 @@ function initiateWin() {
     game.currentPlayer.saveWinsToStorage();
 
     updateWinCount(game.currentPlayer);
-    renderWinDisplay(game.currentPlayer);
+    renderWinGrid(game.currentPlayer);
+}
+
+function updateWinCount(player) {
+    var countDisplay = document.getElementById(`countDisplay${player.id}`);
+    var winCount = player.wins.length;
+
+    if (winCount === 1) {
+        countDisplay.innerText = `${winCount} Win`;
+    } else {
+        countDisplay.innerText = `${winCount} Wins`;
+    }
+}
+
+function renderWinGrid(player) {
+    var winBoards = renderWinBoards(player);
+
+    for (var i = 0; i < winBoards.length; i++) {
+        renderWinPositions(winBoards[i], player.wins[i]);
+    }
+}
+
+function renderWinBoards(player) {
+    var winGrid = document.getElementById(`winGrid${player.id}`);
+    var winBoards = "";
+
+    for (var i = 0; i < player.wins.length; i++) {
+        winBoards += `
+        <section class="mini-game-board">
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square right-bottom-border"></div>
+            <div class="mini-square bottom-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square right-border"></div>
+            <div class="mini-square"></div>
+        </section>
+    `
+    }
+    
+    winGrid.innerHTML = winBoards;
+    return winGrid.querySelectorAll(".mini-game-board");
+}
+
+function renderWinPositions(winBoard, savedWin) {
+    var boardSquares = winBoard.querySelectorAll(".mini-square");
+
+    for (var i = 0; i < 9; i++) {
+        if (savedWin[i]) {
+            boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
+        }
+    }
 }
 
 function renderWinMessage() {
@@ -109,96 +177,25 @@ function renderDrawMessage() {
         }
 }
 
-function renderWinDisplays() {
-    game.playerOne.retrieveWinsFromStorage();
-    game.playerTwo.retrieveWinsFromStorage();
-
-    updateWinCount(game.playerOne);
-    updateWinCount(game.playerTwo);
-    
-    renderWinDisplay(game.playerOne);
-    renderWinDisplay(game.playerTwo);
-}
-
-function renderWinDisplay(player) {
-    var winBoards = renderWinBoards(player);
-
-    for (var i = 0; i < winBoards.length; i++) {
-        renderWinPositions(winBoards[i], player.wins[i]);
-    }
-}
-
-function renderWinBoards(player) {
-    var winDisplay = document.getElementById(`winDisplay${player.id}`);
-    var boards = "";
-
-    for (var i = 0; i < player.wins.length; i++) {
-        boards += `
-        <section class="mini-game-board">
-            <div class="mini-square right-bottom-border"></div>
-            <div class="mini-square right-bottom-border"></div>
-            <div class="mini-square bottom-border"></div>
-            <div class="mini-square right-bottom-border"></div>
-            <div class="mini-square right-bottom-border"></div>
-            <div class="mini-square bottom-border"></div>
-            <div class="mini-square right-border"></div>
-            <div class="mini-square right-border"></div>
-            <div class="mini-square"></div>
-        </section>
-    `
-    }
-    
-    winDisplay.innerHTML = boards;
-    return winDisplay.querySelectorAll(".mini-game-board");
-}
-
-function renderWinPositions(winBoard, savedWin) {
-    var boardSquares = winBoard.querySelectorAll(".mini-square");
-
-
-    for (var i = 0; i < 9; i++) {
-        if (savedWin[i]) {
-            boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
-        }
-    }
-}
-
-function updateWinCount(player) {
-    var countDisplay = document.getElementById(`winCount${player.id}`);
-    var winCount = player.wins.length;
-
-    if (winCount === 1) {
-        countDisplay.innerText = `${winCount} Win`;
-    } else {
-        countDisplay.innerText = `${winCount} Wins`;
-    }
-}
-
 function initializeGame() {
     clearGameBoard();
-    initializeIndicatorBoxes();
+    initializeIndicators();
     setTurn();
 }
 
 function clearGameBoard() {
     var boardSquare;
-    var token;
+    var tokenBox;
 
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
-        token = boardSquare.querySelector("span");
+        tokenBox = boardSquare.querySelector(".token-box");
 
-        if (token.classList.contains("raven-preview")) {
-            token.className = "token-container raven-preview";
-        } else if (token.classList.contains("heart-preview")) {
-            token.className = "token-container heart-preview";
-        } else {
-            token.className = "token-container";
-        }
+        tokenBox.className = "token-box";
     }
 }
 
-function initializeIndicatorBoxes() {
+function initializeIndicators() {
     var indicatorArrow;
     var firstStatusLine;
     var secondStatusLine;
@@ -209,9 +206,8 @@ function initializeIndicatorBoxes() {
         secondStatusLine = statusMessages[i].lastElementChild;
 
         indicatorArrow.className = "indicator-arrow";
-        secondStatusLine.removeAttribute("class");
-
         firstStatusLine.innerText = "YOUR";
+        secondStatusLine.removeAttribute("class");
     }
 }
 
@@ -229,16 +225,4 @@ function setTurn() {
             indicatorBoxes[i].className = "indicator-box";
         }
     }
-}
-
-function toggleTokenPreview(event) {
-    if ((event.type === "mouseout") && (event.target.className === "token-container")) {
-        return;
-    } else {
-        event.target.classList.toggle(`${game.currentPlayer.token}-preview`);
-    }
-}
-
-function clearStorage() {
-    window.localStorage.clear();
 }

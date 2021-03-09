@@ -23,12 +23,6 @@ main {
     display: none !important;
 }
 
-.clear {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-}   
-
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
@@ -128,7 +122,7 @@ main {
     margin-right: 15px;
 }
 
-.win-count {
+.win-count-display {
     font-size: 24pt;
     margin-top: 10px;
 }
@@ -150,7 +144,7 @@ main {
     display: none;
   }
 
-.win-display {
+.win-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 1.30vw;
@@ -310,7 +304,7 @@ main {
     border-bottom: solid 2px black;
 }
 
-.token-container {
+.token-box {
     height: 80%;
     width: 80%;
     background-size:contain;
@@ -318,7 +312,7 @@ main {
     background-position: center;
 }
 
-.token-container, .board-square {
+.token-box, .board-square {
     cursor: pointer;
 }
 

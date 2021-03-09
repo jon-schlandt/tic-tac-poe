@@ -6,7 +6,6 @@
   <body>
       <main>
           <div class="player-board">
-            <button class="clear">Clear Storage</button>
             <section class="indicator-box should-display" id="indicatorBoxOne">
               <div class="status-message" id="statusMessageOne">
                 <p>YOUR</p>
@@ -17,11 +16,11 @@
             <div class="player-display-background">
               <section class="player-display">
                 <img class="player-icon" src="assets/raven-shadow.svg" alt="raven token">
-                <p class="win-count" id="winCountOne">0 Wins</p>
+                <p class="win-count-display" id="countDisplayOne">0 Wins</p>
               </section>
             </div>
             <div class="display-background">
-              <section class="win-display" id="winDisplayOne"></section>
+              <section class="win-grid" id="winGridOne"></section>
             </div>
           </div>
           <div class="play-area">
@@ -37,31 +36,31 @@
             <div class="board-background">
               <section class="game-board" id="gameBoard">
                 <button class="board-square right-bottom-border" id="square0">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square right-bottom-border" id="square1">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square bottom-border" id="square2">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square right-bottom-border" id="square3">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square right-bottom-border" id="square4">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square bottom-border" id="square5">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square right-border" id="square6">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square right-border" id="square7">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
                 <button class="board-square" id="square8">
-                  <span class="token-container"></span>
+                  <span class="token-box"></span>
                 </button>
               </section>
             </div>
@@ -77,11 +76,11 @@
             <div class="player-display-background">
               <section class="player-display">
                 <img class="player-icon" src="assets/heart-shadow.svg" alt="heart token">
-                <p class="win-count" id="winCountTwo">0 Wins</p>
+                <p class="win-count-display" id="countDisplayTwo">0 Wins</p>
             </section>
             </div>
             <div class="display-background">
-              <section class="win-display" id="winDisplayTwo"></section>
+              <section class="win-grid" id="winGridTwo"></section>
             </div>
           </div>
       </main>
