@@ -1,92 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Tic-Tac-Poe</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-      <main>
-          <div class="player-board">
-            <button class="clear">Clear Storage</button>
-            <section class="indicator-box should-display" id="indicatorBoxOne">
-              <div class="status-message" id="statusMessageOne">
-                <p>YOUR</p>
-                <p>TURN</p>
-              </div>
-              <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
-            </section>
-            <div class="player-display-background">
-              <section class="player-display">
-                <img class="player-icon" src="assets/raven-shadow.svg" alt="raven token">
-                <p class="win-count" id="winCountOne">0 Wins</p>
-              </section>
-            </div>
-            <div class="display-background">
-              <section class="win-display" id="winDisplayOne"></section>
-            </div>
-          </div>
-          <div class="play-area">
-            <section class="title-background">
-              <div class="title-box">
-                <h1>TIC</h1>
-                <img src="assets/raven-flat.svg" alt="raven token">
-                <h1>TAC</h1>
-                <img src="assets/heart-flat.svg" alt="heart token"/>
-                <h1>POE</h1>
-              </div>
-            </section>
-            <div class="board-background">
-              <section class="game-board" id="gameBoard">
-                <button class="board-square right-bottom-border" id="square0">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square right-bottom-border" id="square1">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square bottom-border" id="square2">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square right-bottom-border" id="square3">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square right-bottom-border" id="square4">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square bottom-border" id="square5">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square right-border" id="square6">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square right-border" id="square7">
-                  <span class="token-container"></span>
-                </button>
-                <button class="board-square" id="square8">
-                  <span class="token-container"></span>
-                </button>
-              </section>
-            </div>
-          </div>
-          <div class="player-board">
-            <section class="indicator-box" id="indicatorBoxTwo">
-              <div class="status-message" id="statusMessageTwo">
-                <p>YOUR</p>
-                <p>TURN</p>
-              </div>
-              <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
-            </section>
-            <div class="player-display-background">
-              <section class="player-display">
-                <img class="player-icon" src="assets/heart-shadow.svg" alt="heart token">
-                <p class="win-count" id="winCountTwo">0 Wins</p>
-            </section>
-            </div>
-            <div class="display-background">
-              <section class="win-display" id="winDisplayTwo"></section>
-            </div>
-          </div>
-      </main>
-      <script type="text/javascript" src="./src/player.js"></script>
-      <script type="text/javascript" src="./src/game.js"></script>
-      <script type="text/javascript" src="./src/main.js"></script>
+    <main>
+      <div class="player-board">
+        <div class="indicator-box should-display" id="indicatorBoxOne">
+          <section class="status-message" id="statusMessageOne">
+            <h2>YOUR</h2>
+            <h2>TURN</h2>
+          </section>
+          <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
+        </div>
+        <div class="inset-panel player-display-background">
+          <section class="player-display">
+            <img class="player-icon" src="assets/raven-shadow.svg" alt="raven token shadow">
+            <h3 class="win-count-display" id="countDisplayOne">0 Wins</h3>
+          </section>
+        </div>
+        <div class="inset-panel win-grid-background">
+          <section class="win-grid" id="winGridOne"></section>
+        </div>
+      </div>
+      <div class="play-area">
+        <div class="inset-panel title-background">
+          <section class="title-box">
+            <h1>TIC</h1>
+            <img src="assets/raven-flat.svg" alt="raven token flat design">
+            <h1>TAC</h1>
+            <img src="assets/heart-flat.svg" alt="heart token flat design"/>
+            <h1>POE</h1>
+          </section>
+        </div>
+        <div class="inset-panel board-background">
+          <section class="game-board" id="gameBoard">
+            <button class="board-square right-bottom-border" id="square0">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square right-bottom-border" id="square1">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square bottom-border" id="square2">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square right-bottom-border" id="square3">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square right-bottom-border" id="square4">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square bottom-border" id="square5">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square right-border" id="square6">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square right-border" id="square7">
+              <span class="token-box"></span>
+            </button>
+            <button class="board-square no-border" id="square8">
+              <span class="token-box"></span>
+            </button>
+          </section>
+        </div>
+      </div>
+      <div class="player-board">
+        <div class="indicator-box" id="indicatorBoxTwo">
+          <section class="status-message" id="statusMessageTwo">
+            <h2>YOUR</h2>
+            <h2>TURN</h2>
+          </section>
+          <img class="indicator-arrow" src="/assets/indicator-arrow.svg" alt="indicator arrow"/>
+        </div>
+        <div class="inset-panel player-display-background">
+          <section class="player-display">
+            <img class="player-icon" src="assets/heart-shadow.svg" alt="heart token shadow">
+            <h3 class="win-count-display" id="countDisplayTwo">0 Wins</h3>
+          </section>
+        </div>
+        <div class="inset-panel win-grid-background">
+          <section class="win-grid" id="winGridTwo"></section>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="./src/player.js"></script>
+    <script type="text/javascript" src="./src/game.js"></script>
+    <script type="text/javascript" src="./src/main.js"></script>
   </body>
 </html>
