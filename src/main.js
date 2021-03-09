@@ -3,21 +3,37 @@ var game = new Game();
 
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
+
 var indicatorBoxes = document.querySelectorAll(".indicator-box");
 var statusMessages = document.querySelectorAll(".status-message");
+
 var clearStorageButton = document.querySelector(".clear");
 
 // Event Listeners
-gameBoard.addEventListener("click", function(event) {
-    if ((event.target !== this) && (event.target.className === ("token-container"))) {
-        makeMove(event);
-        progressGame(event);
-        
-} });
 window.addEventListener("load", renderWinDisplays);
+
+gameBoard.addEventListener("click", function(event) { manipulateSquare(event, "click"); });
+gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event, "mouseover"); });
+gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event, "mouseout"); });
+
 clearStorageButton.addEventListener("click", clearStorage);
 
 // Event Handlers/Helper Functions
+function manipulateSquare(event, type) {
+    var classList = event.target.classList;
+
+    if (!(classList.contains("token-container")) || classList.contains("raven") || classList.contains("heart")) {
+        return;
+    }
+
+    if (type === "click") { 
+        makeMove(event);
+        progressGame(event);
+    } else {
+        toggleTokenPreview(event);
+    }
+}
+
 function makeMove(event) {
     var boardSquare = event.target.closest("button");
     var squareIndex = boardSquare.id[boardSquare.id.length - 1];
@@ -28,8 +44,8 @@ function makeMove(event) {
 }
 
 function renderMove(boardSquare, token) {
-    var tokenContainer = boardSquare.querySelector("span");
-    tokenContainer.classList.toggle(`${token}`);
+    var tokenBox = boardSquare.querySelector("span");
+    tokenBox.className = `token-container ${token}`
 }
 
 function progressGame() {
@@ -54,7 +70,7 @@ function completeGame(condition) {
     setTimeout(function() {
         game.reset();
         initializeGame();
-    }, 2000);
+    }, 2500);
 }
 
 function initiateWin() {
@@ -136,6 +152,7 @@ function renderWinBoards(player) {
 function renderWinPositions(winBoard, savedWin) {
     var boardSquares = winBoard.querySelectorAll(".mini-square");
 
+
     for (var i = 0; i < 9; i++) {
         if (savedWin[i]) {
             boardSquares[i].classList.toggle(`${savedWin[i]}`)
@@ -167,11 +184,13 @@ function clearGameBoard() {
     for (var i = 0; i < game.gameBoard.length; i++) {
         boardSquare = document.getElementById(`square${i}`);
         token = boardSquare.querySelector("span");
-        
-        if (token.classList.contains("raven")) {
-            token.classList.toggle("raven");
-        } else if (token.classList.contains("heart")) {
-            token.classList.toggle("heart");
+
+        if (token.classList.contains("raven-preview")) {
+            token.className = "token-container raven-preview";
+        } else if (token.classList.contains("heart-preview")) {
+            token.className = "token-container heart-preview";
+        } else {
+            token.className = "token-container";
         }
     }
 }
@@ -206,6 +225,14 @@ function setTurn() {
         } else {
             indicatorBoxes[i].className = "indicator-box";
         }
+    }
+}
+
+function toggleTokenPreview(event) {
+    if ((event.type === "mouseout") && (event.target.className === "token-container")) {
+        return;
+    } else {
+        event.target.classList.toggle(`${game.currentPlayer.token}-preview`);
     }
 }
 

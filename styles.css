@@ -119,7 +119,7 @@ main {
     padding: 15px 0;
     box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
     border: solid 2px black;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .player-display > img {
@@ -143,19 +143,19 @@ main {
     box-shadow: inset 0 0 20px 2px black;
     border: solid 2px white;
     border-radius: 12px;
+    overflow: scroll;
 }
+
+.display-background::-webkit-scrollbar {
+    display: none;
+  }
 
 .win-display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 1.30vw;
     padding: 1.30vw 0px;
-    overflow: scroll;
 }
-
-.win-display::-webkit-scrollbar {
-    display: none;
-  }
 
 .mini-game-board {
     background-color: white;
@@ -230,7 +230,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 15px 25px 0 25px;
-    border: solid black;
+    border: solid 2px black;
     border-radius: 10px;
     box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
@@ -312,18 +312,18 @@ main {
 
 }
 
+.raven-preview {
+    background-image: url("assets/raven-preview.svg");
+}
+
+.heart-preview {
+    background-image: url("assets/heart-preview.svg");
+}
+
 .raven {
     background-image: url("assets/raven-token.svg");
 }
 
 .heart {
     background-image: url("assets/heart-token.svg");
-}
-
-.raven-mini {
-    background-image: url("assets/raven-token-mini.svg");
-}
-
-.heart-mini {
-    background-image: url("assets/heart-token-mini.svg");
 }
