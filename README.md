@@ -11,7 +11,7 @@
 
 Need something to take your mind off of that obnoxious thumping coming from beneath your floor boards? You certainly won't be able to drown out the noise, but maybe a pleasant game of tic-tac-toe can help you keep hold of whatever sanity you have left before the police arrive. And yes, his pale blue eyes were *very scary*, we completely understand.
 
-Tic-Tac-Poe is an Edgar Allen Poe themed version of the classic game of "Tic Tac Toe". Two players take turns placing their assigned token on a 3x3 grid in an attempt to have 3 tokens placed consecutively in a diagonal, horizontal, or vertical row. Upon winning, win positions are recorded and displayed within the winning player's win column.
+Tic-Tac-Poe is an Edgar Allen Poe themed version of the classic game "Tic Tac Toe". Two players take turns placing their assigned token on a 3x3 grid in an attempt to have 3 tokens placed consecutively in a diagonal, horizontal, or vertical row. Upon winning, win positions are recorded and displayed within the winning player's win column.
 
 ### Notable Features
 * Players can only place their token on an empty square
