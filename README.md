@@ -27,19 +27,19 @@ Tic-Tac-Poe is an Edgar Allen Poe themed version of the classic game "Tic Tac To
 ## Walkthrough
 1. When playing the first game, the starting player is always the raven. To place a token, click the desired square.
 
-<img src="https://media.giphy.com/media/zLdLCgCSXIR5PtVaUk/giphy.gif" alt="Player one placing token" align="center" width="450" height="auto" style="border-radius:5px"/>
+<p align="center"><img src="https://media.giphy.com/media/zLdLCgCSXIR5PtVaUk/giphy.gif" alt="Player one placing token" width="450" height="auto" style="border-radius:5px"/></p>
 
 2. Once a player finishes there turn, the turn indicator will move to be above the other player's display. Once this happens, they can make their move.
 
-<img src="https://media.giphy.com/media/b67C7ukvWwhw5iflzN/giphy.gif" alt="Player two placing token" align="center" width="450" height="auto" style="border-radius:5px"/>
+<p align="center"><img src="https://media.giphy.com/media/b67C7ukvWwhw5iflzN/giphy.gif" alt="Player two placing token" width="450" height="auto" style="border-radius:5px"/></p>
 
 3. When a win condition is met, "Winner!" is displayed above the display of the player that performed the winning move. A representation of the winning board is recorded and displayed in the winning player's win column.
 
-<img src="https://media.giphy.com/media/kohxuE60KLmjWrREbV/giphy.gif" alt="Win condition met" align="center" width="450" height="auto" style="border-radius:5px"/>
+<p align="center"><img src="https://media.giphy.com/media/kohxuE60KLmjWrREbV/giphy.gif" alt="Win condition met" width="450" height="auto" style="border-radius:5px"/></p>
 
 4. If both players manage to place tokens on all 9 squares, the draw condition is met and "Draw!" displays above both player displays.
 
-<img src="https://media.giphy.com/media/pxElqbORoWO7Tu1g5W/giphy.gif" alt="Draw condition met" align="center" width="450" height="auto" style="border-radius:5px"/>
+<p align="center"><img src="https://media.giphy.com/media/pxElqbORoWO7Tu1g5W/giphy.gif" alt="Draw condition met" width="450" height="auto" style="border-radius:5px"/></p>
 
 ## Authors
 <table>
