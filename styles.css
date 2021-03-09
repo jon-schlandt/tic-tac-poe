@@ -54,7 +54,7 @@ main {
     align-items: flex-end;
 }
 
-.status-message > p {
+.status-message > h2 {
     color: white;
     margin-right: 15px;
     font-size: 24pt;

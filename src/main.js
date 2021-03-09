@@ -124,7 +124,7 @@ function renderWinBoards(player) {
 
     for (var i = 0; i < player.wins.length; i++) {
         winBoards += `
-        <section class="mini-game-board">
+        <article class="mini-game-board">
             <div class="mini-square right-bottom-border"></div>
             <div class="mini-square right-bottom-border"></div>
             <div class="mini-square bottom-border"></div>
@@ -134,7 +134,7 @@ function renderWinBoards(player) {
             <div class="mini-square right-border"></div>
             <div class="mini-square right-border"></div>
             <div class="mini-square"></div>
-        </section>
+        </article>
     `
     }
     
