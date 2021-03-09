@@ -22,7 +22,7 @@ clearStorageButton.addEventListener("click", clearStorage);
 function manipulateSquare(event, type) {
     var classList = event.target.classList;
 
-    if (!(classList.contains("token-container")) || classList.contains("raven") || classList.contains("heart")) {
+    if (game.inEndState || !(classList.contains("token-container")) || classList.contains("raven") || classList.contains("heart")) {
         return;
     }
 
@@ -66,10 +66,13 @@ function completeGame(condition) {
     } else if (condition === "draw") {
         renderDrawMessage();
     }
-    
+
+    game.toggleEndState();
+
     setTimeout(function() {
         game.reset();
         initializeGame();
+        game.toggleEndState();
     }, 2500);
 }
 

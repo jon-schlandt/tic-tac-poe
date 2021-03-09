@@ -310,14 +310,16 @@ main {
     border-bottom: solid 2px black;
 }
 
-.board-square > span {
+.token-container {
     height: 80%;
     width: 80%;
     background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
-    
+}
 
+.token-container, .board-square {
+    cursor: pointer;
 }
 
 .raven-preview {

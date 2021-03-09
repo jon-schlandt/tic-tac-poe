@@ -4,6 +4,7 @@ class Game {
         this.playerTwo = new Player("Two", "heart");
         this.startingPlayer = this.playerOne;
         this.currentPlayer = this.startingPlayer;
+        this.inEndState = false;
         this.gameBoard = [
             null, null, null, 
             null, null, null,
@@ -112,6 +113,10 @@ class Game {
         var savedBoard = this.gameBoard.slice(0, 9);
         this.currentPlayer.wins.push(savedBoard);
     }
+
+    toggleEndState() {
+        this.inEndState = !this.inEndState;
+    } 
 
     reset() {
         this.setStartingPlayer();
