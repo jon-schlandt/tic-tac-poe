@@ -133,7 +133,7 @@ function renderWinBoards(player) {
         <div class="mini-square bottom-border"></div>
         <div class="mini-square right-border"></div>
         <div class="mini-square right-border"></div>
-        <div class="mini-square"></div>
+        <div class="mini-square no-border"></div>
       </article>
     `
   }

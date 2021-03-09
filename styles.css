@@ -19,6 +19,37 @@ main {
   display: flex;
 }
 
+.inset-panel {
+  background-color: #EEEEEE;
+  box-shadow: inset 0 0 20px 2px black;
+  border: solid 2px white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+/* ------ Board Square Borders ------ */
+
+.right-bottom-border {
+  border: none;
+  border-right: solid 2px black;
+  border-bottom: solid 2px black;
+}
+
+.right-border {
+  border: none;
+  border-right: solid 2px black;
+}
+
+.bottom-border {
+  border: none;
+  border-bottom: solid 2px black;
+}
+
+.no-border {
+  border: none;
+}
+
 .hidden {
   display: none !important;
 }
@@ -89,18 +120,12 @@ main {
 /* ------ Player Displays ------ */
 
 .player-display-background {
-  background-color: #EEEEEE;
   max-width: 315px;
   width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5px 0 20px 0;
-  padding: 20px;
-  box-shadow: inset 0 0 20px 2px black;
-  border: solid 2px white;
-  border-radius: 12px;
 }
 
 .player-display {
@@ -129,18 +154,15 @@ main {
 
 /* ------ Win Displays ------ */
 
-.display-background {
-  background-color: #EEEEEE;
+.win-grid-background {
   width: 100%;
   max-width: 540px;
   height: 45%;
-  box-shadow: inset 0 0 20px 2px black;
-  border: solid 2px white;
-  border-radius: 12px;
+  padding: 0px;
   overflow: scroll;
 }
 
-.display-background::-webkit-scrollbar {
+.win-grid-background::-webkit-scrollbar {
   display: none;
 }
 
@@ -170,20 +192,7 @@ main {
   background-position: center;
   width: 1.5vw;
   height: 1.5vw;
-  border: none; 
-}
-
-.mini-square.right-bottom-border {
-  border-right: solid black 1px;
-  border-bottom: solid black 1px;
-}
-
-.mini-square.right-border {
-  border-right: solid black 1px;
-}
-
-.mini-square.bottom-border {
-  border-bottom: solid black 1px;
+  border-width: 1px;
 }
 
 .raven-flat {
@@ -208,18 +217,12 @@ main {
 /* ------ Game Title ------ */
 
 .title-background {
-  background-color: #EEEEEE;
   width: 70%;
   max-width: 750px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 20px;
-  border: solid 2px white;
-  border-radius: 12px;
-  box-shadow: inset 0 0 20px 2px black;
 }
 
 .title-box {
@@ -254,15 +257,12 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #EEEEEE;
-  border: solid 2px white;
-  border-radius: 12px;
-  box-shadow: inset 0 0 20px 2px black;
+  padding: 0px;
 }
 
 .game-board {
-  width: fit-content;
   background-color: white;
+  width: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
@@ -271,6 +271,10 @@ main {
   border: solid 2px black;
   border-radius: 10px;
   box-shadow: 5px 5px 10px 1px rgb(107, 107, 107);
+}
+
+.token-box, .board-square {
+  cursor: pointer;
 }
 
 .board-square {
@@ -283,22 +287,8 @@ main {
   height: 10vw;
   max-height: 200px;
   padding: 0px 0px;
-  border: none;
   box-shadow: none;
   outline: none;
-}
-
-.board-square.right-bottom-border {
-  border-right: solid 2px black;
-  border-bottom: solid 2px black;
-}
-
-.board-square.right-border {
-  border-right: solid 2px black;
-}
-
-.board-square.bottom-border {
-  border-bottom: solid 2px black;
 }
 
 .token-box {
@@ -307,10 +297,6 @@ main {
   background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.token-box, .board-square {
-  cursor: pointer;
 }
 
 .raven-preview {
