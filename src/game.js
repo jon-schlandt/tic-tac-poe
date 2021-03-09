@@ -108,15 +108,15 @@ class Game {
             this.currentPlayer = this.playerOne;
         }
     }
+
+    toggleEndState() {
+        this.inEndState = !this.inEndState;
+    } 
     
     saveWin() {
         var savedBoard = this.gameBoard.slice(0, 9);
         this.currentPlayer.wins.push(savedBoard);
     }
-
-    toggleEndState() {
-        this.inEndState = !this.inEndState;
-    } 
 
     reset() {
         this.setStartingPlayer();
