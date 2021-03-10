@@ -10,7 +10,7 @@ var statusMessages = document.querySelectorAll(".status-message");
 // Event Listeners
 gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
 gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event); });
-gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event) });
+gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event); });
 
 window.addEventListener("load", renderWinGrids);
 
