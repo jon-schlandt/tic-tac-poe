@@ -29,7 +29,7 @@ Tic-Tac-Poe is an Edgar Allen Poe themed version of the classic game "Tic Tac To
 
 <p align="center"><img src="https://media.giphy.com/media/zLdLCgCSXIR5PtVaUk/giphy.gif" alt="Player one placing token" width="450" height="auto" style="border-radius:5px"/><br></p>
 
-2. Once a player finishes there turn, the turn indicator will move to be above the other player's display. Once this happens, they can make their move.
+2. Once a player finishes their turn, the turn indicator will move to the other player's display. Once this happens, they can make their move.
 
 <p align="center"><img src="https://media.giphy.com/media/b67C7ukvWwhw5iflzN/giphy.gif" alt="Player two placing token" width="450" height="auto" style="border-radius:5px"/><br></p>
 
