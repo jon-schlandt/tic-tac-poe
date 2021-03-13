@@ -67,7 +67,7 @@ main {
 
 /* ------ Indicator Boxes ------ */
 
-.indicator-box {
+.message-box {
   visibility: hidden;
   width: 60%;
   height: 80px;
@@ -78,7 +78,7 @@ main {
   padding: 10px;
 }
 
-.indicator-box h2 {
+.message-box h2 {
   font-size: 24pt;
   color: white;
 }
@@ -125,7 +125,7 @@ main {
   }
 }
 
-.winner-message, .draw-message {
+.end-state-message {
   align-self: flex-end;
 }
 

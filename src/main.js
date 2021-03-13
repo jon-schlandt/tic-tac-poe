@@ -4,8 +4,8 @@ var game = new Game();
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
 
-var indicatorBoxes = document.querySelectorAll(".indicator-box");
-var statusMessages = document.querySelectorAll(".turn-message");
+var messageBoxes = document.querySelectorAll(".message-box");
+var turnMessages = document.querySelectorAll(".turn-message");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
@@ -79,7 +79,7 @@ function completeGame(condition) {
     initiateWin();
     renderWinMessage();
   } else if (condition === "draw") {
-    renderDrawMessage();
+    renderDrawMessages();
   }
 
   game.toggleEndState();
@@ -153,27 +153,26 @@ function renderWinPositions(winBoard, savedWin) {
 }
 
 function renderWinMessage() {
-  var indicatorBox = document.getElementById(`indicatorBox${game.currentPlayer.id}`);
-  var statusMessage = document.getElementById(`turnMessage${game.currentPlayer.id}`);
+  var turnMessage = document.getElementById(`turnMessage${game.currentPlayer.id}`);
+  var endStateMessage = turnMessage.nextElementSibling;
 
-  indicatorBox.lastElementChild.classList.toggle("hidden");
-  statusMessage.lastElementChild.classList.toggle("hidden");
-    
-  indicatorBox.classList.toggle("condition-met");
-  statusMessage.firstElementChild.innerText = "WINNER!";    
+  endStateMessage.innerText = "WINNER!";
+
+  turnMessage.classList.toggle("hidden");
+  endStateMessage.classList.toggle("hidden");
 }
 
-function renderDrawMessage() {
-  for (var i = 0; i < indicatorBoxes.length; i++) {
-    if (!(indicatorBoxes[i].classList.contains("should-display"))) {
-        indicatorBoxes[i].classList.toggle("should-display");
-    }
+function renderDrawMessages() {
+  var endStateMessage;
 
-    indicatorBoxes[i].lastElementChild.classList.toggle("hidden");
-    statusMessages[i].lastElementChild.classList.toggle("hidden");
+  for (var i = 0; i < messageBoxes.length; i++) {
+    endStateMessage = turnMessages[i].nextElementSibling;
 
-    indicatorBoxes[i].classList.toggle("condition-met");
-    statusMessages[i].firstElementChild.innerText = "DRAW!";
+    messageBoxes[i].className = "message-box should-show";
+    endStateMessage.innerText = "DRAW!";
+
+    turnMessages[i].classList.toggle("hidden");
+    endStateMessage.classList.toggle("hidden");
   }
 }
 
@@ -196,33 +195,29 @@ function clearGameBoard() {
 }
 
 function initializeIndicators() {
-  var indicatorArrow;
-  var firstStatusLine;
-  var secondStatusLine;
+  var endStateMessage;
 
-  for (var i = 0; i < indicatorBoxes.length; i++) {
-    indicatorArrow = indicatorBoxes[i].querySelector(".indicator-arrow");
-    firstStatusLine = statusMessages[i].firstElementChild;
-    secondStatusLine = statusMessages[i].lastElementChild;
+  for (var i = 0; i < messageBoxes.length; i++) {
+    endStateMessage = messageBoxes[i].querySelector(".end-state-message");
+    endStateMessage.innerText = "";
 
-    indicatorArrow.className = "indicator-arrow";
-    firstStatusLine.innerText = "YOUR";
-    secondStatusLine.removeAttribute("class");
+    endStateMessage.className = "end-state-message";
+    turnMessages[i].className = "turn-message";
   }
 }
 
 function setTurn() {
-  var indicatorBoxId;
+  var messageBoxId;
   var playerKey;
     
-  for (var i = 0; i < indicatorBoxes.length; i++) {
-    indicatorBoxId = indicatorBoxes[i].id;
-    playerKey = indicatorBoxId.slice(indicatorBoxId.length - 3, indicatorBoxId.length);
+  for (var i = 0; i < messageBoxes.length; i++) {
+    messageBoxId = messageBoxes[i].id;
+    playerKey = messageBoxId.slice(messageBoxId.length - 3, messageBoxId.length);
 
     if (playerKey === game.currentPlayer.id) {
-        indicatorBoxes[i].className = "indicator-box should-display";
+        messageBoxes[i].className = "message-box should-display";
     } else {
-        indicatorBoxes[i].className = "indicator-box";
+        messageBoxes[i].className = "message-box";
     }
   }
 }
