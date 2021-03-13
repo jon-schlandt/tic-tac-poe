@@ -158,8 +158,8 @@ function renderWinMessage() {
 
   endStateMessage.innerText = "WINNER!";
 
-  turnMessage.classList.toggle("hidden");
-  endStateMessage.classList.toggle("hidden");
+  turnMessage.className = "turn-message hidden";
+  endStateMessage.className = "end-state-message";
 }
 
 function renderDrawMessages() {
@@ -168,17 +168,17 @@ function renderDrawMessages() {
   for (var i = 0; i < messageBoxes.length; i++) {
     endStateMessage = turnMessages[i].nextElementSibling;
 
-    messageBoxes[i].className = "message-box should-show";
     endStateMessage.innerText = "DRAW!";
 
-    turnMessages[i].classList.toggle("hidden");
-    endStateMessage.classList.toggle("hidden");
+    messageBoxes[i].className = "message-box should-display";
+    turnMessages[i].className = "turn-message hidden";
+    endStateMessage.className = "end-state-message";
   }
 }
 
 function initializeGame() {
   clearGameBoard();
-  initializeIndicators();
+  initializeMessageBoxes();
   setTurn();
 }
 
@@ -194,11 +194,12 @@ function clearGameBoard() {
   }
 }
 
-function initializeIndicators() {
+function initializeMessageBoxes() {
   var endStateMessage;
 
   for (var i = 0; i < messageBoxes.length; i++) {
-    endStateMessage = messageBoxes[i].querySelector(".end-state-message");
+    endStateMessage = turnMessages[i].nextElementSibling;
+
     endStateMessage.innerText = "";
 
     endStateMessage.className = "end-state-message";
