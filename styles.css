@@ -67,53 +67,66 @@ main {
 
 /* ------ Indicator Boxes ------ */
 
-.indicator-box {
-  opacity: 0;
+.message-box {
+  visibility: hidden;
   width: 60%;
   height: 80px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
 
-.should-display {
-  opacity: 1;
-}
-
-.condition-met {
-  align-items: flex-end;
-}
-
-.status-message > h2 {
-  margin-right: 15px;
+.message-box h2 {
   font-size: 24pt;
   color: white;
 }
 
-.status-message :nth-child(2) {
-  margin-top: 10px;
+.should-display {
+  visibility: visible;
+}
+
+.turn-message {
+  display: grid;
+  grid-template-columns: 0fr 0fr;
+  grid-template-rows: 0fr 0fr;
+  grid-template-areas: "first arrow" "second arrow";
+  row-gap: 10px;
+}
+
+.turn-message > h2 {
+  margin-right: 15px;
+}
+
+.turn-message :nth-child(1) {
+  grid-area: first;
+  align-self: end;
+} 
+
+.turn-message :nth-child(2) {
+  grid-area: second;
 }
 
 .indicator-arrow {
   width: 45px;
   position: relative;
-  bottom: 15px;
+  bottom: 10px;
+  grid-area: arrow;
+  align-self: center;
   animation: point 1.5s infinite ease-in-out;
 }
 
 @keyframes point {
-  0% {
-    transform: translate(0, 0);
+  0%, 100% {
+    transform: translateY(0);
+  } 50% {
+    transform: translateY(15px);
   }
+}
 
-  50% {
-    transform: translate(0, 20px);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
+.end-state-message {
+  align-self: flex-end;
 }
 
 /* ------ Player Displays ------ */
