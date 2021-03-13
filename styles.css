@@ -229,29 +229,27 @@ main {
 /* ------ Game Title ------ */
 
 .title-background {
-  width: 70%;
   max-width: 750px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 1.5vw;
 }
 
 .title-box {
   background-color: white;
-  width: 85%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1vw;
   border: solid 2px black;
   border-radius: 10px;
   box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
 
 .title-box > img {
-  width: 30vw;
+  width: 35vw;
 }
 
 /* ------ Game Board ------ */
@@ -270,7 +268,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
-  margin: 60px;
+  margin: 4vw;
   padding: 20px;
   border: solid 2px black;
   border-radius: 10px;
@@ -283,9 +281,9 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
-  width: 10vw;
+  width: 8vw;
   max-width: 200px;
-  height: 10vw;
+  height: 8vw;
   max-height: 200px;
   display: flex;
   justify-content: center;
