@@ -202,7 +202,7 @@ function initializeMessageBoxes() {
 
     endStateMessage.innerText = "";
 
-    endStateMessage.className = "end-state-message";
+    endStateMessage.className = "end-state-message hidden";
     turnMessages[i].className = "turn-message";
   }
 }
