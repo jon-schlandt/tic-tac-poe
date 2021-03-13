@@ -37,20 +37,12 @@ class Game {
     }
   }
 
-  verifyDraw() {
-    var tokensPlaced = 0;
-
-    for (var i = 0; i < this.gameBoard.length; i++) {
-      if (this.gameBoard[i]) {
-        tokensPlaced++
-      }
-    }
-
-    if (tokensPlaced === 9) {
+ verifyDraw() {
+    var boardState = this.gameBoard.filter(square => square);
+    
+    if (boardState.length === 9) {
       return true;
     }
-
-    return false;
   }
     
   setStartingPlayer() {
