@@ -5,7 +5,7 @@ var game = new Game();
 var gameBoard = document.getElementById("gameBoard");
 
 var indicatorBoxes = document.querySelectorAll(".indicator-box");
-var statusMessages = document.querySelectorAll(".status-message");
+var statusMessages = document.querySelectorAll(".turn-message");
 
 // Event Listeners
 gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
@@ -154,7 +154,7 @@ function renderWinPositions(winBoard, savedWin) {
 
 function renderWinMessage() {
   var indicatorBox = document.getElementById(`indicatorBox${game.currentPlayer.id}`);
-  var statusMessage = document.getElementById(`statusMessage${game.currentPlayer.id}`);
+  var statusMessage = document.getElementById(`turnMessage${game.currentPlayer.id}`);
 
   indicatorBox.lastElementChild.classList.toggle("hidden");
   statusMessage.lastElementChild.classList.toggle("hidden");
