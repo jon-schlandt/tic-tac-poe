@@ -68,7 +68,7 @@ main {
 /* ------ Indicator Boxes ------ */
 
 .indicator-box {
-  opacity: 0;
+  visibility: hidden;
   width: 60%;
   height: 80px;
   display: flex;
@@ -78,42 +78,41 @@ main {
   padding: 10px;
 }
 
-.should-display {
-  opacity: 1;
+.indicator-box h2 {
+  font-size: 24pt;
+  color: white;
 }
 
-.condition-met {
-  align-items: flex-end;
+.should-display {
+  visibility: visible;
 }
 
 .turn-message {
   display: grid;
   grid-template-columns: 0fr 0fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "test1 test3" "test2 test3";
+  grid-template-rows: 0fr 0fr;
+  grid-template-areas: "first arrow" "second arrow";
   row-gap: 10px;
 }
 
 .turn-message > h2 {
   margin-right: 15px;
-  font-size: 24pt;
-  color: white;
 }
 
 .turn-message :nth-child(1) {
-  grid-area: test1;
+  grid-area: first;
   align-self: end;
 } 
 
 .turn-message :nth-child(2) {
-  grid-area: test2;
+  grid-area: second;
 }
 
 .indicator-arrow {
   width: 45px;
   position: relative;
   bottom: 10px;
-  grid-area: test3;
+  grid-area: arrow;
   align-self: center;
   animation: point 1.5s infinite ease-in-out;
 }
@@ -124,6 +123,10 @@ main {
   } 50% {
     transform: translateY(15px);
   }
+}
+
+.winner-message, .draw-message {
+  align-self: flex-end;
 }
 
 /* ------ Player Displays ------ */
