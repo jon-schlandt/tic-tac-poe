@@ -131,6 +131,7 @@ main {
   margin-bottom: 20px;
   padding: 3px;
   border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94);
 }
 
 .player-display {
@@ -163,6 +164,12 @@ main {
   overflow: scroll;
 }
 
+@media only screen and (max-width: 2200) {
+  .win-grid-background {
+    height: 2vw;
+  }
+}
+
 .win-grid-background::-webkit-scrollbar {
   display: none;
 }
@@ -181,8 +188,8 @@ main {
   justify-content: center;
   justify-self: center;
   padding: 5px;
-  border-radius: 10px;
-  box-shadow: 3px 3px 5px rgb(94, 94, 94);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94);
 }
 
 .mini-square {
@@ -224,6 +231,7 @@ main {
   margin-bottom: 20px;
   padding: 3px;
   border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94);
 }
 
 .title-box {
@@ -257,7 +265,7 @@ main {
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
