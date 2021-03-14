@@ -144,11 +144,13 @@ main {
 
 .player-display {
   background-color: white;
+  width: 45%;
+  max-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 1vw 2vw;
+  padding: 15px 20px;
   border: solid black thick;
   border-style: double;
   border-radius: 12px;
@@ -156,14 +158,12 @@ main {
 }
 
 .player-display > img {
-  width: 55px;
-  height: 55px;
+  width: 3vw;
   margin-right: 15px;
 }
 
 .win-count-display {
-  margin-top: 10px;
-  font-size: 24pt;
+  font-size: 1.5vw;
 }
 
 /* ------ Win Grids ------ */
@@ -243,15 +243,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1vw;
+  margin-bottom: 20px;
+  padding: 1vw 2vw;
   border: solid black thick;
   border-style: double;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
+  box-shadow: 3px 3px 5px rgb(80, 80, 80);
 }
 
 .title-box > img {
-  width: 25vw;
+  width: 30vw;
 }
 
 /* ------ Game Board ------ */
