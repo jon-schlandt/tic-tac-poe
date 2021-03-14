@@ -23,15 +23,19 @@ class Game {
 
   verifyWin() {
     var winState;
-    var firstCheck;
-    var secondCheck;
+    var firstEqualsSecond;
+    var firstEqualsLast;
 
     for (var i = 0; i < this.winStates.length; i++) {
       winState = this.winStates[i];
-      firstCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
-      secondCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
+      firstEqualsSecond = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
+      firstEqualsLast = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
 
-      if (this.gameBoard[winState[0]] && firstCheck && secondCheck) {
+      if (this.gameBoard[winState[0]] === null) {
+        continue;
+      }
+
+      if (firstEqualsSecond && firstEqualsLast) {
         return true;
       }
     }
