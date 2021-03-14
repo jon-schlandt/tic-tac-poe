@@ -9,7 +9,12 @@ class Game {
       null, null, null, 
       null, null, null,
       null, null, null
-    ]
+    ];
+    this.winStates = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
   }
 
   placeToken(squareIndex, token) {
@@ -17,62 +22,19 @@ class Game {
   }
 
   verifyWin() {
-    if (this.checkRows() || this.checkColumns() || this.checkDiagonals()) {
-      return true
-    }
+    var winState;
+    var firstCheck;
+    var secondCheck;
 
-    return false;
-  }
+    for (var i = 0; i < this.winStates.length; i++) {
+      winState = this.winStates[i];
+      firstCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
+      secondCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
 
-  checkRows() {
-    var row;
-
-    for (var i = 0; i < 9; i += 3) {
-      row = this.gameBoard.slice(i, i + 3);
-            
-      if (!row[0]) { 
-        continue; 
-      }
-
-      if ((row[0] === row[1]) && (row[0] === row[2])) {
+      if (this.gameBoard[winState[0]] && firstCheck && secondCheck) {
         return true;
       }
     }
-
-    return false;
-  }
-
-  checkColumns() {
-    var column;
-
-    for (var i = 0; i < 3; i++) {
-      column = [this.gameBoard[i], this.gameBoard[i + 3], this.gameBoard[i + 6]]
-            
-      if (!column[0]) { 
-        continue; 
-      }
-
-      if ((column[0] === column[1]) && (column[0] === column[2])) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  checkDiagonals() {
-    var first = [this.gameBoard[0], this.gameBoard[4], this.gameBoard[8]];
-    var second = [this.gameBoard[2], this.gameBoard[4], this.gameBoard[6]];
-
-    if ((first[0]) && (first[0] === first[1]) && (first[0] === first[2])) {
-      return true; 
-    }
-
-    if ((second[0]) && (second[0] === second[1]) && (second[0] === second[2])) {
-      return true; 
-    }
-
-    return false;
   }
 
   verifyDraw() {
