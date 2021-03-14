@@ -18,14 +18,12 @@ main {
   height: 100vh;
   display: flex;
   justify-content: center;
-  box-shadow: inset 0 0 30px 10px black;
 }
 
 .inset-panel {
   background-color: #EEEEEE;
   margin-bottom: 20px;
   padding: 20px;
-  border: solid 2px white;
   border-radius: 12px;
   box-shadow: inset 0 0 20px 2px black;
 }
@@ -74,14 +72,14 @@ main {
   width: 60%;
   height: 80px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  margin-bottom: 5px;
   padding: 10px;
 }
 
 .message-box h2 {
-  font-size: 24pt;
+  font-size: 1.25vw;
   color: black;
 }
 
@@ -94,11 +92,8 @@ main {
   grid-template-columns: 0fr 0fr;
   grid-template-rows: 0fr 0fr;
   grid-template-areas: "first arrow" "second arrow";
-  row-gap: 10px;
-}
-
-.turn-message > h2 {
-  margin-right: 15px;
+  column-gap: .75vw;
+  row-gap: .5vw;
 }
 
 .turn-message :nth-child(1) {
@@ -111,7 +106,7 @@ main {
 }
 
 .indicator-arrow {
-  width: 45px;
+  width: 2.25vw;
   position: relative;
   bottom: 10px;
   grid-area: arrow;
@@ -125,10 +120,6 @@ main {
   } 50% {
     transform: translateY(15px);
   }
-}
-
-.end-state-message {
-  align-self: flex-end;
 }
 
 /* ------ Player Displays ------ */
@@ -151,14 +142,15 @@ main {
   align-items: center;
   margin-bottom: 20px;
   padding: 15px 20px;
-  border: solid black thick;
-  border-style: double;
+  /* border: solid black thick;
+  border-style: double; */
   border-radius: 12px;
-  box-shadow: 3px 3px 5px rgb(80, 80, 80);
+  box-shadow: 5px 5px 5px rgb(94, 94, 94);
 }
 
 .player-display > img {
   width: 3vw;
+  height: 3vw;
   margin-right: 15px;
 }
 
@@ -196,7 +188,7 @@ main {
   padding: 5px;
   border: solid black 2px;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px rgb(107, 107, 107);
+  box-shadow: 2px 2px 5px rgb(80, 80, 80);
 }
 
 .mini-square {
@@ -245,10 +237,8 @@ main {
   align-items: center;
   margin-bottom: 20px;
   padding: 1vw 2vw;
-  border: solid black thick;
-  border-style: double;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px rgb(80, 80, 80);
+  box-shadow: 5px 5px 5px rgb(94, 94, 94);
 }
 
 .title-box > img {
@@ -272,9 +262,9 @@ main {
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
   padding: 20px;
-  border: solid 2px black;
+  /* border: solid 2px black; */
   border-radius: 10px;
-  box-shadow: 5px 5px 10px 1px rgb(107, 107, 107);
+  box-shadow: 5px 5px 5px rgb(94, 94, 94);
 }
 
 .token-box, .board-square {
