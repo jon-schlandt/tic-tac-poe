@@ -28,29 +28,25 @@ class Game {
 
     for (var i = 0; i < this.winStates.length; i++) {
       winState = this.winStates[i];
-      firstCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
-      secondCheck = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
+      firstEqualsSecond = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
+      firstEqualsLast = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
 
-      if (this.gameBoard[winState[0]] && firstCheck && secondCheck) {
+      if (this.gameBoard[winState[0]] === null) {
+        continue;
+      }
+
+      if (firstEqualsSecond && firstEqualsLast) {
         return true;
       }
     }
   }
 
-  verifyDraw() {
-    var tokensPlaced = 0;
-
-    for (var i = 0; i < this.gameBoard.length; i++) {
-      if (this.gameBoard[i]) {
-        tokensPlaced++
-      }
-    }
-
-    if (tokensPlaced === 9) {
+ verifyDraw() {
+    var boardState = this.gameBoard.filter(square => square);
+    
+    if (boardState.length === 9) {
       return true;
     }
-
-    return false;
   }
     
   setStartingPlayer() {
