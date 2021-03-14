@@ -23,8 +23,8 @@ class Game {
 
   verifyWin() {
     var winState;
-    var firstCheck;
-    var secondCheck;
+    var firstEqualsSecond;
+    var firstEqualsLast;
 
     for (var i = 0; i < this.winStates.length; i++) {
       winState = this.winStates[i];

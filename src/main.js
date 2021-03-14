@@ -1,5 +1,6 @@
 // Dependents
 var game = new Game();
+var players = [game.playerOne, game.playerTwo];
 
 // Query Selectors
 var gameBoard = document.getElementById("gameBoard");
@@ -59,14 +60,11 @@ function toggleTokenPreview(event) {
 }
 
 function renderWinGrids() {
-  game.playerOne.retrieveWinsFromStorage();
-  game.playerTwo.retrieveWinsFromStorage();
-
-  updateWinCount(game.playerOne);
-  updateWinCount(game.playerTwo);
-    
-  renderWinGrid(game.playerOne);
-  renderWinGrid(game.playerTwo);
+  players.forEach(player => {
+    player.retrieveWinsFromStorage();
+    updateWinCount(player);
+    renderWinGrid(player);
+  });
 }
 
 function renderMove(boardSquare, token) {
