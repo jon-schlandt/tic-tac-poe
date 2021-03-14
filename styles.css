@@ -24,7 +24,7 @@ main {
   background-color: #EEEEEE;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 20px 1px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px 1px rgb(29, 29, 29);
 }
 
 .hidden {
@@ -103,7 +103,7 @@ main {
 }
 
 .indicator-arrow {
-  width: 2.25vw;
+  width: 2vw;
   position: relative;
   bottom: 10px;
   grid-area: arrow;
@@ -129,9 +129,8 @@ main {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 4px 4px 5px rgb(94, 94, 94);
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .player-display {
@@ -140,7 +139,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
@@ -219,14 +218,12 @@ main {
 
 .title-background {
   background-color: white;
-  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 4px 4px 5px rgb(94, 94, 94);
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .title-box {
@@ -234,8 +231,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 5px;
   box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
@@ -245,7 +242,7 @@ main {
 
 /* ------ Game Board ------ */
 
-.board-background {
+.board-panel {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -259,9 +256,9 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px rgb(94, 94, 94);
+  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .token-box, .board-square {
