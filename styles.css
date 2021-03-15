@@ -121,27 +121,18 @@ main {
 
 /* ------ Player Displays ------ */
 
-.player-display-background {
-  background-color: white;
+.player-display {
   width: 45%;
   max-width: 330px;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 3px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94);
-}
-
-.player-display {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  border: solid white;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94), inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .player-display > img {
@@ -167,10 +158,8 @@ main {
   justify-content: center;
   align-items: flex-start;
   padding: 1.25vw;
-  border: double rgb(60, 60, 60);
-  border-width: 5px;
-  border-radius: 5px;
-  box-shadow: inset 0 0 5px rgb(84, 84, 84);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
   overflow: scroll;
 }
 
@@ -228,25 +217,16 @@ main {
 
 /* ------ Game Title ------ */
 
-.title-background {
+.title-box {
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 3px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94);
-}
-
-.title-box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 12px 20px;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  border: solid white;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94), inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .title-box > img {
@@ -270,7 +250,7 @@ main {
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
