@@ -157,48 +157,59 @@ main {
 /* ------ Win Grids ------ */
 
 .win-grid-background {
+  width: 20vw;
+  max-width: 500px;
+  height: 16vw;
+  max-height: 375px;
+  padding: 1.50vw 2.50vw;
+}
+
+.test {
+  background-color: white;
   width: 100%;
-  max-width: 540px;
-  height: 45%;
-  padding: 0px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(94, 94, 94);
   overflow: scroll;
 }
 
-@media only screen and (max-width: 2200) {
-  .win-grid-background {
-    height: 2vw;
-  }
-}
-
-.win-grid-background::-webkit-scrollbar {
+.test::-webkit-scrollbar {
   display: none;
 }
 
 .win-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 1.30vw;
-  padding: 1.30vw 0px;
+  grid-template-columns: repeat(3, fit-content(100%));
+  grid-template-rows: repeat(3, fit-content(100%));
+  grid-auto-columns: fit-content(100%);
+  grid-auto-rows: fit-content(100%);
+  column-gap: 1.25vw;
+  row-gap: 1.25vw;
+  margin-top: 1.50vw;
 }
 
 .mini-game-board {
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(3, 0fr);
-  justify-content: center;
-  justify-self: center;
-  padding: 5px;
+  grid-template-columns: repeat(3, fit-content(100%));
+  grid-template-rows: repeat(3, fit-content(100%));
+  padding: 2px;
+  border: solid thin black;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94);
 }
 
 .mini-square {
   background-color: rgba(255, 255, 255, 0);
-  background-position: center;
   background-size: 75%;
+  background-position: center;
   background-repeat: no-repeat;
   width: 1.5vw;
+  max-width: 30px;
   height: 1.5vw;
+  max-height: 30px;
   border-width: 1px;
 }
 
