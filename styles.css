@@ -157,22 +157,20 @@ main {
 /* ------ Win Grids ------ */
 
 .win-grid-background {
-  width: 20vw;
-  max-width: 500px;
-  height: 16vw;
-  max-height: 375px;
-  padding: 1.50vw 2.50vw;
+  padding: 2vw 2vw;
 }
 
 .test {
+  max-height: 9.60vw;
   background-color: white;
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  padding: 1.25vw;
+  border: double rgb(60, 60, 60);
+  border-width: 5px;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94);
+  box-shadow: inset 0 0 5px rgb(84, 84, 84);
   overflow: scroll;
 }
 
@@ -182,20 +180,19 @@ main {
 
 .win-grid {
   display: grid;
-  grid-template-columns: repeat(3, fit-content(100%));
-  grid-template-rows: repeat(3, fit-content(100%));
-  grid-auto-columns: fit-content(100%);
-  grid-auto-rows: fit-content(100%);
+  grid-template-columns: repeat(3, 4.25vw);
+  grid-template-rows: repeat(1, 4.25vw);
+  grid-auto-columns: 4.25vw;
+  grid-auto-rows: 4.25vw;
   column-gap: 1.25vw;
   row-gap: 1.25vw;
-  margin-top: 1.50vw;
 }
 
 .mini-game-board {
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(3, fit-content(100%));
-  grid-template-rows: repeat(3, fit-content(100%));
+  grid-template-columns: repeat(3, 33.33%);
+  grid-template-rows: repeat(3, 33.33%);
   padding: 2px;
   border: solid thin black;
   border-radius: 5px;
@@ -206,10 +203,7 @@ main {
   background-size: 75%;
   background-position: center;
   background-repeat: no-repeat;
-  width: 1.5vw;
-  max-width: 30px;
-  height: 1.5vw;
-  max-height: 30px;
+  justify-content: stretch;
   border-width: 1px;
 }
 
