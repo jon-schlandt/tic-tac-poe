@@ -23,8 +23,9 @@ main {
 .inset-panel {
   background-color: #EEEEEE;
   padding: 20px;
+  border: solid white;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 5px 1px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .hidden {
@@ -132,7 +133,7 @@ main {
   padding: 10px;
   border: solid white;
   border-radius: 10px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94), inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .player-display > img {
@@ -219,18 +220,19 @@ main {
 
 .title-box {
   background-color: white;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  padding: 12px 20px;
+  padding: .75vw 2vw;
   border: solid white;
   border-radius: 10px;
-  box-shadow: 3px 3px 3px rgb(94, 94, 94), inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
 }
 
 .title-box > img {
-  width: 30vw;
+  width: 100%;
 }
 
 /* ------ Game Board ------ */
