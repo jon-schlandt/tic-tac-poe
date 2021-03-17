@@ -27,8 +27,7 @@ main {
   display: flex;
   justify-content: center;
   padding: 3vw 2vw 2vw 2vw;
-  border: double black;
-  border-width: 5px;
+  border: solid black;
   border-radius: 10px;
 }
 
@@ -151,27 +150,25 @@ main {
 /* ------ Player Displays ------ */
 
 .player-display {
-  width: 45%;
-  max-width: 330px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: 1vw;
+  padding: .5vw 1vw;
   border: solid white;
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px 1px rgb(99, 99, 99);
 }
 
 .player-display > img {
-  width: 3vw;
-  height: 3vw;
+  width: 2vw;
+  height: 2vw;
   margin-right: 15px;
 }
 
 .win-count-display {
-  font-size: 1.5vw;
+  font-size: 1vw;
 }
 
 /* ------ Win Grids ------ */
