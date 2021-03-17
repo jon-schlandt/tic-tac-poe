@@ -25,11 +25,28 @@ body {
 }
 
 main {
-  width: 1280px;
   display: flex;
   justify-content: center;
   border: solid black;
   border-radius: 10px;
+}
+
+@media only screen and (min-width: 1224px) {
+  main {
+    width: 1224px;
+  }
+}
+
+@media only screen and (min-width: 1824px) {
+  main {
+    width: 1824px;
+  }
+}
+
+@media only screen and (min-width: 2424px) {
+  main {
+    width: 2424px;
+  }
 }
 
 .inset-panel {
@@ -270,9 +287,9 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
-  width: 5vw;
+  width: 5%;
   max-width: 175px;
-  height: 5vw;
+  height: 5%;
   max-height: 175px;
   display: flex;
   justify-content: center;
