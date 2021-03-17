@@ -11,13 +11,25 @@
   font-weight: bolder;
 }
 
-main {
+body {
   background: linear-gradient(rgb(225, 225, 225), rgb(19, 19, 19));
   background-size: cover;
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 3vw 2vw 2vw 2vw;
+  border: double black;
+  border-width: 5px;
+  border-radius: 10px;
 }
 
 .inset-panel {
@@ -25,7 +37,7 @@ main {
   padding: 20px;
   border: solid white;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px 1px rgb(85, 85, 85);
 }
 
 .hidden {
@@ -54,15 +66,31 @@ main {
   border: none;
 }
 
+/********** ------ Game Title ------ **********/
+
+.title-box {
+  background-color: white;
+  position: absolute;
+  top: -2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .75vw 2vw;
+  border: solid black;
+  border-radius: 10px;
+}
+
+.title-box > img {
+  width: 22.5vw;
+}
+
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
-  width: 27.5%;
   display: flex;
   flex-direction: column;
   justify-content:center;
   align-items: center;
-  padding: 0 35px;
 }
 
 /* ------ Message Boxes ------ */
@@ -133,7 +161,7 @@ main {
   padding: 10px;
   border: solid white;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px 1px rgb(99, 99, 99);
 }
 
 .player-display > img {
@@ -153,14 +181,15 @@ main {
 }
 
 .test {
-  max-height: 9.60vw;
+  max-height: 8.60vw;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 1.25vw;
+  border: solid 1px rgb(184, 184, 184);
   border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px rgb(109, 109, 109);
   overflow: scroll;
 }
 
@@ -170,10 +199,10 @@ main {
 
 .win-grid {
   display: grid;
-  grid-template-columns: repeat(3, 4.25vw);
-  grid-template-rows: repeat(1, 4.25vw);
-  grid-auto-columns: 4.25vw;
-  grid-auto-rows: 4.25vw;
+  grid-template-columns: repeat(3, 3.75vw);
+  grid-template-rows: repeat(1, 3.75vw);
+  grid-auto-columns: 3.75vw;
+  grid-auto-rows: 3.75vw;
   column-gap: 1.25vw;
   row-gap: 1.25vw;
 }
@@ -208,41 +237,21 @@ main {
 /********** ------ Play Area Styles ------ **********/
 
 .play-area {
-  width: 45%;
+  /* width: 45%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 18vh 0px;
-}
-
-/* ------ Game Title ------ */
-
-.title-box {
-  background-color: white;
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: .75vw 2vw;
-  border: solid white;
-  border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
-}
-
-.title-box > img {
-  width: 100%;
+  margin: 1.25vw 2.5vw 0 2.5vw;
 }
 
 /* ------ Game Board ------ */
 
 .board-panel {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2vw 0;
+  padding: 2vw 2vw;
 }
 
 .game-board {
@@ -252,8 +261,9 @@ main {
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
   padding: 10px;
+  border: solid 1px rgb(184, 184, 184);
   border-radius: 10px;
-  box-shadow: inset 0px 0px 5px rgb(29, 29, 29);
+  box-shadow: inset 0px 0px 5px rgb(109, 109, 109);
 }
 
 .token-box, .board-square {
@@ -262,9 +272,9 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
-  width: 8vw;
+  width: 5vw;
   max-width: 175px;
-  height: 8vw;
+  height: 5vw;
   max-height: 175px;
   display: flex;
   justify-content: center;

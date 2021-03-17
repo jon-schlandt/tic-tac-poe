@@ -6,7 +6,10 @@
   </head>
   <body>
     <main>
-      <div class="player-board">
+      <section class="title-box">
+        <img src="assets/game_title.png" alt="Tic-Tac-Poe"/>
+      </section>
+      <aside class="player-board">
         <div class="message-box should-display" id="messageBoxOne">
           <section class="turn-message" id="turnMessageOne">
             <h2>YOUR</h2>
@@ -24,11 +27,8 @@
             <section class="win-grid" id="winGridOne"></section>
           </div>
         </div>
-      </div>
-      <div class="play-area">
-        <section class="title-box">
-          <img src="assets/game_title.png" alt="Tic-Tac-Poe"/>
-        </section>
+      </aside>
+      <section class="play-area">
         <div class="inset-panel board-panel">
           <section class="game-board" id="gameBoard">
             <button class="board-square right-bottom-border" id="square0">
@@ -60,8 +60,8 @@
             </button>
           </section>
         </div>
-      </div>
-      <div class="player-board">
+      </section>
+      <aside class="player-board">
         <div class="message-box" id="messageBoxTwo">
           <section class="turn-message" id="turnMessageTwo">
             <h2>YOUR</h2>
@@ -79,7 +79,7 @@
             <section class="win-grid" id="winGridTwo"></section>
           </div>
         </div>
-      </div>
+      </aside>
     </main>
     <script type="text/javascript" src="./src/player.js"></script>
     <script type="text/javascript" src="./src/game.js"></script>
