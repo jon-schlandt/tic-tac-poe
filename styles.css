@@ -11,24 +11,32 @@
   font-weight: bolder;
 }
 
-main {
-  /* background-image: url("assets/background-wallpaper.jpg"); */
-  background: linear-gradient(rgb(225, 225, 225), rgb(0, 0, 0));
+body {
+  background: linear-gradient(rgb(225, 225, 225), rgb(19, 19, 19));
   background-size: cover;
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  box-shadow: inset 0 0 30px 15px black;
+  align-items: center;
+}
+
+main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 3vw 2vw 2vw 2vw;
+  border: solid black;
+  border-radius: 10px;
 }
 
 .inset-panel {
   background-color: #EEEEEE;
-  margin-bottom: 20px;
   padding: 20px;
-  border: solid 2px white;
-  border-radius: 12px;
-  box-shadow: inset 0 0 20px 2px black;
+  border: solid white;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 1px rgb(85, 85, 85);
 }
 
 .hidden {
@@ -57,33 +65,47 @@ main {
   border: none;
 }
 
+/********** ------ Game Title ------ **********/
+
+.title-box {
+  background-color: white;
+  position: absolute;
+  top: -2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .75vw 2vw;
+  border: solid black;
+  border-radius: 10px;
+}
+
+.title-box > img {
+  width: 22.5vw;
+}
+
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
-  width: 27.5%;
   display: flex;
   flex-direction: column;
   justify-content:center;
   align-items: center;
-  padding: 0 35px;
 }
 
-/* ------ Indicator Boxes ------ */
+/* ------ Message Boxes ------ */
 
 .message-box {
   visibility: hidden;
-  width: 60%;
-  height: 80px;
+  height: 3.25vw;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-end;
+  margin-bottom: .75vw;
 }
 
 .message-box h2 {
-  font-size: 24pt;
-  color: white;
+  font-size: 1.25vw;
+  color: black;
 }
 
 .should-display {
@@ -95,11 +117,8 @@ main {
   grid-template-columns: 0fr 0fr;
   grid-template-rows: 0fr 0fr;
   grid-template-areas: "first arrow" "second arrow";
-  row-gap: 10px;
-}
-
-.turn-message > h2 {
-  margin-right: 15px;
+  column-gap: .70vw;
+  row-gap: .5vw;
 }
 
 .turn-message :nth-child(1) {
@@ -112,7 +131,7 @@ main {
 }
 
 .indicator-arrow {
-  width: 45px;
+  width: 2vw;
   position: relative;
   bottom: 10px;
   grid-area: arrow;
@@ -128,86 +147,79 @@ main {
   }
 }
 
-.end-state-message {
-  align-self: flex-end;
-}
-
 /* ------ Player Displays ------ */
-
-.player-display-background {
-  width: 70%;
-  max-width: 315px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .player-display {
   background-color: white;
-  width: 90%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 0;
-  border: solid black thick;
-  border-style: double;
-  border-radius: 12px;
-  box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
+  margin-bottom: 1vw;
+  padding: .5vw 1vw;
+  border: solid white;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 1px rgb(99, 99, 99);
 }
 
 .player-display > img {
-  width: 55px;
-  height: 55px;
+  width: 2vw;
+  height: 2vw;
   margin-right: 15px;
 }
 
 .win-count-display {
-  margin-top: 10px;
-  font-size: 24pt;
+  font-size: 1vw;
 }
 
 /* ------ Win Grids ------ */
 
 .win-grid-background {
-  width: 100%;
-  max-width: 540px;
-  height: 45%;
-  padding: 0px;
+  padding: 2vw 2vw;
+}
+
+.test {
+  max-height: 8.60vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.25vw;
+  border: solid 1px rgb(184, 184, 184);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px rgb(109, 109, 109);
   overflow: scroll;
 }
 
-.win-grid-background::-webkit-scrollbar {
+.test::-webkit-scrollbar {
   display: none;
 }
 
 .win-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 1.30vw;
-  padding: 1.30vw 0px;
+  grid-template-columns: repeat(3, 3.75vw);
+  grid-template-rows: repeat(1, 3.75vw);
+  grid-auto-columns: 3.75vw;
+  grid-auto-rows: 3.75vw;
+  column-gap: 1.25vw;
+  row-gap: 1.25vw;
 }
 
 .mini-game-board {
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(3, 0fr);
-  justify-content: center;
-  justify-self: center;
-  padding: 5px;
-  border: solid black 2px;
-  border-radius: 10px;
-  box-shadow: 3px 3px 5px rgb(107, 107, 107);
+  grid-template-columns: repeat(3, 33.33%);
+  grid-template-rows: repeat(3, 33.33%);
+  padding: 2px;
+  border: solid thin black;
+  border-radius: 5px;
 }
 
 .mini-square {
   background-color: rgba(255, 255, 255, 0);
-  background-position: center;
   background-size: 75%;
+  background-position: center;
   background-repeat: no-repeat;
-  width: 1.5vw;
-  height: 1.5vw;
+  justify-content: stretch;
   border-width: 1px;
 }
 
@@ -216,54 +228,27 @@ main {
 }
 
 .heart-flat {
-  background-image: url("assets/heart-shadow.svg");
+  background-image: url("assets/heart-flat.svg");
 }
 
 /********** ------ Play Area Styles ------ **********/
 
 .play-area {
-  width: 45%;
+  /* width: 45%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 18vh 0px;
-}
-
-/* ------ Game Title ------ */
-
-.title-background {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1vw 2vw;
-}
-
-.title-box {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1vw;
-  border: solid black thick;
-  border-style: double;
-  border-radius: 10px;
-  box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
-}
-
-.title-box > img {
-  width: 25vw;
+  margin: 1.25vw 2.5vw 0 2.5vw;
 }
 
 /* ------ Game Board ------ */
 
-.board-background {
-  width: 100%;
+.board-panel {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2vw 0;
+  padding: 2vw 2vw;
 }
 
 .game-board {
@@ -272,10 +257,10 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
-  padding: 20px;
-  border: solid 2px black;
+  padding: 10px;
+  border: solid 1px rgb(184, 184, 184);
   border-radius: 10px;
-  box-shadow: 5px 5px 10px 1px rgb(107, 107, 107);
+  box-shadow: inset 0px 0px 5px rgb(109, 109, 109);
 }
 
 .token-box, .board-square {
@@ -284,9 +269,9 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
-  width: 8vw;
+  width: 5vw;
   max-width: 175px;
-  height: 8vw;
+  height: 5vw;
   max-height: 175px;
   display: flex;
   justify-content: center;
