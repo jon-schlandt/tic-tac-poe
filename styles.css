@@ -101,11 +101,6 @@ main {
   align-items: flex-end;
 }
 
-.message-box h2 {
-  font-size: 1.25vw;
-  color: black;
-}
-
 .should-display {
   visibility: visible;
 }
@@ -115,8 +110,6 @@ main {
   grid-template-columns: 0fr 0fr;
   grid-template-rows: 0fr 0fr;
   grid-template-areas: "first arrow" "second arrow";
-  column-gap: .70vw;
-  row-gap: .5vw;
 }
 
 .turn-message :nth-child(1) {
@@ -154,6 +147,10 @@ main {
   align-items: center;
   border: solid white;
   box-shadow: inset 0px 0px 5px 1px rgb(99, 99, 99);
+}
+
+.win-count-display {
+  line-height: 0;
 }
 
 /* ------ Win Grids ------ */
@@ -273,6 +270,10 @@ main {
 }
 
 @media only screen and (min-width: 1224px) {
+  main {
+    width: 1224px;
+  }
+
   .inset-panel, .player-display, .test, .win-grid, .game-board {
     border-width: 2px;
     border-radius: 5px;
@@ -285,15 +286,30 @@ main {
   .test, .game-board {
     box-shadow: inset 0px 0px 2px rgb(109, 109, 109);
   }
-  
-  main {
-    width: 1224px;
-  }
 
   .inset-panel {
     padding: 30px;
   }
 
+  .message-box {
+    top: 405px;
+  }
+
+  .message-box h2 {
+    font-size: 13pt;
+    color: black;
+  }
+
+  .turn-message {
+    column-gap: 5px;
+    row-gap: 2.5px;
+  }
+
+  .indicator-arrow {
+    width: 25px;
+    bottom: 5px;
+  }
+  
   .player-display {
     width: 150px;
     margin-bottom: 15px;
@@ -332,6 +348,10 @@ main {
 }
 
 @media only screen and (min-width: 1824px) {
+  main {
+    width: 1824px;
+  } 
+  
   .inset-panel, .player-display, .test, .win-grid, .game-board {
     border-width: 3px;
     border-radius: 7.5px;
@@ -345,12 +365,27 @@ main {
     box-shadow: inset 0px 0px 3px rgb(109, 109, 109);
   }
   
-  main {
-    width: 1824px;
-  } 
-  
   .inset-panel {
     padding: 50px;
+  }
+
+  .message-box {
+    top: 270px;
+  }
+
+  .message-box h2 {
+    font-size: 22pt;
+    color: black;
+  }
+
+  .turn-message {
+    column-gap: 10px;
+    row-gap: 5px;
+  }
+
+  .indicator-arrow {
+    width: 40px;
+    bottom: 10px;
   }
 
   .player-display {
@@ -390,6 +425,10 @@ main {
 }
 
 @media only screen and (min-width: 2424px) {
+  main {
+    width: 2424px;
+  }
+  
   .inset-panel, .player-display, .test, .game-board {
     border-width: 4px;
     border-radius: 10px;
@@ -402,13 +441,28 @@ main {
   .test, .game-board {
     box-shadow: inset 0px 0px 4px rgb(109, 109, 109);
   }
-  
-  main {
-    width: 2424px;
-  }
 
   .inset-panel {
     padding: 70px;
+  }
+
+  .message-box {
+    top: 140px;
+  }
+
+  .message-box h2 {
+    font-size: 31pt;
+    color: black;
+  }
+
+  .turn-message {
+    column-gap: 15px;
+    row-gap: 10px;
+  }
+
+  .indicator-arrow {
+    width: 55px;
+    bottom: 15px;
   }
 
   .player-display {
