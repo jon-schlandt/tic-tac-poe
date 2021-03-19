@@ -1,23 +1,29 @@
 // Dependents
-var game = new Game();
-var players = [game.playerOne, game.playerTwo];
+const game = new Game();
+const players = [game.playerOne, game.playerTwo];
 
 // Query Selectors
-var gameBoard = document.getElementById("gameBoard");
+const gameBoard = document.getElementById("gameBoard");
 
-var messageBoxes = document.querySelectorAll(".message-box");
-var turnMessages = document.querySelectorAll(".turn-message");
+const messageBoxes = document.querySelectorAll(".message-box");
+const turnMessages = document.querySelectorAll(".turn-message");
 
 // Event Listeners
-gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
-gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event); });
-gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event); });
+gameBoard.addEventListener("click", function(event) { 
+  manipulateSquare(event); 
+});
+gameBoard.addEventListener("mouseover", function(event) { 
+  manipulateSquare(event); 
+});
+gameBoard.addEventListener("mouseout", function(event) { 
+  manipulateSquare(event); 
+});
 
 window.addEventListener("load", renderWinGrids);
 
 // Event Handlers/Helper Functions
 function manipulateSquare(event) {
-  var targetClass = event.target.classList;
+  const targetClass = event.target.classList;
 
   if (game.inEndState || !(targetClass.contains("token-box")) || targetClass.contains("raven") || targetClass.contains("heart")) {
       return;
@@ -32,9 +38,9 @@ function manipulateSquare(event) {
 }
 
 function makeMove(event) {
-  var boardSquare = event.target.closest("button");
-  var squareIndex = boardSquare.id[boardSquare.id.length - 1];
-  var token = game.currentPlayer.token;
+  const boardSquare = event.target.closest("button");
+  const squareIndex = boardSquare.id[boardSquare.id.length - 1];
+  const token = game.currentPlayer.token;
 
   game.placeToken(squareIndex, token);
   renderMove(boardSquare, token);
@@ -68,8 +74,8 @@ function renderWinGrids() {
 }
 
 function renderMove(boardSquare, token) {
-    var tokenBox = boardSquare.querySelector(".token-box");
-    tokenBox.className = `token-box ${token}`
+  const tokenBox = boardSquare.querySelector(".token-box");
+  tokenBox.className = `token-box ${token}`
 }
 
 function completeGame(condition) {
@@ -98,8 +104,8 @@ function initiateWin() {
 }
 
 function updateWinCount(player) {
-  var countDisplay = document.getElementById(`countDisplay${player.id}`);
-  var winCount = player.wins.length;
+  const countDisplay = document.getElementById(`countDisplay${player.id}`);
+  const winCount = player.wins.length;
 
   if (winCount === 1) {
     countDisplay.innerText = `${winCount} Win`;
@@ -109,18 +115,18 @@ function updateWinCount(player) {
 }
 
 function renderWinGrid(player) {
-  var winBoards = renderWinBoards(player);
+  const winBoards = renderWinBoards(player);
 
-  for (var i = 0; i < winBoards.length; i++) {
+  for (let i = 0; i < winBoards.length; i++) {
     renderWinPositions(winBoards[i], player.wins[i]);
   }
 }
 
 function renderWinBoards(player) {
-  var winGrid = document.getElementById(`winGrid${player.id}`);
-  var winBoards = "";
+  const winGrid = document.getElementById(`winGrid${player.id}`);
+  let winBoards = "";
 
-  for (var i = 0; i < player.wins.length; i++) {
+  for (let i = 0; i < player.wins.length; i++) {
     winBoards += `
       <article class="mini-game-board">
         <div class="mini-square right-bottom-border"></div>
@@ -141,18 +147,19 @@ function renderWinBoards(player) {
 }
 
 function renderWinPositions(winBoard, savedWin) {
-  var boardSquares = winBoard.querySelectorAll(".mini-square");
+  const boardSquares = winBoard.querySelectorAll(".mini-square");
 
-  for (var i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i++) {
     if (savedWin[i]) {
-        boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
+      boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
     }
   }
 }
 
 function renderWinMessage() {
-  var turnMessage = document.getElementById(`turnMessage${game.currentPlayer.id}`);
-  var endStateMessage = turnMessage.nextElementSibling;
+  const turnMessage = document.getElementById(
+    `turnMessage${game.currentPlayer.id}`);
+  const endStateMessage = turnMessage.nextElementSibling;
 
   endStateMessage.innerText = "WINNER!";
 
@@ -161,9 +168,9 @@ function renderWinMessage() {
 }
 
 function renderDrawMessages() {
-  var endStateMessage;
+  let endStateMessage;
 
-  for (var i = 0; i < messageBoxes.length; i++) {
+  for (let i = 0; i < messageBoxes.length; i++) {
     endStateMessage = turnMessages[i].nextElementSibling;
 
     endStateMessage.innerText = "DRAW!";
@@ -181,10 +188,10 @@ function initializeGame() {
 }
 
 function clearGameBoard() {
-  var boardSquare;
-  var tokenBox;
+  let boardSquare;
+  let tokenBox;
 
-  for (var i = 0; i < game.gameBoard.length; i++) {
+  for (let i = 0; i < game.gameBoard.length; i++) {
     boardSquare = document.getElementById(`square${i}`);
     tokenBox = boardSquare.querySelector(".token-box");
 
@@ -193,9 +200,9 @@ function clearGameBoard() {
 }
 
 function initializeMessageBoxes() {
-  var endStateMessage;
+  let endStateMessage;
 
-  for (var i = 0; i < messageBoxes.length; i++) {
+  for (let i = 0; i < messageBoxes.length; i++) {
     endStateMessage = turnMessages[i].nextElementSibling;
 
     endStateMessage.innerText = "";
@@ -206,17 +213,18 @@ function initializeMessageBoxes() {
 }
 
 function setTurn() {
-  var messageBoxId;
-  var playerKey;
+  let messageBoxId;
+  let playerKey;
     
-  for (var i = 0; i < messageBoxes.length; i++) {
+  for (let i = 0; i < messageBoxes.length; i++) {
     messageBoxId = messageBoxes[i].id;
-    playerKey = messageBoxId.slice(messageBoxId.length - 3, messageBoxId.length);
+    playerKey = messageBoxId.slice(
+      messageBoxId.length - 3, messageBoxId.length);
 
     if (playerKey === game.currentPlayer.id) {
-        messageBoxes[i].className = "message-box should-display";
+      messageBoxes[i].className = "message-box should-display";
     } else {
-        messageBoxes[i].className = "message-box";
+      messageBoxes[i].className = "message-box";
     }
   }
 }
