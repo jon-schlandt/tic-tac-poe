@@ -12,14 +12,11 @@
 }
 
 main {
-  /* background-image: url("assets/background-wallpaper.jpg"); */
-  background: linear-gradient(rgb(225, 225, 225), rgb(0, 0, 0));
+  background-image: url("assets/background-wallpaper.jpg");
   background-size: cover;
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  box-shadow: inset 0 0 30px 15px black;
 }
 
 .inset-panel {
@@ -151,8 +148,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 15px 0;
-  border: solid black thick;
-  border-style: double;
+  border: solid 2px black;
   border-radius: 12px;
   box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
@@ -233,27 +229,37 @@ main {
 /* ------ Game Title ------ */
 
 .title-background {
+  width: 70%;
+  max-width: 750px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1vw 2vw;
 }
 
 .title-box {
   background-color: white;
+  width: 85%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1vw;
-  border: solid black thick;
-  border-style: double;
+  padding: 15px 25px 0 25px;
+  border: solid 2px black;
   border-radius: 10px;
   box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
 
+.title-box > h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 4vw;
+}
+
 .title-box > img {
-  width: 25vw;
+  width: 1vw;
+  height: 1vw;
+  margin: .50vw;
 }
 
 /* ------ Game Board ------ */
@@ -263,7 +269,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2vw 0;
+  padding: 0px;
 }
 
 .game-board {
@@ -272,6 +278,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   justify-content: center;
+  margin: 60px;
   padding: 20px;
   border: solid 2px black;
   border-radius: 10px;
@@ -284,10 +291,10 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
-  width: 8vw;
-  max-width: 175px;
-  height: 8vw;
-  max-height: 175px;
+  width: 10vw;
+  max-width: 200px;
+  height: 10vw;
+  max-height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
