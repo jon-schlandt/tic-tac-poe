@@ -230,7 +230,6 @@ main {
 
 .title-background {
   width: 70%;
-  max-width: 750px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -238,28 +237,19 @@ main {
 }
 
 .title-box {
+  width: 90%;
   background-color: white;
-  width: 85%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 25px 0 25px;
+  padding: 15px 0;
   border: solid 2px black;
   border-radius: 10px;
   box-shadow: 3px 3px 5px 1px rgb(107, 107, 107);
 }
 
-.title-box > h1 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 4vw;
-}
-
 .title-box > img {
-  width: 1vw;
-  height: 1vw;
-  margin: .50vw;
+  width: 25vw;
 }
 
 /* ------ Game Board ------ */
