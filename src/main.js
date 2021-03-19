@@ -24,9 +24,12 @@ window.addEventListener("load", renderWinGrids);
 // Event Handlers/Helper Functions
 function manipulateSquare(event) {
   const targetClass = event.target.classList;
+  const targetIsTokenBox = !(targetClass.contains("token-box"));
+  const targetIsNotEmpty = (
+    targetClass.contains("raven") || targetClass.contains("heart"));
 
-  if (game.inEndState || !(targetClass.contains("token-box")) || targetClass.contains("raven") || targetClass.contains("heart")) {
-      return;
+  if (game.inEndState || targetIsTokenBox || targetIsNotEmpty) {
+    return;
   }
 
   if (event.type === "click") { 
