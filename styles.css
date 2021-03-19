@@ -12,8 +12,7 @@
 }
 
 main {
-  /* background-image: url("assets/background-wallpaper.jpg"); */
-  background: linear-gradient(rgb(225, 225, 225), rgb(0, 0, 0));
+  background-image: url("assets/background-wallpaper.jpg");
   background-size: cover;
   width: 100vw;
   height: 100vh;
