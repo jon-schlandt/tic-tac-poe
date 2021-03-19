@@ -6,10 +6,7 @@
   </head>
   <body>
     <main>
-      <section class="title-box">
-        <img src="assets/game_title.png" alt="Tic-Tac-Poe"/>
-      </section>
-      <aside class="player-board">
+      <div class="player-board">
         <div class="message-box should-display" id="messageBoxOne">
           <section class="turn-message" id="turnMessageOne">
             <h2>YOUR</h2>
@@ -18,18 +15,28 @@
           </section>
           <h2 class="end-state-message hidden"></h2>
         </div>
-        <section class="player-display">
-          <img class="player-icon" src="assets/raven-shadow.svg" alt="raven token shadow">
-          <h3 class="win-count-display" id="countDisplayOne">0 Wins</h3>
-        </section>
-        <div class="inset-panel win-grid-background">
-          <div class="test">
-            <section class="win-grid" id="winGridOne"></section>
-          </div>
+        <div class="inset-panel player-display-background">
+          <section class="player-display">
+            <img class="player-icon" src="assets/raven-shadow.svg" alt="raven token shadow">
+            <h3 class="win-count-display" id="countDisplayOne">0 Wins</h3>
+          </section>
         </div>
-      </aside>
-      <section class="play-area">
-        <div class="inset-panel board-panel">
+        <div class="inset-panel win-grid-background">
+          <section class="win-grid" id="winGridOne"></section>
+        </div>
+      </div>
+      <div class="play-area">
+        <div class="inset-panel title-background">
+          <section class="title-box">
+            <!-- <h1>TIC</h1>
+            <img src="assets/raven-flat.svg" alt="raven token flat design">
+            <h1>TAC</h1>
+            <img src="assets/heart-flat.svg" alt="heart token flat design"/>
+            <h1>POE</h1> -->
+            <img src="assets/game_title.png" alt="Tic-Tac-Poe"/>
+          </section>
+        </div>
+        <div class="inset-panel board-background">
           <section class="game-board" id="gameBoard">
             <button class="board-square right-bottom-border" id="square0">
               <span class="token-box"></span>
@@ -60,8 +67,8 @@
             </button>
           </section>
         </div>
-      </section>
-      <aside class="player-board">
+      </div>
+      <div class="player-board">
         <div class="message-box" id="messageBoxTwo">
           <section class="turn-message" id="turnMessageTwo">
             <h2>YOUR</h2>
@@ -70,16 +77,16 @@
           </section>
           <h2 class="end-state-message hidden"></h2>
         </div>
-        <section class="player-display">
-          <img class="player-icon" src="assets/heart-shadow.svg" alt="heart token shadow">
-          <h3 class="win-count-display" id="countDisplayTwo">0 Wins</h3>
-        </section>
-        <div class="inset-panel win-grid-background">
-          <div class="test">
-            <section class="win-grid" id="winGridTwo"></section>
-          </div>
+        <div class="inset-panel player-display-background">
+          <section class="player-display">
+            <img class="player-icon" src="assets/heart-shadow.svg" alt="heart token shadow">
+            <h3 class="win-count-display" id="countDisplayTwo">0 Wins</h3>
+          </section>
         </div>
-      </aside>
+        <div class="inset-panel win-grid-background">
+          <section class="win-grid" id="winGridTwo"></section>
+        </div>
+      </div>
     </main>
     <script type="text/javascript" src="./src/player.js"></script>
     <script type="text/javascript" src="./src/game.js"></script>
