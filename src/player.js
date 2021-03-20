@@ -10,7 +10,7 @@ class Player {
   }
 
   retrieveWinsFromStorage() {
-    var savedWins = window.JSON.parse(window.localStorage.getItem(this.id));
+    const savedWins = window.JSON.parse(window.localStorage.getItem(this.id));
         
     if (savedWins) {
       this.wins = savedWins;
