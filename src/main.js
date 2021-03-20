@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Dependents
 const game = new Game();
 const players = [game.playerOne, game.playerTwo];
@@ -140,7 +141,8 @@ function renderWinBoard(winGrid, win) {
 
 function renderWinMessage() {
   const turnMessage = document.getElementById(
-    `turnMessage${game.currentPlayer.id}`);
+    `turnMessage${game.currentPlayer.id}`
+  );
   const endStateMessage = turnMessage.nextElementSibling;
 
   turnMessage.className = "turn-message hidden";
@@ -190,7 +192,8 @@ function setTurn() {
   messageBoxes.forEach(box => {
     messageBoxId = box.id;
     playerKey = messageBoxId.slice(
-      messageBoxId.length - 3, messageBoxId.length);
+      messageBoxId.length - 3, messageBoxId.length
+    );
 
     if (playerKey === game.currentPlayer.id) {
       box.className = "message-box should-display";

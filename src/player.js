@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class Player {
   constructor(id, token) {
     this.id = id;
@@ -10,7 +11,7 @@ class Player {
   }
 
   retrieveWinsFromStorage() {
-    var savedWins = window.JSON.parse(window.localStorage.getItem(this.id));
+    const savedWins = window.JSON.parse(window.localStorage.getItem(this.id));
         
     if (savedWins) {
       this.wins = savedWins;

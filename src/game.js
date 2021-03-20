@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 class Game {
   constructor() {
     this.playerOne = new Player("One", "raven");
@@ -29,7 +31,8 @@ class Game {
 
     this.winStates.forEach(state => {
       boardComp = this.gameBoard.filter(
-        (square, index) => state.includes(index));
+        (square, index) => state.includes(index)
+      );
       firstEqualsSecond = boardComp[0] === boardComp[1];
       firstEqualsLast = boardComp[0] === boardComp[2];
 
