@@ -1,6 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 class Game {
   constructor() {
+    // eslint-disable-next-line no-undef
     this.playerOne = new Player("One", "raven");
+    // eslint-disable-next-line no-undef
     this.playerTwo = new Player("Two", "heart");
     this.startingPlayer = this.playerOne;
     this.currentPlayer = this.startingPlayer;
@@ -22,11 +25,11 @@ class Game {
   }
 
   verifyWin() {
-    var winState;
-    var firstEqualsSecond;
-    var firstEqualsLast;
+    let winState;
+    let firstEqualsSecond;
+    let firstEqualsLast;
 
-    for (var i = 0; i < this.winStates.length; i++) {
+    for (let i = 0; i < this.winStates.length; i++) {
       winState = this.winStates[i];
       firstEqualsSecond = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
       firstEqualsLast = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
@@ -42,7 +45,7 @@ class Game {
   }
 
  verifyDraw() {
-    var boardState = this.gameBoard.filter(square => square);
+    const boardState = this.gameBoard.filter(square => square);
     
     if (boardState.length === 9) {
       return true;
@@ -72,14 +75,14 @@ class Game {
   } 
     
   saveWin() {
-    var savedBoard = this.gameBoard.slice(0, 9);
+    const savedBoard = this.gameBoard.slice(0, 9);
     this.currentPlayer.wins.push(savedBoard);
   }
 
   reset() {
     this.setStartingPlayer();
 
-    for (var i = 0; i < this.gameBoard.length; i++) {
+    for (let i = 0; i < this.gameBoard.length; i++) {
       this.gameBoard[i] = null;
     }
   }
