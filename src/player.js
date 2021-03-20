@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class Player {
   constructor(id, token) {
     this.id = id;
