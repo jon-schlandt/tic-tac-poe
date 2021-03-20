@@ -22,31 +22,27 @@ class Game {
   }
 
   verifyWin() {
-    var winState;
-    var firstEqualsSecond;
-    var firstEqualsLast;
+    let boardComp;
+    let firstEqualsSecond;
+    let firstEqualsLast;
+    let isWin = false;
 
-    for (var i = 0; i < this.winStates.length; i++) {
-      winState = this.winStates[i];
-      firstEqualsSecond = this.gameBoard[winState[0]] === this.gameBoard[winState[1]];
-      firstEqualsLast = this.gameBoard[winState[0]] === this.gameBoard[winState[2]];
+    this.winStates.forEach(state => {
+      boardComp = this.gameBoard.filter(
+        (square, index) => state.includes(index));
+      firstEqualsSecond = boardComp[0] === boardComp[1];
+      firstEqualsLast = boardComp[0] === boardComp[2];
 
-      if (this.gameBoard[winState[0]] === null) {
-        continue;
+      if (boardComp[0] && firstEqualsSecond && firstEqualsLast) {
+        isWin = true;
       }
+    })
 
-      if (firstEqualsSecond && firstEqualsLast) {
-        return true;
-      }
-    }
+    return isWin;
   }
 
- verifyDraw() {
-    var boardState = this.gameBoard.filter(square => square);
-    
-    if (boardState.length === 9) {
-      return true;
-    }
+  verifyDraw() {
+    return this.gameBoard.every(square => square);
   }
     
   setStartingPlayer() {
@@ -72,15 +68,12 @@ class Game {
   } 
     
   saveWin() {
-    var savedBoard = this.gameBoard.slice(0, 9);
+    const savedBoard = this.gameBoard.slice(0, 9);
     this.currentPlayer.wins.push(savedBoard);
   }
 
   reset() {
     this.setStartingPlayer();
-
-    for (var i = 0; i < this.gameBoard.length; i++) {
-      this.gameBoard[i] = null;
-    }
+    this.gameBoard.forEach(square => square = null);
   }
 }
