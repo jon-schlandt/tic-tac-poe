@@ -1,26 +1,30 @@
 // Dependents
-var game = new Game();
-var players = [game.playerOne, game.playerTwo];
+const game = new Game();
+const players = [game.playerOne, game.playerTwo];
 
 // Query Selectors
-var gameBoard = document.getElementById("gameBoard");
+const gameBoard = document.getElementById("gameBoard");
 
-var messageBoxes = document.querySelectorAll(".message-box");
-var turnMessages = document.querySelectorAll(".turn-message");
+const messageBoxes = document.querySelectorAll(".message-box");
+const turnMessages = document.querySelectorAll(".turn-message");
 
 // Event Listeners
-gameBoard.addEventListener("click", function(event) { manipulateSquare(event); });
-gameBoard.addEventListener("mouseover", function(event) { manipulateSquare(event); });
-gameBoard.addEventListener("mouseout", function(event) { manipulateSquare(event); });
+gameBoard.addEventListener("click", (event) => manipulateSquare(event));
+gameBoard.addEventListener("mouseover", (event) => manipulateSquare(event));
+gameBoard.addEventListener("mouseout", (event) => manipulateSquare(event));
 
 window.addEventListener("load", renderWinGrids);
 
 // Event Handlers/Helper Functions
 function manipulateSquare(event) {
-  var targetClass = event.target.classList;
+  const targetClass = event.target.classList;
+  const targetIsTokenBox = targetClass.contains("token-box");
+  const targetIsNotEmpty = (
+    targetClass.contains("raven") || targetClass.contains("heart")
+  );
 
-  if (game.inEndState || !(targetClass.contains("token-box")) || targetClass.contains("raven") || targetClass.contains("heart")) {
-      return;
+  if (game.inEndState || !targetIsTokenBox || targetIsNotEmpty) {
+    return;
   }
 
   if (event.type === "click") { 
@@ -32,9 +36,9 @@ function manipulateSquare(event) {
 }
 
 function makeMove(event) {
-  var boardSquare = event.target.closest("button");
-  var squareIndex = boardSquare.id[boardSquare.id.length - 1];
-  var token = game.currentPlayer.token;
+  const boardSquare = event.target.closest("button");
+  const squareIndex = boardSquare.id[boardSquare.id.length - 1];
+  const token = game.currentPlayer.token;
 
   game.placeToken(squareIndex, token);
   renderMove(boardSquare, token);
@@ -68,8 +72,8 @@ function renderWinGrids() {
 }
 
 function renderMove(boardSquare, token) {
-    var tokenBox = boardSquare.querySelector(".token-box");
-    tokenBox.className = `token-box ${token}`
+  const tokenBox = boardSquare.querySelector(".token-box");
+  tokenBox.className = `token-box ${token}`
 }
 
 function completeGame(condition) {
@@ -98,8 +102,8 @@ function initiateWin() {
 }
 
 function updateWinCount(player) {
-  var countDisplay = document.getElementById(`countDisplay${player.id}`);
-  var winCount = player.wins.length;
+  const countDisplay = document.getElementById(`countDisplay${player.id}`);
+  const winCount = player.wins.length;
 
   if (winCount === 1) {
     countDisplay.innerText = `${winCount} Win`;
@@ -109,69 +113,53 @@ function updateWinCount(player) {
 }
 
 function renderWinGrid(player) {
-  var winBoards = renderWinBoards(player);
+  const winGrid = document.getElementById(`winGrid${player.id}`);
+  const playerWins = player.wins;
 
-  for (var i = 0; i < winBoards.length; i++) {
-    renderWinPositions(winBoards[i], player.wins[i]);
-  }
+  initializeWinGrid(winGrid);
+
+  playerWins.forEach(win => {
+    winGrid.innerHTML += "<article class='mini-game-board'></article>";
+    renderWinBoard(winGrid, win);
+  })
 }
 
-function renderWinBoards(player) {
-  var winGrid = document.getElementById(`winGrid${player.id}`);
-  var winBoards = "";
+const initializeWinGrid = winGrid => winGrid.innerHTML = "";
 
-  for (var i = 0; i < player.wins.length; i++) {
-    winBoards += `
-      <article class="mini-game-board">
-        <div class="mini-square right-bottom-border"></div>
-        <div class="mini-square right-bottom-border"></div>
-        <div class="mini-square bottom-border"></div>
-        <div class="mini-square right-bottom-border"></div>
-        <div class="mini-square right-bottom-border"></div>
-        <div class="mini-square bottom-border"></div>
-        <div class="mini-square right-border"></div>
-        <div class="mini-square right-border"></div>
-        <div class="mini-square no-border"></div>
-      </article>
-    `
-  }
-    
-  winGrid.innerHTML = winBoards;
-  return winGrid.querySelectorAll(".mini-game-board");
-}
+function renderWinBoard(winGrid, win) {
+  const winBoard = winGrid.lastElementChild;
 
-function renderWinPositions(winBoard, savedWin) {
-  var boardSquares = winBoard.querySelectorAll(".mini-square");
+  win.map(position => { 
+    const miniSquare = winBoard.appendChild(document.createElement("div"));
 
-  for (var i = 0; i < 9; i++) {
-    if (savedWin[i]) {
-        boardSquares[i].classList.toggle(`${savedWin[i]}-flat`)
+    if (win) {
+      miniSquare.className = `mini-square ${position}`;
     }
-  }
+  });
 }
 
 function renderWinMessage() {
-  var turnMessage = document.getElementById(`turnMessage${game.currentPlayer.id}`);
-  var endStateMessage = turnMessage.nextElementSibling;
-
-  endStateMessage.innerText = "WINNER!";
+  const turnMessage = document.getElementById(
+    `turnMessage${game.currentPlayer.id}`);
+  const endStateMessage = turnMessage.nextElementSibling;
 
   turnMessage.className = "turn-message hidden";
+  endStateMessage.innerText = "WINNER!";
   endStateMessage.className = "end-state-message";
 }
 
 function renderDrawMessages() {
-  var endStateMessage;
-
-  for (var i = 0; i < messageBoxes.length; i++) {
-    endStateMessage = turnMessages[i].nextElementSibling;
-
+  turnMessages.forEach(message => {
+    let endStateMessage = message.nextElementSibling;
+  
+    message.className = "turn-message hidden";
     endStateMessage.innerText = "DRAW!";
-
-    messageBoxes[i].className = "message-box should-display";
-    turnMessages[i].className = "turn-message hidden";
     endStateMessage.className = "end-state-message";
-  }
+  })
+  
+  messageBoxes.forEach(box => {
+    box.className = "message-box should-display";
+  })
 }
 
 function initializeGame() {
@@ -181,42 +169,33 @@ function initializeGame() {
 }
 
 function clearGameBoard() {
-  var boardSquare;
-  var tokenBox;
-
-  for (var i = 0; i < game.gameBoard.length; i++) {
-    boardSquare = document.getElementById(`square${i}`);
-    tokenBox = boardSquare.querySelector(".token-box");
-
-    tokenBox.className = "token-box";
-  }
+  const tokenBoxes = document.querySelectorAll(".token-box");
+  tokenBoxes.forEach(box => box.className = "token-box");
 }
 
 function initializeMessageBoxes() {
-  var endStateMessage;
+  turnMessages.forEach(message => {
+    let endStateMessage = message.nextElementSibling;
 
-  for (var i = 0; i < messageBoxes.length; i++) {
-    endStateMessage = turnMessages[i].nextElementSibling;
-
+    message.className = "turn-message";
     endStateMessage.innerText = "";
-
     endStateMessage.className = "end-state-message hidden";
-    turnMessages[i].className = "turn-message";
-  }
+  })
 }
 
 function setTurn() {
-  var messageBoxId;
-  var playerKey;
-    
-  for (var i = 0; i < messageBoxes.length; i++) {
-    messageBoxId = messageBoxes[i].id;
-    playerKey = messageBoxId.slice(messageBoxId.length - 3, messageBoxId.length);
+  let messageBoxId;
+  let playerKey;
+
+  messageBoxes.forEach(box => {
+    messageBoxId = box.id;
+    playerKey = messageBoxId.slice(
+      messageBoxId.length - 3, messageBoxId.length);
 
     if (playerKey === game.currentPlayer.id) {
-        messageBoxes[i].className = "message-box should-display";
+      box.className = "message-box should-display";
     } else {
-        messageBoxes[i].className = "message-box";
+      box.className = "message-box";
     }
-  }
+  })
 }

@@ -32,28 +32,6 @@ main {
   display: none !important;
 }
 
-/* ------ Board Square Borders ------ */
-
-.right-bottom-border {
-  border: none;
-  border-right: solid 2px black;
-  border-bottom: solid 2px black;
-}
-
-.right-border {
-  border: none;
-  border-right: solid 2px black;
-}
-
-.bottom-border {
-  border: none;
-  border-bottom: solid 2px black;
-}
-
-.no-border {
-  border: none;
-}
-
 /********** ------ Player Board Styles ------ **********/
 
 .player-board {
@@ -204,7 +182,24 @@ main {
   background-repeat: no-repeat;
   width: 1.5vw;
   height: 1.5vw;
+  border: none;
   border-width: 1px;
+}
+
+.mini-square:nth-child(1), .mini-square:nth-child(2),
+.mini-square:nth-child(4), .mini-square:nth-child(5) {
+  border: none;
+  border-right: solid 2px black;
+  border-bottom: solid 2px black;
+}
+
+.mini-square:nth-child(3), .mini-square:nth-child(6) {
+  border: none;
+  border-bottom: solid 2px black;
+}
+
+.mini-square:nth-child(7), .mini-square:nth-child(8) {
+  border-right: solid 2px black;
 }
 
 .raven-flat {
@@ -291,6 +286,26 @@ main {
   padding: 0px 0px;
   box-shadow: none;
   outline: none;
+}
+
+.right-bottom-border {
+  border: none;
+  border-right: solid 2px black;
+  border-bottom: solid 2px black;
+}
+
+.right-border {
+  border: none;
+  border-right: solid 2px black;
+}
+
+.bottom-border {
+  border: none;
+  border-bottom: solid 2px black;
+}
+
+.no-border {
+  border: none;
 }
 
 .token-box {
