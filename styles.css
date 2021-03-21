@@ -276,6 +276,9 @@ main {
 
 .board-square {
   background-color: rgba(255, 255, 255, 0);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
   width: 10vw;
   max-width: 200px;
   height: 10vw;
@@ -310,10 +313,10 @@ main {
 
 .token-box {
   background-position: center;
-  background-size:contain;
+  background-size: 80%;
   background-repeat: no-repeat;
-  width: 80%;
-  height: 80%;
+  /* width: 80%;
+  height: 80%; */
 }
 
 .raven-preview {
