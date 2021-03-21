@@ -71,7 +71,7 @@ function renderWinGrids() {
 }
 
 function renderMove(boardSquare) {
-  boardSquare.className = `board-square ${game.currentPlayer.token}`;
+  boardSquare.classList.toggle(game.currentPlayer.token);
 }
 
 function completeGame(condition) {
