@@ -19,12 +19,12 @@ window.addEventListener("load", renderWinGrids);
 // Event Handlers/Helper Functions
 function manipulateSquare(event) {
   const targetClass = event.target.classList;
-  const targetNotTokenBox = !targetClass.contains("board-square");
+  const targetNotSquare = !targetClass.contains("board-square");
   const targetIsNotEmpty = (
     targetClass.contains("raven") || targetClass.contains("heart")
   );
 
-  if (game.inEndState || targetNotTokenBox || targetIsNotEmpty) {
+  if (game.inEndState || targetNotSquare || targetIsNotEmpty) {
     return;
   }
 
@@ -71,6 +71,7 @@ function renderWinGrids() {
 }
 
 function renderMove(boardSquare) {
+  boardSquare.classList.toggle(`${game.currentPlayer.token}-preview`);
   boardSquare.classList.toggle(game.currentPlayer.token);
 }
 
@@ -174,8 +175,15 @@ function initializeGame() {
 }
 
 function clearGameBoard() {
-  const tokenBoxes = document.querySelectorAll(".board-square");
-  tokenBoxes.forEach(box => box.className = "board-square");
+  const boardSquares = document.querySelectorAll(".board-square");
+
+  boardSquares.forEach(box => {
+    if (box.classList.contains("raven")) {
+      box.classList.toggle("raven");
+    } else if (box.classList.contains("heart")) {
+      box.classList.toggle("heart");
+    }
+  }) 
 }
 
 function initializeMessageBoxes() {
