@@ -311,14 +311,6 @@ main {
   border: none;
 }
 
-.token-box {
-  background-position: center;
-  background-size: 80%;
-  background-repeat: no-repeat;
-  /* width: 80%;
-  height: 80%; */
-}
-
 .raven-preview {
   background-image: url("assets/raven-preview.svg");
 }
