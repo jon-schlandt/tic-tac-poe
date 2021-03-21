@@ -19,7 +19,7 @@ window.addEventListener("load", renderWinGrids);
 // Event Handlers/Helper Functions
 function manipulateSquare(event) {
   const targetClass = event.target.classList;
-  const targetNotTokenBox = !targetClass.contains("token-box");
+  const targetNotTokenBox = !targetClass.contains("board-square");
   const targetIsNotEmpty = (
     targetClass.contains("raven") || targetClass.contains("heart")
   );
@@ -37,11 +37,10 @@ function manipulateSquare(event) {
 }
 
 function makeMove(event) {
-  const boardSquare = event.target.closest("button");
-  const squareIndex = boardSquare.id[boardSquare.id.length - 1];
+  const squareIndex = event.target.id[event.target.id.length - 1];
 
   game.placeToken(squareIndex);
-  renderMove(boardSquare);
+  renderMove(event.target);
 }
 
 function progressGame() {
@@ -56,7 +55,7 @@ function progressGame() {
 }
 
 function toggleTokenPreview(event) {
-  if (event.type === "mouseout" && event.target.className === "token-box") {
+  if (event.type === "mouseout" && event.target.className === "board-square") {
     return;
   } else {
     event.target.classList.toggle(`${game.currentPlayer.token}-preview`);
@@ -72,8 +71,7 @@ function renderWinGrids() {
 }
 
 function renderMove(boardSquare) {
-  const tokenBox = boardSquare.querySelector(".token-box");
-  tokenBox.className = `token-box ${game.currentPlayer.token}`;
+  boardSquare.className = `board-square ${game.currentPlayer.token}`;
 }
 
 function completeGame(condition) {
@@ -176,8 +174,8 @@ function initializeGame() {
 }
 
 function clearGameBoard() {
-  const tokenBoxes = document.querySelectorAll(".token-box");
-  tokenBoxes.forEach(box => box.className = "token-box");
+  const tokenBoxes = document.querySelectorAll(".board-square");
+  tokenBoxes.forEach(box => box.className = "board-square");
 }
 
 function initializeMessageBoxes() {
