@@ -19,12 +19,12 @@ window.addEventListener("load", renderWinGrids);
 // Event Handlers/Helper Functions
 const manipulateSquare = event => {
   const targetClass = event.target.classList;
-  const targetIsTokenBox = targetClass.contains("token-box");
+  const targetNotTokenBox = !targetClass.contains("token-box");
   const targetIsNotEmpty = (
     targetClass.contains("raven") || targetClass.contains("heart")
   );
 
-  if (game.inEndState || !targetIsTokenBox || targetIsNotEmpty) {
+  if (game.inEndState || targetNotTokenBox || targetIsNotEmpty) {
     return;
   }
 
@@ -39,10 +39,9 @@ const manipulateSquare = event => {
 const makeMove = event => {
   const boardSquare = event.target.closest("button");
   const squareIndex = boardSquare.id[boardSquare.id.length - 1];
-  const token = game.currentPlayer.token;
 
-  game.placeToken(squareIndex, token);
-  renderMove(boardSquare, token);
+  game.placeToken(squareIndex);
+  renderMove(boardSquare);
 }
 
 const progressGame = () => {
@@ -72,9 +71,9 @@ function renderWinGrids() {
   });
 }
 
-const renderMove = (boardSquare, token) => {
+const renderMove = (boardSquare) => {
   const tokenBox = boardSquare.querySelector(".token-box");
-  tokenBox.className = `token-box ${token}`
+  tokenBox.className = `token-box ${game.currentPlayer.token}`
 }
 
 const completeGame = condition => {

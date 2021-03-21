@@ -19,8 +19,8 @@ class Game {
     ];
   }
 
-  placeToken(squareIndex, token) {
-    this.gameBoard.splice(squareIndex, 1, token);
+  placeToken(squareIndex) {
+    this.gameBoard.splice(squareIndex, 1, this.currentPlayer.token);
   }
 
   verifyWin() {
