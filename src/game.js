@@ -19,8 +19,8 @@ class Game {
     ];
   }
 
-  placeToken(squareIndex, token) {
-    this.gameBoard.splice(squareIndex, 1, token);
+  placeToken(squareIndex) {
+    this.gameBoard.splice(squareIndex, 1, this.currentPlayer.token);
   }
 
   verifyWin() {
@@ -77,6 +77,6 @@ class Game {
 
   reset() {
     this.setStartingPlayer();
-    this.gameBoard.forEach(square => square = null);
+    this.gameBoard = this.gameBoard.map(square => square = null);
   }
 }
