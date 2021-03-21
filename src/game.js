@@ -77,6 +77,6 @@ class Game {
 
   reset() {
     this.setStartingPlayer();
-    this.gameBoard.forEach(square => square = null);
+    this.gameBoard = this.gameBoard.map(square => square = null);
   }
 }

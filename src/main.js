@@ -125,17 +125,18 @@ function renderWinGrid(player) {
 }
 
 function initializeWinGrid(winGrid) {
-  return winGrid.innerHTML = "";
+  winGrid.innerHTML = "";
 }
 
 function renderWinBoard(winGrid, win) {
   const winBoard = winGrid.lastElementChild;
 
-  win.map(position => {
+  win.map(token => {
     const miniSquare = winBoard.appendChild(document.createElement("div"));
+    miniSquare.className = "mini-square";
 
-    if (win) {
-      miniSquare.className = `mini-square ${position}`;
+    if (token) {
+      miniSquare.classList.toggle(token);
     }
   });
 }
@@ -146,23 +147,26 @@ function renderWinMessage() {
   );
   const endStateMessage = turnMessage.nextElementSibling;
 
-  turnMessage.className = "turn-message hidden";
   endStateMessage.innerText = "WINNER!";
-  endStateMessage.className = "end-state-message";
+  toggleMessages(turnMessage, endStateMessage)
 }
 
 function renderDrawMessages() {
-  turnMessages.forEach(message => {
-    let endStateMessage = message.nextElementSibling;
+  turnMessages.forEach(turnMessage => {
+    let endStateMessage = turnMessage.nextElementSibling;
 
-    message.className = "turn-message hidden";
     endStateMessage.innerText = "DRAW!";
-    endStateMessage.className = "end-state-message";
+    toggleMessages(turnMessage, endStateMessage);
   });
 
   messageBoxes.forEach(box => {
     box.className = "message-box should-display";
   });
+}
+
+function toggleMessages(turnMsg, endStateMsg) {
+  turnMsg.classList.toggle("hidden");
+  endStateMsg.classList.toggle("hidden");
 }
 
 function initializeGame() {
@@ -177,13 +181,19 @@ function clearGameBoard() {
 }
 
 function initializeMessageBoxes() {
-  turnMessages.forEach(message => {
-    let endStateMessage = message.nextElementSibling;
+  let endStateMessage;
+  
+  turnMessages.forEach(turnMessage => {
+    endStateMessage = turnMessage.nextElementSibling;
 
-    message.className = "turn-message";
     endStateMessage.innerText = "";
-    endStateMessage.className = "end-state-message hidden";
+    initializeMessages(turnMessage, endStateMessage);
   });
+}
+
+function initializeMessages(turnMsg, endStateMsg) {
+  turnMsg.className = "turn-message";
+  endStateMsg.className = "end-state-message hidden";
 }
 
 function setTurn() {
