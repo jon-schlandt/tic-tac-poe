@@ -17,7 +17,7 @@ gameBoard.addEventListener("mouseout", (event) => manipulateSquare(event));
 window.addEventListener("load", renderWinGrids);
 
 // Event Handlers/Helper Functions
-const manipulateSquare = event => {
+function manipulateSquare(event) {
   const targetClass = event.target.classList;
   const targetNotTokenBox = !targetClass.contains("token-box");
   const targetIsNotEmpty = (
@@ -28,7 +28,7 @@ const manipulateSquare = event => {
     return;
   }
 
-  if (event.type === "click") { 
+  if (event.type === "click") {
     makeMove(event);
     progressGame();
   } else {
@@ -36,7 +36,7 @@ const manipulateSquare = event => {
   }
 }
 
-const makeMove = event => {
+function makeMove(event) {
   const boardSquare = event.target.closest("button");
   const squareIndex = boardSquare.id[boardSquare.id.length - 1];
 
@@ -44,7 +44,7 @@ const makeMove = event => {
   renderMove(boardSquare);
 }
 
-const progressGame = () => {
+function progressGame() {
   if (game.verifyWin()) {
     completeGame("win");
   } else if (game.verifyDraw()) {
@@ -55,7 +55,7 @@ const progressGame = () => {
   }
 }
 
-const toggleTokenPreview = event => {
+function toggleTokenPreview(event) {
   if (event.type === "mouseout" && event.target.className === "token-box") {
     return;
   } else {
@@ -71,12 +71,12 @@ function renderWinGrids() {
   });
 }
 
-const renderMove = (boardSquare) => {
+function renderMove(boardSquare) {
   const tokenBox = boardSquare.querySelector(".token-box");
-  tokenBox.className = `token-box ${game.currentPlayer.token}`
+  tokenBox.className = `token-box ${game.currentPlayer.token}`;
 }
 
-const completeGame = condition => {
+function completeGame(condition) {
   if (condition === "win") {
     initiateWin();
     renderWinMessage();
@@ -86,14 +86,14 @@ const completeGame = condition => {
 
   game.toggleEndState();
 
-  setTimeout(function() {
+  setTimeout(function () {
     game.reset();
     initializeGame();
     game.toggleEndState();
   }, 2500);
 }
 
-const initiateWin = () => {
+function initiateWin() {
   game.saveWin();
   game.currentPlayer.saveWinsToStorage();
 
@@ -101,7 +101,7 @@ const initiateWin = () => {
   renderWinGrid(game.currentPlayer);
 }
 
-const updateWinCount = player => {
+function updateWinCount(player) {
   const countDisplay = document.getElementById(`countDisplay${player.id}`);
   const winCount = player.wins.length;
 
@@ -112,7 +112,7 @@ const updateWinCount = player => {
   }
 }
 
-const renderWinGrid = player => {
+function renderWinGrid(player) {
   const winGrid = document.getElementById(`winGrid${player.id}`);
   const playerWins = player.wins;
 
@@ -121,15 +121,17 @@ const renderWinGrid = player => {
   playerWins.forEach(win => {
     winGrid.innerHTML += "<article class='mini-game-board'></article>";
     renderWinBoard(winGrid, win);
-  })
+  });
 }
 
-const initializeWinGrid = winGrid => winGrid.innerHTML = "";
+function initializeWinGrid(winGrid) {
+  return winGrid.innerHTML = "";
+}
 
-const renderWinBoard = (winGrid, win) => {
+function renderWinBoard(winGrid, win) {
   const winBoard = winGrid.lastElementChild;
 
-  win.map(position => { 
+  win.map(position => {
     const miniSquare = winBoard.appendChild(document.createElement("div"));
 
     if (win) {
@@ -138,7 +140,7 @@ const renderWinBoard = (winGrid, win) => {
   });
 }
 
-const renderWinMessage = () => {
+function renderWinMessage() {
   const turnMessage = document.getElementById(
     `turnMessage${game.currentPlayer.id}`
   );
@@ -149,42 +151,42 @@ const renderWinMessage = () => {
   endStateMessage.className = "end-state-message";
 }
 
-const renderDrawMessages = () => {
+function renderDrawMessages() {
   turnMessages.forEach(message => {
     let endStateMessage = message.nextElementSibling;
-  
+
     message.className = "turn-message hidden";
     endStateMessage.innerText = "DRAW!";
     endStateMessage.className = "end-state-message";
-  })
-  
+  });
+
   messageBoxes.forEach(box => {
     box.className = "message-box should-display";
-  })
+  });
 }
 
-const initializeGame = () => {
+function initializeGame() {
   clearGameBoard();
   initializeMessageBoxes();
   setTurn();
 }
 
-const clearGameBoard = () => {
+function clearGameBoard() {
   const tokenBoxes = document.querySelectorAll(".token-box");
   tokenBoxes.forEach(box => box.className = "token-box");
 }
 
-const initializeMessageBoxes = () => {
+function initializeMessageBoxes() {
   turnMessages.forEach(message => {
     let endStateMessage = message.nextElementSibling;
 
     message.className = "turn-message";
     endStateMessage.innerText = "";
     endStateMessage.className = "end-state-message hidden";
-  })
+  });
 }
 
-const setTurn = () => {
+function setTurn() {
   let messageBoxId;
   let playerKey;
 
@@ -199,5 +201,5 @@ const setTurn = () => {
     } else {
       box.className = "message-box";
     }
-  })
+  });
 }
