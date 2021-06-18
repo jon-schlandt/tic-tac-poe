@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: josefinSlab;
-  src: url("assets/JosefinSlab-VariableFont_wght.ttf");
+  src: url("../assets/JosefinSlab-VariableFont_wght.ttf");
 }
 
 * {
@@ -12,7 +12,7 @@
 }
 
 main {
-  background-image: url("assets/background-wallpaper.jpg");
+  background-image: url("../assets/background-wallpaper.jpg");
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -203,11 +203,11 @@ main {
 }
 
 .raven-flat {
-  background-image: url("assets/raven-flat.svg");
+  background-image: url("../assets/raven-flat.svg");
 }
 
 .heart-flat {
-  background-image: url("assets/heart-shadow.svg");
+  background-image: url("../assets/heart-shadow.svg");
 }
 
 /********** ------ Play Area Styles ------ **********/
@@ -303,17 +303,17 @@ main {
 }
 
 .raven-preview {
-  background-image: url("assets/raven-preview.svg");
+  background-image: url("../assets/raven-preview.svg");
 }
 
 .heart-preview {
-  background-image: url("assets/heart-preview.svg");
+  background-image: url("../assets/heart-preview.svg");
 }
 
 .raven {
-  background-image: url("assets/raven-token.svg");
+  background-image: url("../assets/raven-token.svg");
 }
 
 .heart {
-  background-image: url("assets/heart-token.svg");
+  background-image: url("../assets/heart-token.svg");
 }
